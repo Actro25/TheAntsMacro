@@ -31,12 +31,13 @@ HWND StatusTextTime;
 HWND ActiveControlTextStatusTime;
 HWND DiscoverStatusText;
 
-HANDLE readThread;
+HANDLE readNewWindow;
 HANDLE readKey;
 HANDLE readTime;
 
 COLORREF ActiveTextColor;
 LRESULT CALLBACK SoftwareMainProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp);
+LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp);
 WNDCLASS NewWindowClass(HBRUSH BGColor, HCURSOR Cursor, HINSTANCE hInst, HICON Icon, LPCWSTR Name, WNDPROC Procedure);
 
 void SetActiveTextColor(COLORREF color, HWND ActiveControlText);

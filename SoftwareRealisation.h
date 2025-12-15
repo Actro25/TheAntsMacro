@@ -2,15 +2,16 @@
 void ExitSoftware(void) {
 	THEMEWINDOWCOLOR->unused;
 	if (readKey) {
+		isProgramWork = false;
 		WaitForSingleObject(readKey, INFINITE);
 		CloseHandle(readKey);
 		readKey = NULL;
 	}
-	if (readThread) {
+	if (readNewWindow) {
 		isDiscovering = false;
-		WaitForSingleObject(readThread, INFINITE);
-		CloseHandle(readThread);
-		readThread = NULL;
+		WaitForSingleObject(readNewWindow, INFINITE);
+		CloseHandle(readNewWindow);
+		readNewWindow = NULL;
 	}
 	if (readTime) {
 		isActive = false;
@@ -20,6 +21,12 @@ void ExitSoftware(void) {
 	}
 
 	PostQuitMessage(0);
+}
+void ExitDiscoveringSoftware(void) {
+	PostQuitMessage(0);
+}
+void DiscoveringWndWidgets(HWND hWnd) {
+	
 }
 void MainWndAddMenus(HWND hWnd) {
 }
@@ -33,9 +40,6 @@ void MainWndWidgets(HWND hWnd) {
 	SetActiveTextColor(RGB(255, 0, 0), StatusTextTime);
 	ActiveControlTextStatusTime = CreateWindowA("static", "0", WS_VISIBLE | WS_CHILD | ES_CENTER, 250, 50, 100, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(255, 0, 0), ActiveControlTextStatusTime);
-
-	DiscoverStatusText = CreateWindowA("static", "0%", WS_VISIBLE | WS_CHILD | ES_CENTER, 200, 110, 50, 50, hWnd, NULL, NULL, NULL);
-	SetActiveTextColor(RGB(0, 0, 0), DiscoverStatusText);
 
 	CreateWindowA("button", "Discover", WS_VISIBLE | WS_CHILD, 100, 100, 100, 40, hWnd, (HMENU)OnButtonDiscoverClick, NULL, NULL);
 }
@@ -64,12 +68,15 @@ DWORD WINAPI ReadKeysInput(LPVOID lpParameter) {
 	return 0;
 }
 DWORD WINAPI ThreadDiscover(LPVOID lpParameter) {
-	std::string textOnLabel = "";
-	for (int i = 1; i <= 100 && isDiscovering; i++) {
-		if (!isDiscovering) break;
-		PostMessageA(g_hMainWnd, WM_DISCOVER_PROGRESS, i, 0);
-		Sleep(100);
+	MSG SoftwareDiscoveringMessage = { 0 };
+
+	CreateWindow(L"DiscoveringWndClass", L"Your Base Map", WS_OVERLAPPEDWINDOW | WS_VISIBLE | ES_AUTOVSCROLL | WS_EX_CLIENTEDGE | WS_EX_TOPMOST, 200, 200, 500, 500, NULL, NULL, NULL, NULL);
+	while (GetMessageW(&SoftwareDiscoveringMessage, NULL, NULL, NULL) && isDiscovering) {
+		TranslateMessage(&SoftwareDiscoveringMessage);
+		DispatchMessage(&SoftwareDiscoveringMessage);
 	}
+	ExitDiscoveringSoftware();
+
 	return 0;
 }
 DWORD WINAPI ThreadTimeProgres(LPVOID lpParameter) {

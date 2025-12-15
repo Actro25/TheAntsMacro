@@ -5,11 +5,13 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR args, int ncmdsho
 	srand(static_cast<unsigned int>(time(nullptr)));
 
 	WNDCLASS SoftwareMainClass = NewWindowClass(THEMEWINDOWCOLOR, LoadCursor(NULL, IDC_ARROW), hInst, LoadIcon(NULL, IDI_QUESTION), L"MainWndClass", SoftwareMainProcedure);
+	WNDCLASS SoftwareDiscoveringClass = NewWindowClass(THEMEWINDOWCOLOR, LoadCursor(NULL, IDC_ARROW), hInst, LoadIcon(NULL, IDI_QUESTION), L"DiscoveringWndClass", SoftwareDiscoveringProcedure);
 
 	if (!RegisterClassW(&SoftwareMainClass)) { return -1; }
+	if (!RegisterClassW(&SoftwareDiscoveringClass)) { return -1; }
 	MSG SoftwareMainMessage = { 0 };
 
-	CreateWindow(L"MainWndClass",L"First c++ window", WS_OVERLAPPEDWINDOW | WS_VISIBLE | ES_AUTOVSCROLL, 100, 100, 500, 700, NULL, NULL, NULL, NULL);
+	CreateWindow(L"MainWndClass",L"The Ants Macro", WS_OVERLAPPEDWINDOW | WS_VISIBLE | ES_AUTOVSCROLL | WS_EX_CLIENTEDGE | WS_EX_TOPMOST, 100, 100, 500, 700, NULL, NULL, NULL, NULL);
 	while (GetMessageW(&SoftwareMainMessage, NULL, NULL, NULL)) {
 		TranslateMessage(&SoftwareMainMessage);
 		DispatchMessage(&SoftwareMainMessage);
@@ -30,6 +32,22 @@ WNDCLASS NewWindowClass(HBRUSH BGColor, HCURSOR Cursor, HINSTANCE hInst, HICON I
 
 	return NWC;
 }
+LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp) {
+	switch (msg) {
+	case WM_COMMAND:
+		switch (wp) {
+		}
+		break;
+	case WM_CREATE:
+		DiscoveringWndWidgets(hWnd);
+		break;
+	case WM_DESTROY:
+		ExitDiscoveringSoftware();
+		break;
+
+	default: return DefWindowProc(hWnd, msg, wp, lp);
+	}
+}
 LRESULT CALLBACK SoftwareMainProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp) {
 	switch (msg) {
 	case WM_COMMAND:
@@ -46,7 +64,6 @@ LRESULT CALLBACK SoftwareMainProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp
 			else {
 				if (readTime) {
 					isActive = false;
-					//WaitForSingleObject(readTime, INFINITE);
 					CloseHandle(readTime);
 					readTime = NULL;
 				}
@@ -60,13 +77,13 @@ LRESULT CALLBACK SoftwareMainProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp
 		{
 			isDiscovering = !isDiscovering;
 			if(isDiscovering)
-				readThread = CreateThread(NULL, 0, ThreadDiscover, NULL, 0, NULL);
+				readNewWindow = CreateThread(NULL, 0, ThreadDiscover, NULL, 0, NULL);
 			else {
-				if (readThread) {
+				if (readNewWindow) {
 					isDiscovering = false;
-					WaitForSingleObject(readThread, INFINITE);
-					CloseHandle(readThread);
-					readThread = NULL;
+					WaitForSingleObject(readNewWindow, INFINITE);
+					CloseHandle(readNewWindow);
+					readNewWindow = NULL;
 				}
 			}
 			
