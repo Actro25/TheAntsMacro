@@ -18,7 +18,6 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR args, int ncmdsho
 		DispatchMessage(&SoftwareMainMessage);
 	}
 	ExitSoftware();
-
 	return 0;
 }
 
@@ -29,12 +28,45 @@ LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LP
 		}
 		break;
 	case WM_CREATE:
+		g_hDiscoveringWnd = hWnd;
 		DiscoveringWndWidgets(hWnd);
+		InvalidateRect(g_hDiscoveringWnd, NULL, TRUE);
 		break;
 	case WM_DESTROY:
 		ExitDiscoveringSoftware();
 		break;
+	case WM_PAINT: {
+		PAINTSTRUCT ps;
+		HDC hdc = BeginPaint(hWnd, &ps);
 
+		POINT vertices[6];
+		int centerX = 250, centerY = 250, radius = 100;
+
+		for (int i = 0; i < 6; i++) {
+			double startAngle = 0.0;
+			double angleDegrees = startAngle + (double)i * 60.0;
+			double angleRadians = angleDegrees * M_PI / 180.0;
+			vertices[i].x = (LONG)(centerX + radius * cos(angleRadians));
+			vertices[i].y = (LONG)(centerY + radius * sin(angleRadians));
+		}
+
+		HBRUSH hGreenBrush = CreateSolidBrush(RGB(192, 192, 192));
+		HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, hGreenBrush);
+
+		HPEN hBlackPen = CreatePen(PS_SOLID, 2, RGB(224, 224, 224));
+		HPEN hOldPen = (HPEN)SelectObject(hdc, hBlackPen);
+
+		Polygon(hdc, vertices, 6);
+
+		SelectObject(hdc, hOldBrush);
+		SelectObject(hdc, hOldPen);
+
+		DeleteObject(hGreenBrush);
+		DeleteObject(hBlackPen);
+
+		EndPaint(hWnd, &ps);
+		break;
+	}
 	default: return DefWindowProc(hWnd, msg, wp, lp);
 	}
 }

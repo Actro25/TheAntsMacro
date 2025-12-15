@@ -13,9 +13,8 @@ void ExitSoftware(void) {
 		CloseHandle(readNewWindow);
 		readNewWindow = NULL;
 	}
-	if (readTime) {
+	if (readTime) { 
 		isActive = false;
-		WaitForSingleObject(readTime, INFINITE);
 		CloseHandle(readTime);
 		readTime = NULL;
 	}

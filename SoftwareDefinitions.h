@@ -1,5 +1,5 @@
 #pragma once
-
+#define _USE_MATH_DEFINES
 #include <Windows.h>
 #include <Windowsx.h>
 #include <string>
@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <atomic>
+#include <cmath>
 
 #define WM_DISCOVER_PROGRESS (WM_USER + 1)
 #define WM_TIME_PROGRESS (WM_USER + 2)
@@ -25,6 +26,7 @@ std::atomic<bool> isActivateProgram{ false };
 HBRUSH THEMEWINDOWCOLOR = CreateSolidBrush(RGB(255, 255, 255));
 
 HWND g_hMainWnd = nullptr;
+HWND g_hDiscoveringWnd = nullptr;
 HWND StatusTextStart;
 HWND ActiveControlTextStatus;
 HWND StatusTextTime;

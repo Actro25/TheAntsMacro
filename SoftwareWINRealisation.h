@@ -31,7 +31,6 @@ DWORD WINAPI ThreadDiscover(LPVOID lpParameter) {
 	return 0;
 }
 DWORD WINAPI ThreadTimeProgres(LPVOID lpParameter) {
-
 	std::string textTime = "";
 	while (isActive) {
 		Sleep(1000);
