@@ -1,5 +1,6 @@
 #include "SoftwareDefinitions.h"
-#include "SoftwareRealisation.h"
+#include "SoftwareWINRealisation.h"
+#include "SoftwareNORMALRealisation.h"
 
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR args, int ncmdshow) {
 	srand(static_cast<unsigned int>(time(nullptr)));
@@ -20,18 +21,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR args, int ncmdsho
 
 	return 0;
 }
-WNDCLASS NewWindowClass(HBRUSH BGColor, HCURSOR Cursor, HINSTANCE hInst, HICON Icon, LPCWSTR Name, WNDPROC Procedure) {
-	WNDCLASS NWC = { 0 };
 
-	NWC.hIcon = Icon;
-	NWC.hCursor = Cursor;
-	NWC.hInstance = hInst;
-	NWC.lpszClassName = Name;
-	NWC.hbrBackground = BGColor;
-	NWC.lpfnWndProc = Procedure;
-
-	return NWC;
-}
 LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp) {
 	switch (msg) {
 	case WM_COMMAND:

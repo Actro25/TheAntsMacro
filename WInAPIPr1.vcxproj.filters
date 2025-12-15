@@ -23,7 +23,10 @@
     <ClInclude Include="SoftwareDefinitions.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="SoftwareRealisation.h">
+    <ClInclude Include="SoftwareWINRealisation.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftwareNORMALRealisation.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

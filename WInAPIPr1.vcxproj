@@ -127,7 +127,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SoftwareDefinitions.h" />
-    <ClInclude Include="SoftwareRealisation.h" />
+    <ClInclude Include="SoftwareNORMALRealisation.h" />
+    <ClInclude Include="SoftwareWINRealisation.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

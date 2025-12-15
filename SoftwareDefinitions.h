@@ -43,6 +43,9 @@ WNDCLASS NewWindowClass(HBRUSH BGColor, HCURSOR Cursor, HINSTANCE hInst, HICON I
 void SetActiveTextColor(COLORREF color, HWND ActiveControlText);
 void MainWndAddMenus(HWND hWnd);
 void MainWndWidgets(HWND hWnd);
+void ExitSoftware(void);
+void ExitDiscoveringSoftware(void);
+void DiscoveringWndWidgets(HWND hWnd);
 
 DWORD WINAPI ReadKeysInput(LPVOID lpParameter);
 DWORD WINAPI ThreadDiscover(LPVOID lpParameter);
