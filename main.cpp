@@ -1,5 +1,5 @@
 #include "SoftwareDefinitions.h"
-
+#include "SoftwareRealisation.h"
 
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR args, int ncmdshow) {
 	srand(static_cast<unsigned int>(time(nullptr)));
@@ -14,39 +14,10 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR args, int ncmdsho
 		TranslateMessage(&SoftwareMainMessage);
 		DispatchMessage(&SoftwareMainMessage);
 	}
-
-	if (readThread) {
-		isDiscovering = false;
-		WaitForSingleObject(readThread, INFINITE);
-		CloseHandle(readThread);
-		readThread = NULL;
-	}
+	ExitSoftware();
 
 	return 0;
 }
-
-DWORD WINAPI ThreadDiscover(LPVOID lpParameter) {
-	std::string textOnLabel = "";
-	for (int i = 1; i <= 100 && isDiscovering; i++) {
-		if (!isDiscovering) break;
-		PostMessageA(g_hMainWnd,WM_DISCOVER_PROGRESS,i,0);
-		Sleep(100);
-	}
-	return 0;
-}
-
-void ExitSoftware(void) {
-	THEMEWINDOWCOLOR->unused;
-	if (readThread) {
-		isDiscovering = false;
-		WaitForSingleObject(readThread, INFINITE);
-		CloseHandle(readThread);
-		readThread = NULL;
-	}
-
-	PostQuitMessage(0);
-}
-
 WNDCLASS NewWindowClass(HBRUSH BGColor, HCURSOR Cursor, HINSTANCE hInst, HICON Icon, LPCWSTR Name, WNDPROC Procedure) {
 	WNDCLASS NWC = { 0 };
 
@@ -64,17 +35,26 @@ LRESULT CALLBACK SoftwareMainProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp
 	case WM_COMMAND:
 		switch (wp) {
 		case OnButtonStartClick:
+			isActive = !isActive;
 			if (isActive) {
+				readTime = CreateThread(NULL, 0, ThreadTimeProgres, NULL, 0, NULL);
+				SetWindowTextA(ActiveControlTextStatus, "Active");
+				SetActiveTextColor(RGB(0, 255, 0), ActiveControlTextStatus);
+				SetActiveTextColor(RGB(0, 255, 0), StatusTextStart);
+
+			}
+			else {
+				if (readTime) {
+					isActive = false;
+					//WaitForSingleObject(readTime, INFINITE);
+					CloseHandle(readTime);
+					readTime = NULL;
+				}
 				SetWindowTextA(ActiveControlTextStatus, "inActive");
 				SetActiveTextColor(RGB(255, 0, 0), ActiveControlTextStatus);
 				SetActiveTextColor(RGB(255, 0, 0), StatusTextStart);
 			}
-			else {
-				SetWindowTextA(ActiveControlTextStatus, "Active");
-				SetActiveTextColor(RGB(0, 255, 0), ActiveControlTextStatus);
-				SetActiveTextColor(RGB(0, 255, 0), StatusTextStart);
-			}
-			isActive = !isActive;
+			
 			break;
 		case OnButtonDiscoverClick:
 		{
@@ -98,19 +78,25 @@ LRESULT CALLBACK SoftwareMainProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp
 		int percent = (int)wp;
 		std::string text = std::to_string(percent) + "%";
 		SetWindowTextA(DiscoverStatusText, text.c_str());
+		SetActiveTextColor(RGB(0, 0, 0), DiscoverStatusText);
+		break;
+	}
+	case WM_TIME_PROGRESS:
+	{
+		PostMessageA(g_hMainWnd, WM_COMMAND, OnButtonStartClick, 0);
 		break;
 	}
 	case WM_CTLCOLORSTATIC: {
 		HDC hdcStatic = (HDC)wp;
 		HWND hStatic = (HWND)lp;
 
-		if (hStatic == ActiveControlTextStatus) {
+		if (hStatic == ActiveControlTextStatus || hStatic == StatusTextStart) {
 			SetTextColor(hdcStatic, ActiveTextColor);
 			SetBkMode(hdcStatic, TRANSPARENT);
 			return (LRESULT)GetStockObject(DC_BRUSH);
 		}
-		else if (hStatic == StatusTextStart) {
-			SetTextColor(hdcStatic, ActiveTextColor);
+		else if (hStatic == StatusTextTime || hStatic == ActiveControlTextStatusTime) {
+			SetTextColor(hdcStatic, RGB(0, 0, 0));
 			SetBkMode(hdcStatic, TRANSPARENT);
 			return (LRESULT)GetStockObject(DC_BRUSH);
 		}
@@ -123,30 +109,14 @@ LRESULT CALLBACK SoftwareMainProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp
 	}
 	case WM_CREATE:
 		g_hMainWnd = hWnd;
+		readKey = CreateThread(NULL, 0, ReadKeysInput, NULL, 0, NULL);
 		MainWndAddMenus(hWnd);
 		MainWndWidgets(hWnd);
 		break;
 	case WM_DESTROY:
 		ExitSoftware();
+		break;
 
 	default: return DefWindowProc(hWnd, msg, wp, lp);
 	}
-}
-void MainWndAddMenus(HWND hWnd) {
-}
-void MainWndWidgets(HWND hWnd) {
-	StatusTextStart = CreateWindowA("static", "Status: ", WS_VISIBLE | WS_CHILD | ES_CENTER, 50, 50, 50, 50, hWnd, NULL, NULL, NULL);
-	SetActiveTextColor(RGB(255, 0, 0), StatusTextStart);
-	ActiveControlTextStatus = CreateWindowA("static", "inActive", WS_VISIBLE | WS_CHILD | ES_CENTER, 100, 50, 50, 50, hWnd, NULL, NULL, NULL);
-	SetActiveTextColor(RGB(255, 0, 0), ActiveControlTextStatus);
-
-	DiscoverStatusText = CreateWindowA("static", "0%", WS_VISIBLE | WS_CHILD | ES_CENTER, 200, 110, 50, 50, hWnd, NULL, NULL, NULL);
-	SetActiveTextColor(RGB(0, 0, 0), DiscoverStatusText);
-
-	CreateWindowA("button", "Start", WS_VISIBLE | WS_CHILD, 200, 30, 100, 40, hWnd, (HMENU)OnButtonStartClick, NULL, NULL);
-	CreateWindowA("button", "Discover", WS_VISIBLE | WS_CHILD, 100, 100, 100, 40, hWnd, (HMENU)OnButtonDiscoverClick, NULL, NULL);
-}
-void SetActiveTextColor(COLORREF color, HWND ActiveControlText) {
-	ActiveTextColor = color;
-	InvalidateRect(ActiveControlText, NULL, TRUE);
 }
