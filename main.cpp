@@ -39,24 +39,44 @@ LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LP
 		PAINTSTRUCT ps;
 		HDC hdc = BeginPaint(hWnd, &ps);
 
-		POINT vertices[6];
-		int centerX = 250, centerY = 250, radius = 100;
-
-		for (int i = 0; i < 6; i++) {
-			double startAngle = 0.0;
-			double angleDegrees = startAngle + (double)i * 60.0;
-			double angleRadians = angleDegrees * M_PI / 180.0;
-			vertices[i].x = (LONG)(centerX + radius * cos(angleRadians));
-			vertices[i].y = (LONG)(centerY + radius * sin(angleRadians));
-		}
-
 		HBRUSH hGreenBrush = CreateSolidBrush(RGB(192, 192, 192));
 		HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, hGreenBrush);
 
 		HPEN hBlackPen = CreatePen(PS_SOLID, 2, RGB(224, 224, 224));
 		HPEN hOldPen = (HPEN)SelectObject(hdc, hBlackPen);
 
-		Polygon(hdc, vertices, 6);
+		POINT vertices[6];
+		int centerX = 21, centerY = 25, radius = 10;
+		for (int q = 0; q < 35; q++) {
+			for (int j = 0; j < 35; j++) {
+				for (int i = 0; i < 6; i++) {
+					double startAngle = 90.0;
+					double angleDegrees = startAngle + (double)i * 60.0;
+					double angleRadians = angleDegrees * M_PI / 180.0;
+					vertices[i].x = (LONG)(centerX + radius * cos(angleRadians));
+					vertices[i].y = (LONG)(centerY + radius * sin(angleRadians));
+				}
+				if ((q == 15 && (j >= 16 && j <= 18)) ||
+					(q == 16 && (j >= 15 && j <= 18)) ||
+					(q == 17 && (j >= 15 && j <= 19)) ||
+					(q == 18 && (j >= 15 && j <= 18)) ||
+					(q == 19 && (j >= 16 && j <= 18))) {
+					hGreenBrush = CreateSolidBrush(RGB(255, 255, 51));
+					hOldBrush = (HBRUSH)SelectObject(hdc, hGreenBrush);
+				}
+				else {
+					hGreenBrush = CreateSolidBrush(RGB(192, 192, 192));
+					hOldBrush = (HBRUSH)SelectObject(hdc, hGreenBrush);
+				}
+				Polygon(hdc, vertices, 6);
+
+				centerX += 20;
+			}
+			centerY += 20;
+			centerX = (q % 2 != 0) ? 21 : 13 ;
+		}
+
+
 
 		SelectObject(hdc, hOldBrush);
 		SelectObject(hdc, hOldPen);
