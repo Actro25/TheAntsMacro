@@ -21,7 +21,7 @@ DWORD WINAPI ReadKeysInput(LPVOID lpParameter) {
 DWORD WINAPI ThreadDiscover(LPVOID lpParameter) {
 	MSG SoftwareDiscoveringMessage = { 0 };
 
-	CreateWindow(L"DiscoveringWndClass", L"Your Base Map", WS_OVERLAPPEDWINDOW | WS_VISIBLE | ES_AUTOVSCROLL | WS_EX_CLIENTEDGE | WS_EX_TOPMOST, 200, 200, 800, 760, NULL, NULL, NULL, NULL);
+	CreateWindow(L"DiscoveringWndClass", L"Your Base Map", WS_OVERLAPPEDWINDOW | WS_VISIBLE | ES_AUTOVSCROLL | WS_EX_CLIENTEDGE | WS_EX_TOPMOST, 200, 200, 1000, 760, NULL, NULL, NULL, NULL);
 	while (GetMessageW(&SoftwareDiscoveringMessage, NULL, NULL, NULL) && isDiscovering) {
 		TranslateMessage(&SoftwareDiscoveringMessage);
 		DispatchMessage(&SoftwareDiscoveringMessage);
@@ -65,4 +65,30 @@ WNDCLASS NewWindowClass(HBRUSH BGColor, HCURSOR Cursor, HINSTANCE hInst, HICON I
 	NWC.lpfnWndProc = Procedure;
 
 	return NWC;
+}
+
+
+
+void CreateDiscoveringMap(HWND hWnd) {
+	int cenX = 21, cenY = 25, rad = 10;
+	for (int i = 0; i < 35; i++) {
+		for (int j = 0; j < 35; j++) {
+			homeMap[i][j].centerX = cenX;
+			homeMap[i][j].centerY = cenY;
+			homeMap[i][j].radius = rad;
+			if ((i == 15 && (j >= 16 && j <= 18)) ||
+				(i == 16 && (j >= 15 && j <= 18)) ||
+				(i == 17 && (j >= 15 && j <= 19)) ||
+				(i == 18 && (j >= 15 && j <= 18)) ||
+				(i == 19 && (j >= 16 && j <= 18))) {
+				homeMap[i][j].color = RGB(255, 255, 51);
+			}
+			else {
+				homeMap[i][j].color = RGB(192,192,192);
+			}
+			cenX += 20;
+		}
+		cenY += 20;
+		cenX = (i % 2 != 0) ? 21 : 13 ;
+	}
 }

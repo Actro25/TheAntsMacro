@@ -25,7 +25,25 @@ void ExitDiscoveringSoftware(void) {
 	PostQuitMessage(0);
 }
 void DiscoveringWndWidgets(HWND hWnd) {
+	HWND CurColorLabel = CreateWindowA("static", "Current color: ", WS_VISIBLE | WS_CHILD | ES_CENTER, 750, 20, 100, 50, hWnd, NULL, NULL, NULL);
+	SetActiveTextColor(RGB(0,0,0), CurColorLabel);
+	ButtonDiscoveryCurrentColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 850, 17, 25, 25, hWnd, (HMENU)OnButtonCurrentColor, NULL, NULL);
 
+	HWND BaseColorLabel = CreateWindowA("static", " - Base color", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 70, 100, 50, hWnd, NULL, NULL, NULL);
+	SetActiveTextColor(RGB(0, 0, 0), BaseColorLabel);
+	ButtonDiscoveryBaseColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 67, 25, 25, hWnd, (HMENU)OnButtonBaseColorClick, NULL, NULL);
+
+	HWND ShootersColorLabel = CreateWindowA("static", " - Shooters", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 100, 100, 50, hWnd, NULL, NULL, NULL);
+	SetActiveTextColor(RGB(0, 0, 0), ShootersColorLabel);
+	ButtonDiscoveryShootersColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 97, 25, 25, hWnd, (HMENU)OnButtonShootersClick, NULL, NULL);
+
+	HWND GuardiansColorLabel = CreateWindowA("static", " - Guardians", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 130, 100, 50, hWnd, NULL, NULL, NULL);
+	SetActiveTextColor(RGB(0, 0, 0), GuardiansColorLabel);
+	ButtonDiscoveryGuardiansColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 127, 25, 25, hWnd, (HMENU)OnButtonGuardiansClick, NULL, NULL);
+
+	HWND CurriersColorLabel = CreateWindowA("static", " - Carriers", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 160, 100, 50, hWnd, NULL, NULL, NULL);
+	SetActiveTextColor(RGB(0, 0, 0), CurriersColorLabel);
+	ButtonDiscoveryCarriersColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 157, 25, 25, hWnd, (HMENU)OnButtonCarriersClick, NULL, NULL);
 }
 void MainWndAddMenus(HWND hWnd) {
 }

@@ -25,22 +25,97 @@ LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LP
 	switch (msg) {
 	case WM_COMMAND:
 		switch (wp) {
+		case OnButtonBaseColorClick:
+			CurrentDiscoveringColor = BaseDiscoveringColor;
+			InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);
+			break;
+		case OnButtonShootersClick:
+			CurrentDiscoveringColor = ShootersColor;
+			InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor),NULL, TRUE);
+			break;
+		case OnButtonGuardiansClick:
+			CurrentDiscoveringColor = GuardianColor;
+			InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);
+			break;
+
+		case OnButtonCarriersClick:
+			CurrentDiscoveringColor = CarriersColor;
+			InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);
+			break;
 		}
 		break;
-	case WM_CREATE:
-		g_hDiscoveringWnd = hWnd;
-		DiscoveringWndWidgets(hWnd);
-		InvalidateRect(g_hDiscoveringWnd, NULL, TRUE);
+	case WM_CTLCOLORSTATIC: {
+		HDC hdcStatic = (HDC)wp;
+		HWND hStatic = (HWND)lp;
+
+		SetTextColor(hdcStatic, RGB(0, 0, 0));
+		SetBkMode(hdcStatic, TRANSPARENT);
+		return (LRESULT)GetStockObject(DC_BRUSH);
+
 		break;
-	case WM_DESTROY:
-		ExitDiscoveringSoftware();
+	}
+	case WM_DRAWITEM: {
+		LPDRAWITEMSTRUCT pdis = (LPDRAWITEMSTRUCT)lp;
+		switch (pdis->CtlID) {
+		case OnButtonBaseColorClick: {
+			HDC hdc = pdis->hDC;
+			RECT rect = pdis->rcItem;
+			COLORREF bgColor = BaseDiscoveringColor;
+			HBRUSH hBrush = CreateSolidBrush(bgColor);
+			FillRect(hdc, &rect, hBrush);
+			DeleteObject(hBrush);
+			return TRUE;
+			break;
+		}
+		case OnButtonCurrentColor: {
+			HDC hdc = pdis->hDC;
+			RECT rect = pdis->rcItem;
+			COLORREF bgColor = CurrentDiscoveringColor;
+			HBRUSH hBrush = CreateSolidBrush(bgColor);
+			FillRect(hdc, &rect, hBrush);
+			DeleteObject(hBrush);
+			return TRUE;
+			break;
+		}
+		case OnButtonShootersClick: {
+			HDC hdc = pdis->hDC;
+			RECT rect = pdis->rcItem;
+			COLORREF bgColor = ShootersColor;
+			HBRUSH hBrush = CreateSolidBrush(bgColor);
+			FillRect(hdc, &rect, hBrush);
+			DeleteObject(hBrush);
+			return TRUE;
+			break;
+		}
+		case OnButtonGuardiansClick: {
+			HDC hdc = pdis->hDC;
+			RECT rect = pdis->rcItem;
+			COLORREF bgColor = GuardianColor;
+			HBRUSH hBrush = CreateSolidBrush(bgColor);
+			FillRect(hdc, &rect, hBrush);
+			DeleteObject(hBrush);
+			return TRUE;
+			break;
+		}
+		case OnButtonCarriersClick: {
+			HDC hdc = pdis->hDC;
+			RECT rect = pdis->rcItem;
+			COLORREF bgColor = CarriersColor;
+			HBRUSH hBrush = CreateSolidBrush(bgColor);
+			FillRect(hdc, &rect, hBrush);
+			DeleteObject(hBrush);
+			return TRUE;
+			break;
+		}
+		}
 		break;
+	}
 	case WM_PAINT: {
 		PAINTSTRUCT ps;
 		HDC hdc = BeginPaint(hWnd, &ps);
 
-		HBRUSH hGreenBrush = CreateSolidBrush(RGB(192, 192, 192));
-		HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, hGreenBrush);
+		HBRUSH hHexagonBrush;
+		HBRUSH hOldBrush;
 
 		HPEN hBlackPen = CreatePen(PS_SOLID, 2, RGB(224, 224, 224));
 		HPEN hOldPen = (HPEN)SelectObject(hdc, hBlackPen);
@@ -53,40 +128,33 @@ LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LP
 					double startAngle = 90.0;
 					double angleDegrees = startAngle + (double)i * 60.0;
 					double angleRadians = angleDegrees * M_PI / 180.0;
-					vertices[i].x = (LONG)(centerX + radius * cos(angleRadians));
-					vertices[i].y = (LONG)(centerY + radius * sin(angleRadians));
+					vertices[i].x = (LONG)(homeMap[q][j].centerX + homeMap[q][j].radius * cos(angleRadians));
+					vertices[i].y = (LONG)(homeMap[q][j].centerY + homeMap[q][j].radius * sin(angleRadians));
 				}
-				if ((q == 15 && (j >= 16 && j <= 18)) ||
-					(q == 16 && (j >= 15 && j <= 18)) ||
-					(q == 17 && (j >= 15 && j <= 19)) ||
-					(q == 18 && (j >= 15 && j <= 18)) ||
-					(q == 19 && (j >= 16 && j <= 18))) {
-					hGreenBrush = CreateSolidBrush(RGB(255, 255, 51));
-					hOldBrush = (HBRUSH)SelectObject(hdc, hGreenBrush);
-				}
-				else {
-					hGreenBrush = CreateSolidBrush(RGB(192, 192, 192));
-					hOldBrush = (HBRUSH)SelectObject(hdc, hGreenBrush);
-				}
+				hHexagonBrush = CreateSolidBrush(homeMap[q][j].color);
+				hOldBrush = (HBRUSH)SelectObject(hdc, hHexagonBrush);
 				Polygon(hdc, vertices, 6);
-
-				centerX += 20;
 			}
-			centerY += 20;
-			centerX = (q % 2 != 0) ? 21 : 13 ;
 		}
-
-
-
 		SelectObject(hdc, hOldBrush);
 		SelectObject(hdc, hOldPen);
 
-		DeleteObject(hGreenBrush);
+		DeleteObject(hHexagonBrush);
 		DeleteObject(hBlackPen);
 
 		EndPaint(hWnd, &ps);
 		break;
 	}
+	case WM_CREATE:
+		g_hDiscoveringWnd = hWnd;
+		CurrentDiscoveringColor = BaseDiscoveringColor;
+		DiscoveringWndWidgets(hWnd);
+		CreateDiscoveringMap(hWnd);
+		InvalidateRect(g_hDiscoveringWnd, NULL, TRUE);
+		break;
+	case WM_DESTROY:
+		ExitDiscoveringSoftware();
+		break;
 	default: return DefWindowProc(hWnd, msg, wp, lp);
 	}
 }
