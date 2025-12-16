@@ -64,3 +64,63 @@ void SetActiveTextColor(COLORREF color, HWND ActiveControlText) {
 	ActiveTextColor = color;
 	InvalidateRect(ActiveControlText, NULL, TRUE);
 }
+void CreateDiscoveringMap(HWND hWnd) {
+	int cenX = 21, cenY = 25, rad = 10;
+	for (int i = 0; i < 35; i++) {
+		for (int j = 0; j < 35; j++) {
+			homeMap[i][j].centerX = cenX;
+			homeMap[i][j].centerY = cenY;
+			homeMap[i][j].radius = rad;
+			if ((i == 15 && (j >= 16 && j <= 18)) ||
+				(i == 16 && (j >= 15 && j <= 18)) ||
+				(i == 17 && (j >= 15 && j <= 19)) ||
+				(i == 18 && (j >= 15 && j <= 18)) ||
+				(i == 19 && (j >= 16 && j <= 18))) {
+				homeMap[i][j].color = RGB(255, 255, 51);
+			}
+			else {
+				homeMap[i][j].color = RGB(192, 192, 192);
+			}
+			cenX += 20;
+		}
+		cenY += 20;
+		cenX = (i % 2 != 0) ? 21 : 13;
+	}
+}
+void SetNeededColor(int x, int y) {
+	const int MAP_SIZE = 35;
+
+	float nearestDefination = 1000000.0f; 
+	int targetI = -1;
+	int targetJ = -1;
+
+
+	for (int i = 0; i < MAP_SIZE; i++) {
+		for (int j = 0; j < MAP_SIZE; j++) {
+
+			if ((i == 15 && (j >= 16 && j <= 18)) ||
+				(i == 16 && (j >= 15 && j <= 18)) ||
+				(i == 17 && (j >= 15 && j <= 19)) ||
+				(i == 18 && (j >= 15 && j <= 18)) ||
+				(i == 19 && (j >= 16 && j <= 18))) {
+				continue;
+			}
+
+			float currentDefination = std::sqrt(
+				(std::pow((float)x - homeMap[i][j].centerX, 2) +
+					std::pow((float)y - homeMap[i][j].centerY, 2))
+			);
+
+			if (currentDefination < nearestDefination) {
+				nearestDefination = currentDefination;
+				targetI = i;
+				targetJ = j;
+			}
+		}
+	}
+
+	if (targetI != -1 && targetJ != -1) {
+		homeMap[targetI][targetJ].color = CurrentDiscoveringColor;
+	}
+	InvalidateRect(g_hDiscoveringWnd, NULL, TRUE);
+}

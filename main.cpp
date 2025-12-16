@@ -54,6 +54,15 @@ LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LP
 
 		break;
 	}
+	case WM_LBUTTONDOWN: {
+		int mouseX = GET_X_LPARAM(lp);
+		int mouseY = GET_Y_LPARAM(lp);
+		if ((mouseX >= 0 && mouseX <= 730) && (mouseY >= 0 && mouseY <= 760)) {
+			SetNeededColor(mouseX, mouseY);
+		}
+		break;
+		
+	}
 	case WM_DRAWITEM: {
 		LPDRAWITEMSTRUCT pdis = (LPDRAWITEMSTRUCT)lp;
 		switch (pdis->CtlID) {
@@ -134,12 +143,12 @@ LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LP
 				hHexagonBrush = CreateSolidBrush(homeMap[q][j].color);
 				hOldBrush = (HBRUSH)SelectObject(hdc, hHexagonBrush);
 				Polygon(hdc, vertices, 6);
+				SelectObject(hdc, hOldBrush);
+				DeleteObject(hHexagonBrush);
 			}
 		}
-		SelectObject(hdc, hOldBrush);
 		SelectObject(hdc, hOldPen);
 
-		DeleteObject(hHexagonBrush);
 		DeleteObject(hBlackPen);
 
 		EndPaint(hWnd, &ps);

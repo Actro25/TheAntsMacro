@@ -28,6 +28,7 @@ std::atomic<bool> isActive{ false };
 std::atomic<bool> isDiscovering{ false };
 std::atomic<bool> isProgramWork{ true };
 std::atomic<bool> isActivateProgram{ false };
+std::atomic<bool> isNearestHexagonDetermined{ false };
 
 HBRUSH THEMEWINDOWCOLOR = CreateSolidBrush(RGB(255, 255, 255));
 
@@ -69,12 +70,11 @@ void ExitSoftware(void);
 void ExitDiscoveringSoftware(void);
 void DiscoveringWndWidgets(HWND hWnd);
 void CreateDiscoveringMap(HWND hWnd);
+void SetNeededColor(int x, int y);
 
 DWORD WINAPI ReadKeysInput(LPVOID lpParameter);
 DWORD WINAPI ThreadDiscover(LPVOID lpParameter);
 DWORD WINAPI ThreadTimeProgres(LPVOID lpParameter);
-
-
 
 struct HEXAGON {
 	int centerX;
