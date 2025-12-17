@@ -75,7 +75,7 @@ void ExitDiscoveringSoftware(void);
 void DiscoveringWndWidgets(HWND hWnd);
 void CreateDiscoveringMap(HWND hWnd);
 void SetNeededColor(int x, int y);
-bool CheckIfGather3Hexagon(int IndexI, int IndexJ);
+bool CheckIfGather3Hexagon(int IndexI, int IndexJ, int QuantityOfBuilding);
 
 DWORD WINAPI ReadKeysInput(LPVOID lpParameter);
 DWORD WINAPI ThreadDiscover(LPVOID lpParameter);
