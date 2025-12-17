@@ -24,6 +24,10 @@ int SecondsWordProgram = 0;
 int MinutesWordProgram = 0;
 int HoursWordProgram = 0;
 
+int GuardianHexagons = 0;
+int ShooterHexagons = 0;
+int CarrierHexagons = 0;
+
 std::atomic<bool> isActive{ false };
 std::atomic<bool> isDiscovering{ false };
 std::atomic<bool> isProgramWork{ true };
@@ -53,10 +57,10 @@ HANDLE readTime;
 COLORREF ActiveTextColor;
 COLORREF CurrentDiscoveringColor;
 
-COLORREF BaseDiscoveringColor = RGB(192,192,192);
-COLORREF ShootersColor = RGB(0,0,255);
-COLORREF GuardianColor = RGB(255,0,0);
-COLORREF CarriersColor = RGB(0,255,0);
+const COLORREF BaseDiscoveringColor = RGB(192,192,192);
+const COLORREF ShootersColor = RGB(0,0,255);
+const COLORREF GuardianColor = RGB(255,0,0);
+const COLORREF CarriersColor = RGB(0,255,0);
 
 
 LRESULT CALLBACK SoftwareMainProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp);
@@ -71,6 +75,7 @@ void ExitDiscoveringSoftware(void);
 void DiscoveringWndWidgets(HWND hWnd);
 void CreateDiscoveringMap(HWND hWnd);
 void SetNeededColor(int x, int y);
+bool CheckIfGather3Hexagon(int IndexI, int IndexJ);
 
 DWORD WINAPI ReadKeysInput(LPVOID lpParameter);
 DWORD WINAPI ThreadDiscover(LPVOID lpParameter);

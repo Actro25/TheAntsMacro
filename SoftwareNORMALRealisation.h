@@ -97,7 +97,6 @@ void SetNeededColor(int x, int y) {
 
 	for (int i = 0; i < MAP_SIZE; i++) {
 		for (int j = 0; j < MAP_SIZE; j++) {
-
 			if ((i == 15 && (j >= 16 && j <= 18)) ||
 				(i == 16 && (j >= 15 && j <= 18)) ||
 				(i == 17 && (j >= 15 && j <= 19)) ||
@@ -118,9 +117,175 @@ void SetNeededColor(int x, int y) {
 			}
 		}
 	}
-
+	if (!CheckIfGather3Hexagon(targetI, targetJ)) return;
 	if (targetI != -1 && targetJ != -1) {
+		COLORREF tempColor = homeMap[targetI][targetJ].color;
 		homeMap[targetI][targetJ].color = CurrentDiscoveringColor;
+
+		switch (CurrentDiscoveringColor) {
+		case ShootersColor: ShooterHexagons++; break;
+		case GuardianColor: GuardianHexagons++; break;
+		case CarriersColor: CarrierHexagons++; break;
+		}
+
+		switch (tempColor) {
+		case ShootersColor: ShooterHexagons--; break;
+		case GuardianColor: GuardianHexagons--; break;
+		case CarriersColor: CarrierHexagons--; break;
+		}
 	}
 	InvalidateRect(g_hDiscoveringWnd, NULL, TRUE);
+}
+bool CheckIfGather3Hexagon(int IndexI, int IndexJ) {
+	switch (CurrentDiscoveringColor) {
+	case ShootersColor: 
+		if (ShooterHexagons == 0)
+			return true;
+		else if (ShooterHexagons == 1) {
+			if (IndexI % 2 != 0) {
+				if (homeMap[IndexI][IndexJ - 1].color == CurrentDiscoveringColor ||
+					homeMap[IndexI - 1][IndexJ - 1].color == CurrentDiscoveringColor ||
+					homeMap[IndexI - 1][IndexJ].color == CurrentDiscoveringColor ||
+					homeMap[IndexI][IndexJ + 1].color == CurrentDiscoveringColor ||
+					homeMap[IndexI + 1][IndexJ].color == CurrentDiscoveringColor ||
+					homeMap[IndexI + 1][IndexJ - 1].color == CurrentDiscoveringColor)
+					return true;
+				return false;
+			}
+			else {
+				if (homeMap[IndexI][IndexJ - 1].color == CurrentDiscoveringColor ||
+					homeMap[IndexI - 1][IndexJ].color == CurrentDiscoveringColor ||
+					homeMap[IndexI - 1][IndexJ + 1].color == CurrentDiscoveringColor ||
+					homeMap[IndexI][IndexJ + 1].color == CurrentDiscoveringColor ||
+					homeMap[IndexI + 1][IndexJ + 1].color == CurrentDiscoveringColor ||
+					homeMap[IndexI + 1][IndexJ].color == CurrentDiscoveringColor)
+					return true;
+				return false;
+			}
+		}
+		else if (ShooterHexagons == 2) {
+			if (IndexI % 2 != 0) {
+				if ((homeMap[IndexI][IndexJ - 1].color == CurrentDiscoveringColor &&
+					homeMap[IndexI - 1][IndexJ - 1].color == CurrentDiscoveringColor) ||
+					(homeMap[IndexI - 1][IndexJ].color == CurrentDiscoveringColor &&
+					homeMap[IndexI][IndexJ + 1].color == CurrentDiscoveringColor) ||
+					(homeMap[IndexI + 1][IndexJ - 1].color == CurrentDiscoveringColor &&
+					homeMap[IndexI + 1][IndexJ].color == CurrentDiscoveringColor))
+					return true;
+				return false;
+			}
+			else {
+				if ((homeMap[IndexI][IndexJ - 1].color == CurrentDiscoveringColor &&
+					homeMap[IndexI - 1][IndexJ].color == CurrentDiscoveringColor) ||
+					(homeMap[IndexI - 1][IndexJ + 1].color == CurrentDiscoveringColor &&
+					homeMap[IndexI][IndexJ + 1].color == CurrentDiscoveringColor) ||
+					(homeMap[IndexI + 1][IndexJ].color == CurrentDiscoveringColor &&
+					homeMap[IndexI + 1][IndexJ + 1].color == CurrentDiscoveringColor))
+					return true;
+				return false;
+			}
+		}
+		else return false;
+		break;
+	case GuardianColor:
+		if (GuardianHexagons == 0)
+			return true;
+		else if (GuardianHexagons == 1) {
+			if (IndexI % 2 != 0) {
+				if (homeMap[IndexI][IndexJ - 1].color == CurrentDiscoveringColor ||
+					homeMap[IndexI - 1][IndexJ - 1].color == CurrentDiscoveringColor ||
+					homeMap[IndexI - 1][IndexJ].color == CurrentDiscoveringColor ||
+					homeMap[IndexI][IndexJ + 1].color == CurrentDiscoveringColor ||
+					homeMap[IndexI + 1][IndexJ].color == CurrentDiscoveringColor ||
+					homeMap[IndexI + 1][IndexJ - 1].color == CurrentDiscoveringColor)
+					return true;
+				return false;
+			}
+			else {
+				if (homeMap[IndexI][IndexJ - 1].color == CurrentDiscoveringColor ||
+					homeMap[IndexI - 1][IndexJ].color == CurrentDiscoveringColor ||
+					homeMap[IndexI - 1][IndexJ - 1].color == CurrentDiscoveringColor ||
+					homeMap[IndexI][IndexJ + 1].color == CurrentDiscoveringColor ||
+					homeMap[IndexI + 1][IndexJ + 1].color == CurrentDiscoveringColor ||
+					homeMap[IndexI + 1][IndexJ].color == CurrentDiscoveringColor)
+					return true;
+				return false;
+			}
+		}
+		else if (GuardianHexagons == 2) {
+			if (IndexI % 2 != 0) {
+				if ((homeMap[IndexI][IndexJ - 1].color == CurrentDiscoveringColor &&
+					homeMap[IndexI - 1][IndexJ - 1].color == CurrentDiscoveringColor) ||
+					(homeMap[IndexI - 1][IndexJ].color == CurrentDiscoveringColor &&
+						homeMap[IndexI][IndexJ + 1].color == CurrentDiscoveringColor) ||
+					(homeMap[IndexI + 1][IndexJ - 1].color == CurrentDiscoveringColor &&
+						homeMap[IndexI + 1][IndexJ].color == CurrentDiscoveringColor))
+					return true;
+				return false;
+			}
+			else {
+				if ((homeMap[IndexI][IndexJ - 1].color == CurrentDiscoveringColor &&
+					homeMap[IndexI - 1][IndexJ].color == CurrentDiscoveringColor) ||
+					(homeMap[IndexI - 1][IndexJ + 1].color == CurrentDiscoveringColor &&
+						homeMap[IndexI][IndexJ + 1].color == CurrentDiscoveringColor) ||
+					(homeMap[IndexI + 1][IndexJ].color == CurrentDiscoveringColor &&
+						homeMap[IndexI + 1][IndexJ + 1].color == CurrentDiscoveringColor))
+					return true;
+				return false;
+			}
+		}
+		else return false;
+		break;
+	case CarriersColor: 
+		if (CarrierHexagons == 0)
+			return true;
+		else if (CarrierHexagons == 1) {
+			if (IndexI % 2 != 0) {
+				if (homeMap[IndexI][IndexJ - 1].color == CurrentDiscoveringColor ||
+					homeMap[IndexI - 1][IndexJ - 1].color == CurrentDiscoveringColor ||
+					homeMap[IndexI - 1][IndexJ].color == CurrentDiscoveringColor ||
+					homeMap[IndexI][IndexJ + 1].color == CurrentDiscoveringColor ||
+					homeMap[IndexI + 1][IndexJ].color == CurrentDiscoveringColor ||
+					homeMap[IndexI + 1][IndexJ - 1].color == CurrentDiscoveringColor)
+					return true;
+				return false;
+			}
+			else {
+				if (homeMap[IndexI][IndexJ - 1].color == CurrentDiscoveringColor ||
+					homeMap[IndexI - 1][IndexJ].color == CurrentDiscoveringColor ||
+					homeMap[IndexI - 1][IndexJ - 1].color == CurrentDiscoveringColor ||
+					homeMap[IndexI][IndexJ + 1].color == CurrentDiscoveringColor ||
+					homeMap[IndexI + 1][IndexJ + 1].color == CurrentDiscoveringColor ||
+					homeMap[IndexI + 1][IndexJ].color == CurrentDiscoveringColor)
+					return true;
+				return false;
+			}
+		}
+		else if (CarrierHexagons == 2) {
+			if (IndexI % 2 != 0) {
+				if ((homeMap[IndexI][IndexJ - 1].color == CurrentDiscoveringColor &&
+					homeMap[IndexI - 1][IndexJ - 1].color == CurrentDiscoveringColor) ||
+					(homeMap[IndexI - 1][IndexJ].color == CurrentDiscoveringColor &&
+						homeMap[IndexI][IndexJ + 1].color == CurrentDiscoveringColor) ||
+					(homeMap[IndexI + 1][IndexJ - 1].color == CurrentDiscoveringColor &&
+						homeMap[IndexI + 1][IndexJ].color == CurrentDiscoveringColor))
+					return true;
+				return false;
+			}
+			else {
+				if ((homeMap[IndexI][IndexJ - 1].color == CurrentDiscoveringColor &&
+					homeMap[IndexI - 1][IndexJ].color == CurrentDiscoveringColor) ||
+					(homeMap[IndexI - 1][IndexJ + 1].color == CurrentDiscoveringColor &&
+						homeMap[IndexI][IndexJ + 1].color == CurrentDiscoveringColor) ||
+					(homeMap[IndexI + 1][IndexJ].color == CurrentDiscoveringColor &&
+						homeMap[IndexI + 1][IndexJ + 1].color == CurrentDiscoveringColor))
+					return true;
+				return false;
+			}
+		}
+		else return false;
+		break;
+	default: return true;
+	}
+	return true;
 }
