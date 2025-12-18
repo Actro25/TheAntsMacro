@@ -165,112 +165,148 @@ void SetNeededColor(int x, int y) {
 			}
 		}
 	}
-	switch (CurrentDiscoveringColor) {
-	case ShootersColor: if (!CheckIfGather3Hexagon(targetI, targetJ, ShooterHexagons)) return; break;
-	case GuardianColor: if (!CheckIfGather3Hexagon(targetI, targetJ, GuardianHexagons)) return; break;
-	case CarriersColor: if (!CheckIfGather3Hexagon(targetI, targetJ, CarrierHexagons)) return; break;
-	case EateColor: if (!CheckIfGather3Hexagon(targetI, targetJ, EateHexagons)) return; break;
-	case MeteoritColor: if (!CheckIfGather3Hexagon(targetI, targetJ, MeteoritHexagons)) return; break;
-	case CrystalHoleColor: if (!CheckIfGather3Hexagon(targetI, targetJ, CrystalHoleHexagons)) return; break;
-	case VirusesColor: if (!CheckIfGather3Hexagon(targetI, targetJ, VirusesHexagons)) return; break;
-	case EvolutionsColor: if (!CheckIfGather3Hexagon(targetI, targetJ, EvolutionsHexagons)) return; break;
-	case OrdinaryCaveColor: if (!CheckIfGather3Hexagon(targetI, targetJ, OrdinaryCaveHexagons)) return; break;
-	case WildAnimalBaseColor: if (!CheckIfGather3Hexagon(targetI, targetJ, WildAnimalHexagons)) return; break;
-	case RuralContestsColor: if (!CheckIfGather3Hexagon(targetI, targetJ, RuralContestHexagons)) return; break;
-	case LadybugColor: if (!CheckIfGather3Hexagon(targetI, targetJ, LadybugHexagons)) return; break;
-	case ShellColor: if (!CheckIfGather3Hexagon(targetI, targetJ, ShellHexagons)) return; break;
-	case FabricResourcesColor: if (!CheckIfGather3Hexagon(targetI, targetJ, FabricResourcesHexagons)) return; break;
-	case WarCaveColor: if (!CheckIfGather3Hexagon(targetI, targetJ, WarCaveHexagons)) return; break;
-	}
+	if (!CheckIfGather3Hexagon(targetI, targetJ)) 
+		return;
 	
 	if (targetI != -1 && targetJ != -1) {
-		COLORREF tempColor = homeMap[targetI][targetJ].color;
-		homeMap[targetI][targetJ].color = CurrentDiscoveringColor;
-
-		switch (CurrentDiscoveringColor) {
-		case ShootersColor: ShooterHexagons++; break;
-		case GuardianColor: GuardianHexagons++; break;
-		case CarriersColor: CarrierHexagons++; break;
-		case EateColor: EateHexagons++; break;
-		case MeteoritColor: MeteoritHexagons++; break;
-		case CrystalHoleColor: CrystalHoleHexagons++; break;
-		case VirusesColor: VirusesHexagons++; break;
-		case EvolutionsColor: EvolutionsHexagons++; break;
-		case OrdinaryCaveColor: OrdinaryCaveHexagons++; break;
-		case WildAnimalBaseColor: WildAnimalHexagons++; break;
-		case RuralContestsColor: RuralContestHexagons++; break;
-		case LadybugColor: LadybugHexagons++; break;
-		case ShellColor: ShellHexagons++; break;
-		case FabricResourcesColor: FabricResourcesHexagons++; break;
-		case WarCaveColor: WarCaveHexagons++; break;
+		if (targetI % 2 == 0) {
+			homeMap[targetI][targetJ].color = CurrentDiscoveringColor;
+			homeMap[targetI][targetJ - 1].color = CurrentDiscoveringColor;
+			homeMap[targetI - 1][targetJ].color = CurrentDiscoveringColor;
+		}
+		else {
+			homeMap[targetI][targetJ].color = CurrentDiscoveringColor;
+			homeMap[targetI][targetJ - 1].color = CurrentDiscoveringColor;
+			homeMap[targetI - 1][targetJ - 1].color = CurrentDiscoveringColor;
 		}
 
-		switch (tempColor) {
-		case ShootersColor: ShooterHexagons--; break;
-		case GuardianColor: GuardianHexagons--; break;
-		case CarriersColor: CarrierHexagons--; break;
-		case EateColor: EateHexagons--; break;
-		case MeteoritColor: MeteoritHexagons--; break;
-		case CrystalHoleColor: CrystalHoleHexagons--; break;
-		case VirusesColor: VirusesHexagons--; break;
-		case EvolutionsColor: EvolutionsHexagons--; break;
-		case OrdinaryCaveColor: OrdinaryCaveHexagons--; break;
-		case WildAnimalBaseColor: WildAnimalHexagons--; break;
-		case RuralContestsColor: RuralContestHexagons--; break;
-		case LadybugColor: LadybugHexagons--; break;
-		case ShellColor: ShellHexagons--; break;
-		case FabricResourcesColor: FabricResourcesHexagons--; break;
-		case WarCaveColor: WarCaveHexagons--; break;
+		switch (CurrentDiscoveringColor) {
+		case ShootersColor: ShooterHexagons=true; break;
+		case GuardianColor: GuardianHexagons=true;; break;
+		case CarriersColor: CarrierHexagons=true; break;
+		case EateColor: EateHexagons=true; break;
+		case MeteoritColor: MeteoritHexagons=true; break;
+		case CrystalHoleColor: CrystalHoleHexagons = true; break;
+		case VirusesColor: VirusesHexagons = true; break;
+		case EvolutionsColor: EvolutionsHexagons = true; break;
+		case OrdinaryCaveColor: OrdinaryCaveHexagons = true; break;
+		case WildAnimalBaseColor: WildAnimalHexagons = true; break;
+		case RuralContestsColor: RuralContestHexagons = true; break;
+		case LadybugColor: LadybugHexagons = true; break;
+		case ShellColor: ShellHexagons = true; break;
+		case FabricResourcesColor: FabricResourcesHexagons = true; break;
+		case WarCaveColor: WarCaveHexagons = true; break;
 		}
 	}
 	InvalidateRect(g_hDiscoveringWnd, NULL, TRUE);
 }
-bool CheckIfGather3Hexagon(int IndexI, int IndexJ, int QuantityOfBuilding) {
-	if (QuantityOfBuilding == 0)
-		return true;
-	else if (QuantityOfBuilding == 1) {
-		if (IndexI % 2 != 0) {
-			if (homeMap[IndexI][IndexJ - 1].color == CurrentDiscoveringColor ||
-				homeMap[IndexI - 1][IndexJ - 1].color == CurrentDiscoveringColor ||
-				homeMap[IndexI - 1][IndexJ].color == CurrentDiscoveringColor ||
-				homeMap[IndexI][IndexJ + 1].color == CurrentDiscoveringColor ||
-				homeMap[IndexI + 1][IndexJ].color == CurrentDiscoveringColor ||
-				homeMap[IndexI + 1][IndexJ - 1].color == CurrentDiscoveringColor)
-				return true;
-			return false;
-		}
-		else {
-			if (homeMap[IndexI][IndexJ - 1].color == CurrentDiscoveringColor ||
-				homeMap[IndexI - 1][IndexJ].color == CurrentDiscoveringColor ||
-				homeMap[IndexI - 1][IndexJ + 1].color == CurrentDiscoveringColor ||
-				homeMap[IndexI][IndexJ + 1].color == CurrentDiscoveringColor ||
-				homeMap[IndexI + 1][IndexJ + 1].color == CurrentDiscoveringColor ||
-				homeMap[IndexI + 1][IndexJ].color == CurrentDiscoveringColor)
-				return true;
-			return false;
+void ChangeBoolPropertyInHexagon(COLORREF HexagonColor) {
+	switch (HexagonColor) {
+	case ShootersColor: ShooterHexagons = !ShooterHexagons; break;
+	case GuardianColor: GuardianHexagons = !GuardianHexagons; break;
+	case CarriersColor: CarrierHexagons = !CarrierHexagons; break;
+	case EateColor: EateHexagons = !EateHexagons; break;
+	case MeteoritColor: MeteoritHexagons = !MeteoritHexagons; break;
+	case CrystalHoleColor: CrystalHoleHexagons = !CrystalHoleHexagons; break;
+	case VirusesColor: VirusesHexagons = !VirusesHexagons; break;
+	case EvolutionsColor: EvolutionsHexagons = !EvolutionsHexagons; break;
+	case OrdinaryCaveColor: OrdinaryCaveHexagons = !OrdinaryCaveHexagons; break;
+	case WildAnimalBaseColor: WildAnimalHexagons = !WildAnimalHexagons; break;
+	case RuralContestsColor: RuralContestHexagons = !RuralContestHexagons; break;
+	case LadybugColor: LadybugHexagons = !LadybugHexagons; break;
+	case ShellColor: ShellHexagons = !ShellHexagons; break;
+	case FabricResourcesColor: FabricResourcesHexagons = !FabricResourcesHexagons; break;
+	case WarCaveColor: WarCaveHexagons = !WarCaveHexagons; break;
+	}
+}
+bool CheckIfGather3Hexagon(int IndexI, int IndexJ) {
+	if (CurrentDiscoveringColor == BaseDiscoveringColor) {
+		if (homeMap[IndexI][IndexJ].color != BaseDiscoveringColor) {
+			if (IndexI % 2 == 0) {
+				if (homeMap[IndexI][IndexJ].color == homeMap[IndexI][IndexJ - 1].color && homeMap[IndexI][IndexJ].color == homeMap[IndexI - 1][IndexJ].color) {
+					ChangeBoolPropertyInHexagon(homeMap[IndexI][IndexJ].color);
+					homeMap[IndexI][IndexJ].color = BaseDiscoveringColor;
+					homeMap[IndexI][IndexJ - 1].color = BaseDiscoveringColor;
+					homeMap[IndexI - 1][IndexJ].color = BaseDiscoveringColor;
+					InvalidateRect(g_hDiscoveringWnd, NULL, TRUE);
+					return false;
+				}
+				else if (homeMap[IndexI][IndexJ].color == homeMap[IndexI - 1][IndexJ + 1].color && homeMap[IndexI][IndexJ].color == homeMap[IndexI][IndexJ + 1].color) {
+					ChangeBoolPropertyInHexagon(homeMap[IndexI][IndexJ].color);
+					homeMap[IndexI][IndexJ].color = BaseDiscoveringColor;
+					homeMap[IndexI - 1][IndexJ + 1].color = BaseDiscoveringColor;
+					homeMap[IndexI][IndexJ + 1].color = BaseDiscoveringColor;
+					InvalidateRect(g_hDiscoveringWnd, NULL, TRUE);
+					return false;
+				}
+				else if (homeMap[IndexI][IndexJ].color == homeMap[IndexI + 1][IndexJ + 1].color && homeMap[IndexI][IndexJ].color == homeMap[IndexI + 1][IndexJ].color) {
+					ChangeBoolPropertyInHexagon(homeMap[IndexI][IndexJ].color);
+					homeMap[IndexI][IndexJ].color = BaseDiscoveringColor;
+					homeMap[IndexI + 1][IndexJ + 1].color = BaseDiscoveringColor;
+					homeMap[IndexI + 1][IndexJ].color = BaseDiscoveringColor;
+					InvalidateRect(g_hDiscoveringWnd, NULL, TRUE);
+					return false;
+				}
+			}
+			else {
+				if (homeMap[IndexI][IndexJ].color == homeMap[IndexI][IndexJ - 1].color && homeMap[IndexI][IndexJ].color == homeMap[IndexI - 1][IndexJ - 1].color) {
+					ChangeBoolPropertyInHexagon(homeMap[IndexI][IndexJ].color);
+					homeMap[IndexI][IndexJ].color = BaseDiscoveringColor;
+					homeMap[IndexI][IndexJ - 1].color = BaseDiscoveringColor;
+					homeMap[IndexI - 1][IndexJ - 1].color = BaseDiscoveringColor;
+					InvalidateRect(g_hDiscoveringWnd, NULL, TRUE);
+					return false;
+				}
+				else if (homeMap[IndexI][IndexJ].color == homeMap[IndexI - 1][IndexJ].color && homeMap[IndexI][IndexJ].color == homeMap[IndexI][IndexJ + 1].color) {
+					ChangeBoolPropertyInHexagon(homeMap[IndexI][IndexJ].color);
+					homeMap[IndexI][IndexJ].color = BaseDiscoveringColor;
+					homeMap[IndexI - 1][IndexJ].color = BaseDiscoveringColor;
+					homeMap[IndexI][IndexJ + 1].color = BaseDiscoveringColor;
+					InvalidateRect(g_hDiscoveringWnd, NULL, TRUE);
+					return false;
+				}
+				else if (homeMap[IndexI][IndexJ].color == homeMap[IndexI + 1][IndexJ].color && homeMap[IndexI][IndexJ].color == homeMap[IndexI + 1][IndexJ - 1].color) {
+					ChangeBoolPropertyInHexagon(homeMap[IndexI][IndexJ].color);
+					homeMap[IndexI][IndexJ].color = BaseDiscoveringColor;
+					homeMap[IndexI + 1][IndexJ].color = BaseDiscoveringColor;
+					homeMap[IndexI + 1][IndexJ - 1].color = BaseDiscoveringColor;
+					InvalidateRect(g_hDiscoveringWnd, NULL, TRUE);
+					return false;
+				}
+			}
 		}
 	}
-	else if (QuantityOfBuilding == 2) {
-		if (IndexI % 2 != 0) {
-			if ((homeMap[IndexI][IndexJ - 1].color == CurrentDiscoveringColor &&
-				homeMap[IndexI - 1][IndexJ - 1].color == CurrentDiscoveringColor) ||
-				(homeMap[IndexI - 1][IndexJ].color == CurrentDiscoveringColor &&
-				homeMap[IndexI][IndexJ + 1].color == CurrentDiscoveringColor) ||
-				(homeMap[IndexI + 1][IndexJ - 1].color == CurrentDiscoveringColor &&
-				homeMap[IndexI + 1][IndexJ].color == CurrentDiscoveringColor))
-				return true;
-			return false;
-		}
-		else {
-			if ((homeMap[IndexI][IndexJ - 1].color == CurrentDiscoveringColor &&
-				homeMap[IndexI - 1][IndexJ].color == CurrentDiscoveringColor) ||
-				(homeMap[IndexI - 1][IndexJ + 1].color == CurrentDiscoveringColor &&
-				homeMap[IndexI][IndexJ + 1].color == CurrentDiscoveringColor) ||
-				(homeMap[IndexI + 1][IndexJ].color == CurrentDiscoveringColor &&
-				homeMap[IndexI + 1][IndexJ + 1].color == CurrentDiscoveringColor))
-				return true;
-			return false;
-		}
+	if (IndexJ == 0) return false;
+	switch (CurrentDiscoveringColor) {
+	case ShootersColor: if(ShooterHexagons) return false; break;
+	case GuardianColor: if(GuardianHexagons) return false; break;
+	case CarriersColor: if(CarrierHexagons) return false; break;
+	case EateColor: if (EateHexagons) return false; break;
+	case MeteoritColor: if (MeteoritHexagons) return false; break;
+	case CrystalHoleColor: if (CrystalHoleHexagons) return false; break;
+	case VirusesColor: if (VirusesHexagons) return false; break;
+	case EvolutionsColor: if (EvolutionsHexagons) return false; break;
+	case OrdinaryCaveColor: if (OrdinaryCaveHexagons) return false; break;
+	case WildAnimalBaseColor: if (WildAnimalHexagons) return false; break;
+	case RuralContestsColor: if (RuralContestHexagons) return false; break;
+	case LadybugColor: if (LadybugHexagons) return false; break;
+	case ShellColor: if (ShellHexagons) return false; break;
+	case FabricResourcesColor: if (FabricResourcesHexagons) return false; break;
+	case WarCaveColor: if (WarCaveHexagons) return false; break;
 	}
-	else return false;
+
+	if (IndexI % 2 == 0) {
+		if ((homeMap[IndexI][IndexJ].color == BaseDiscoveringColor) &&
+			(homeMap[IndexI][IndexJ - 1].color == BaseDiscoveringColor) &&
+			(homeMap[IndexI - 1][IndexJ].color == BaseDiscoveringColor))
+			return true;
+		return false;
+	}
+	else {
+		if ((homeMap[IndexI][IndexJ].color == BaseDiscoveringColor) &&
+			(homeMap[IndexI][IndexJ - 1].color == BaseDiscoveringColor) &&
+			(homeMap[IndexI - 1][IndexJ - 1].color == BaseDiscoveringColor))
+			return true;
+		return false;
+	}
 }
