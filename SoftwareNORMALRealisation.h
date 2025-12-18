@@ -29,33 +29,46 @@ void DiscoveringWndWidgets(HWND hWnd) {
 	SetActiveTextColor(RGB(0,0,0), TempLabel);
 	ButtonDiscoveryCurrentColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 850, 17, 25, 25, hWnd, (HMENU)OnButtonCurrentColor, NULL, NULL);
 
-	TempLabel = CreateWindowA("static", " - Base color", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 70, 100, 50, hWnd, NULL, NULL, NULL);
+	TempLabel = CreateWindowA("static", " - Base color", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 70, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	ButtonDiscoveryBaseColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 67, 25, 25, hWnd, (HMENU)OnButtonBaseColorClick, NULL, NULL);
 
-	TempLabel = CreateWindowA("static", " - Shooters", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 100, 100, 50, hWnd, NULL, NULL, NULL);
+	TempLabel = CreateWindowA("static", " - Shooters", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 100, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	ButtonDiscoveryShootersColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 97, 25, 25, hWnd, (HMENU)OnButtonShootersClick, NULL, NULL);
 
-	TempLabel = CreateWindowA("static", " - Guardians", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 130, 100, 50, hWnd, NULL, NULL, NULL);
+	TempLabel = CreateWindowA("static", " - Guardians", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 130, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	ButtonDiscoveryGuardiansColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 127, 25, 25, hWnd, (HMENU)OnButtonGuardiansClick, NULL, NULL);
 
-	TempLabel = CreateWindowA("static", " - Carriers", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 160, 100, 50, hWnd, NULL, NULL, NULL);
+	TempLabel = CreateWindowA("static", " - Carriers", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 160, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	ButtonDiscoveryCarriersColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 157, 25, 25, hWnd, (HMENU)OnButtonCarriersClick, NULL, NULL);
-	//
-	TempLabel = CreateWindowA("static", " - Water(Eate)", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 190, 100, 50, hWnd, NULL, NULL, NULL);
+	
+	TempLabel = CreateWindowA("static", " - Water(Eate)", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 190, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	ButtonDiscoveryEateColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 187, 25, 25, hWnd, (HMENU)OnButtonEateClick, NULL, NULL);
 
-	TempLabel = CreateWindowA("static", " - Meteorit Construction", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 220, 100, 50, hWnd, NULL, NULL, NULL);
+	TempLabel = CreateWindowA("static", " - Meteorit Construction", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 220, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	ButtonDiscoveryMeteoritColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 217, 25, 25, hWnd, (HMENU)OnButtonMeteoritClick, NULL, NULL);
 
-	TempLabel = CreateWindowA("static", " - Crystale Cave", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 250, 100, 50, hWnd, NULL, NULL, NULL);
+	TempLabel = CreateWindowA("static", " - Crystale Cave", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 250, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	ButtonDiscoveryCrystalHoleColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 247, 25, 25, hWnd, (HMENU)OnButtonCrystalHoleClick, NULL, NULL);
+
+	TempLabel = CreateWindowA("static", " - Viruses", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 280, 150, 50, hWnd, NULL, NULL, NULL);
+	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
+	ButtonDiscoveryVirusesColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 277, 25, 25, hWnd, (HMENU)OnButtonVirusesClick, NULL, NULL);
+
+	TempLabel = CreateWindowA("static", " - Evolutions", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 310, 150, 50, hWnd, NULL, NULL, NULL);
+	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
+	ButtonDiscoveryEvolutionsColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 307, 25, 25, hWnd, (HMENU)OnButtonEvolutionClick, NULL, NULL);
+
+	TempLabel = CreateWindowA("static", " - Ordinary Cave", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 340, 150, 50, hWnd, NULL, NULL, NULL);
+	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
+	ButtonDiscoveryOrdinaryCaveColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 337, 25, 25, hWnd, (HMENU)OnButtonCavesClick, NULL, NULL);
+
 }
 void MainWndAddMenus(HWND hWnd) {
 }
@@ -136,6 +149,9 @@ void SetNeededColor(int x, int y) {
 	case EateColor: if (!CheckIfGather3Hexagon(targetI, targetJ, EateHexagons)) return; break;
 	case MeteoritColor: if (!CheckIfGather3Hexagon(targetI, targetJ, MeteoritHexagons)) return; break;
 	case CrystalHoleColor: if (!CheckIfGather3Hexagon(targetI, targetJ, CrystalHoleHexagons)) return; break;
+	case VirusesColor: if (!CheckIfGather3Hexagon(targetI, targetJ, VirusesHexagons)) return; break;
+	case EvolutionsColor: if (!CheckIfGather3Hexagon(targetI, targetJ, EvolutionsHexagons)) return; break;
+	case OrdinaryCaveColor: if (!CheckIfGather3Hexagon(targetI, targetJ, OrdinaryCaveHexagons)) return; break;
 	}
 	
 	if (targetI != -1 && targetJ != -1) {
@@ -149,6 +165,9 @@ void SetNeededColor(int x, int y) {
 		case EateColor: EateHexagons++; break;
 		case MeteoritColor: MeteoritHexagons++; break;
 		case CrystalHoleColor: CrystalHoleHexagons++; break;
+		case VirusesColor: VirusesHexagons++; break;
+		case EvolutionsColor: EvolutionsHexagons++; break;
+		case OrdinaryCaveColor: OrdinaryCaveHexagons++; break;
 		}
 
 		switch (tempColor) {
@@ -158,6 +177,9 @@ void SetNeededColor(int x, int y) {
 		case EateColor: EateHexagons--; break;
 		case MeteoritColor: MeteoritHexagons--; break;
 		case CrystalHoleColor: CrystalHoleHexagons--; break;
+		case VirusesColor: VirusesHexagons--; break;
+		case EvolutionsColor: EvolutionsHexagons--; break;
+		case OrdinaryCaveColor: OrdinaryCaveHexagons--; break;
 		}
 	}
 	InvalidateRect(g_hDiscoveringWnd, NULL, TRUE);

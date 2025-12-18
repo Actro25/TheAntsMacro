@@ -22,6 +22,9 @@
 #define OnButtonEateClick		8
 #define OnButtonMeteoritClick	9
 #define OnButtonCrystalHoleClick		10
+#define OnButtonVirusesClick		11
+#define OnButtonEvolutionClick		12
+#define OnButtonCavesClick		13
 
 int SecondsWordProgram = 0;
 int MinutesWordProgram = 0;
@@ -33,6 +36,9 @@ int CarrierHexagons = 0;
 int EateHexagons = 0;
 int MeteoritHexagons = 0;
 int CrystalHoleHexagons = 0;
+int VirusesHexagons = 0;
+int EvolutionsHexagons = 0;
+int OrdinaryCaveHexagons = 0;
 
 std::atomic<bool> isActive{ false };
 std::atomic<bool> isDiscovering{ false };
@@ -58,6 +64,9 @@ HWND ButtonDiscoveryCarriersColor;
 HWND ButtonDiscoveryEateColor;
 HWND ButtonDiscoveryMeteoritColor;
 HWND ButtonDiscoveryCrystalHoleColor;
+HWND ButtonDiscoveryVirusesColor;
+HWND ButtonDiscoveryEvolutionsColor;
+HWND ButtonDiscoveryOrdinaryCaveColor;
 
 HANDLE readNewWindow;
 HANDLE readKey;
@@ -73,6 +82,9 @@ const COLORREF CarriersColor = RGB(0,255,0);
 const COLORREF EateColor = RGB(0,255,255);
 const COLORREF MeteoritColor = RGB(127, 0, 255);
 const COLORREF CrystalHoleColor = RGB(178, 102, 255);
+const COLORREF VirusesColor = RGB(18, 198, 243);
+const COLORREF EvolutionsColor = RGB(255, 102, 102);
+const COLORREF OrdinaryCaveColor = RGB(102, 178, 255);
 
 LRESULT CALLBACK SoftwareMainProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp);
 LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp);

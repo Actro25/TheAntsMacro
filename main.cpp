@@ -39,6 +39,12 @@ LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LP
 			CurrentDiscoveringColor = MeteoritColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		case OnButtonCrystalHoleClick:
 			CurrentDiscoveringColor = CrystalHoleColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+		case OnButtonVirusesClick:
+			CurrentDiscoveringColor = VirusesColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+		case OnButtonEvolutionClick:
+			CurrentDiscoveringColor = EvolutionsColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+		case OnButtonCavesClick:
+			CurrentDiscoveringColor = OrdinaryCaveColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		}
 		
 		break;
@@ -68,71 +74,33 @@ LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LP
 		RECT rect = pdis->rcItem;
 		HBRUSH hBrush;
 		switch (pdis->CtlID) {
-		case OnButtonBaseColorClick: {
-			bgColor = BaseDiscoveringColor;
-			hBrush = CreateSolidBrush(bgColor);
-			FillRect(hdc, &rect, hBrush);
-			DeleteObject(hBrush);
-			return TRUE;
-			break;
+		case OnButtonBaseColorClick: 
+			bgColor = BaseDiscoveringColor;break;
+		case OnButtonCurrentColor:
+			bgColor = CurrentDiscoveringColor;break;
+		case OnButtonShootersClick: 
+			bgColor = ShootersColor;break;
+		case OnButtonGuardiansClick: 
+			bgColor = GuardianColor;break;
+		case OnButtonCarriersClick: 
+			bgColor = CarriersColor;break;
+		case OnButtonEateClick: 
+			bgColor = EateColor;break;
+		case OnButtonMeteoritClick: 
+			bgColor = MeteoritColor;break;
+		case OnButtonCrystalHoleClick: 
+			bgColor = CrystalHoleColor;break;
+		case OnButtonVirusesClick: 
+			bgColor = VirusesColor;break;
+		case OnButtonEvolutionClick: 
+			bgColor = EvolutionsColor;break;
+		case OnButtonCavesClick: 
+			bgColor = OrdinaryCaveColor;break;
 		}
-		case OnButtonCurrentColor: {
-			bgColor = CurrentDiscoveringColor;
-			hBrush = CreateSolidBrush(bgColor);
-			FillRect(hdc, &rect, hBrush);
-			DeleteObject(hBrush);
-			return TRUE;
-			break;
-		}
-		case OnButtonShootersClick: {
-			bgColor = ShootersColor;
-			hBrush = CreateSolidBrush(bgColor);
-			FillRect(hdc, &rect, hBrush);
-			DeleteObject(hBrush);
-			return TRUE;
-			break;
-		}
-		case OnButtonGuardiansClick: {
-			bgColor = GuardianColor;
-			hBrush = CreateSolidBrush(bgColor);
-			FillRect(hdc, &rect, hBrush);
-			DeleteObject(hBrush);
-			return TRUE;
-			break;
-		}
-		case OnButtonCarriersClick: {
-			bgColor = CarriersColor;
-			hBrush = CreateSolidBrush(bgColor);
-			FillRect(hdc, &rect, hBrush);
-			DeleteObject(hBrush);
-			return TRUE;
-			break;
-		}
-		case OnButtonEateClick: {
-			bgColor = EateColor;
-			hBrush = CreateSolidBrush(bgColor);
-			FillRect(hdc, &rect, hBrush);
-			DeleteObject(hBrush);
-			return TRUE;
-			break;
-		}
-		case OnButtonMeteoritClick: {
-			bgColor = MeteoritColor;
-			hBrush = CreateSolidBrush(bgColor);
-			FillRect(hdc, &rect, hBrush);
-			DeleteObject(hBrush);
-			return TRUE;
-			break;
-		}
-		case OnButtonCrystalHoleClick: {
-			bgColor = CrystalHoleColor;
-			hBrush = CreateSolidBrush(bgColor);
-			FillRect(hdc, &rect, hBrush);
-			DeleteObject(hBrush);
-			return TRUE;
-			break;
-		}
-		}
+		hBrush = CreateSolidBrush(bgColor);
+		FillRect(hdc, &rect, hBrush);
+		DeleteObject(hBrush);
+		return TRUE;
 		break;
 	}
 	case WM_PAINT: {
