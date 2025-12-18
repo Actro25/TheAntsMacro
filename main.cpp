@@ -45,6 +45,12 @@ LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LP
 			CurrentDiscoveringColor = EvolutionsColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		case OnButtonCavesClick:
 			CurrentDiscoveringColor = OrdinaryCaveColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+		case OnButtonWildAnimalClick:
+			CurrentDiscoveringColor = WildAnimalBaseColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+		case OnButtonRuralContestClick:
+			CurrentDiscoveringColor = RuralContestsColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+		case OnButtonLadybugClick:
+			CurrentDiscoveringColor = LadybugColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		}
 		
 		break;
@@ -96,6 +102,12 @@ LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LP
 			bgColor = EvolutionsColor;break;
 		case OnButtonCavesClick: 
 			bgColor = OrdinaryCaveColor;break;
+		case OnButtonWildAnimalClick:
+			bgColor = WildAnimalBaseColor; break;
+		case OnButtonRuralContestClick:
+			bgColor = RuralContestsColor; break;
+		case OnButtonLadybugClick:
+			bgColor = LadybugColor; break;
 		}
 		hBrush = CreateSolidBrush(bgColor);
 		FillRect(hdc, &rect, hBrush);

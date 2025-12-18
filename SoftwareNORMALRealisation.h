@@ -68,7 +68,18 @@ void DiscoveringWndWidgets(HWND hWnd) {
 	TempLabel = CreateWindowA("static", " - Ordinary Cave", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 340, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	ButtonDiscoveryOrdinaryCaveColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 337, 25, 25, hWnd, (HMENU)OnButtonCavesClick, NULL, NULL);
+	//
+	TempLabel = CreateWindowA("static", " - Wild Animals", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 370, 150, 50, hWnd, NULL, NULL, NULL);
+	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
+	ButtonDiscoveryWildAnimalColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 367, 25, 25, hWnd, (HMENU)OnButtonWildAnimalClick, NULL, NULL);
 
+	TempLabel = CreateWindowA("static", " - Rural Contests", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 400, 150, 50, hWnd, NULL, NULL, NULL);
+	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
+	ButtonDiscoveryRuralContestColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 397, 25, 25, hWnd, (HMENU)OnButtonRuralContestClick, NULL, NULL);
+
+	TempLabel = CreateWindowA("static", " - Ladybug", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 430, 150, 50, hWnd, NULL, NULL, NULL);
+	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
+	ButtonDiscoveryLadybugColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 427, 25, 25, hWnd, (HMENU)OnButtonLadybugClick, NULL, NULL);
 }
 void MainWndAddMenus(HWND hWnd) {
 }
@@ -152,6 +163,9 @@ void SetNeededColor(int x, int y) {
 	case VirusesColor: if (!CheckIfGather3Hexagon(targetI, targetJ, VirusesHexagons)) return; break;
 	case EvolutionsColor: if (!CheckIfGather3Hexagon(targetI, targetJ, EvolutionsHexagons)) return; break;
 	case OrdinaryCaveColor: if (!CheckIfGather3Hexagon(targetI, targetJ, OrdinaryCaveHexagons)) return; break;
+	case WildAnimalBaseColor: if (!CheckIfGather3Hexagon(targetI, targetJ, WildAnimalHexagons)) return; break;
+	case RuralContestsColor: if (!CheckIfGather3Hexagon(targetI, targetJ, RuralContestHexagons)) return; break;
+	case LadybugColor: if (!CheckIfGather3Hexagon(targetI, targetJ, LadybugHexagons)) return; break;
 	}
 	
 	if (targetI != -1 && targetJ != -1) {
@@ -168,6 +182,9 @@ void SetNeededColor(int x, int y) {
 		case VirusesColor: VirusesHexagons++; break;
 		case EvolutionsColor: EvolutionsHexagons++; break;
 		case OrdinaryCaveColor: OrdinaryCaveHexagons++; break;
+		case WildAnimalBaseColor: WildAnimalHexagons++; break;
+		case RuralContestsColor: RuralContestHexagons++; break;
+		case LadybugColor: LadybugHexagons++; break;
 		}
 
 		switch (tempColor) {
@@ -180,6 +197,9 @@ void SetNeededColor(int x, int y) {
 		case VirusesColor: VirusesHexagons--; break;
 		case EvolutionsColor: EvolutionsHexagons--; break;
 		case OrdinaryCaveColor: OrdinaryCaveHexagons--; break;
+		case WildAnimalBaseColor: WildAnimalHexagons--; break;
+		case RuralContestsColor: RuralContestHexagons--; break;
+		case LadybugColor: LadybugHexagons--; break;
 		}
 	}
 	InvalidateRect(g_hDiscoveringWnd, NULL, TRUE);

@@ -25,6 +25,9 @@
 #define OnButtonVirusesClick		11
 #define OnButtonEvolutionClick		12
 #define OnButtonCavesClick		13
+#define OnButtonWildAnimalClick		14
+#define OnButtonRuralContestClick		15
+#define OnButtonLadybugClick		16
 
 int SecondsWordProgram = 0;
 int MinutesWordProgram = 0;
@@ -39,6 +42,9 @@ int CrystalHoleHexagons = 0;
 int VirusesHexagons = 0;
 int EvolutionsHexagons = 0;
 int OrdinaryCaveHexagons = 0;
+int WildAnimalHexagons = 0;
+int RuralContestHexagons = 0;
+int LadybugHexagons = 0;
 
 std::atomic<bool> isActive{ false };
 std::atomic<bool> isDiscovering{ false };
@@ -67,6 +73,9 @@ HWND ButtonDiscoveryCrystalHoleColor;
 HWND ButtonDiscoveryVirusesColor;
 HWND ButtonDiscoveryEvolutionsColor;
 HWND ButtonDiscoveryOrdinaryCaveColor;
+HWND ButtonDiscoveryWildAnimalColor;
+HWND ButtonDiscoveryRuralContestColor;
+HWND ButtonDiscoveryLadybugColor;
 
 HANDLE readNewWindow;
 HANDLE readKey;
@@ -85,6 +94,9 @@ const COLORREF CrystalHoleColor = RGB(178, 102, 255);
 const COLORREF VirusesColor = RGB(18, 198, 243);
 const COLORREF EvolutionsColor = RGB(255, 102, 102);
 const COLORREF OrdinaryCaveColor = RGB(102, 178, 255);
+const COLORREF WildAnimalBaseColor = RGB(255, 255, 153);
+const COLORREF RuralContestsColor = RGB(255, 51, 153);
+const COLORREF LadybugColor = RGB(204, 0, 0);
 
 LRESULT CALLBACK SoftwareMainProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp);
 LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp);
