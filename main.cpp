@@ -51,6 +51,12 @@ LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LP
 			CurrentDiscoveringColor = RuralContestsColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		case OnButtonLadybugClick:
 			CurrentDiscoveringColor = LadybugColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+		case OnButtonShellClick:
+			CurrentDiscoveringColor = ShellColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+		case OnButtonFabricResources:
+			CurrentDiscoveringColor = FabricResourcesColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+		case OnButtonWarCaveClick:
+			CurrentDiscoveringColor = WarCaveColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		}
 		
 		break;
@@ -75,7 +81,7 @@ LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LP
 	}
 	case WM_DRAWITEM: {
 		LPDRAWITEMSTRUCT pdis = (LPDRAWITEMSTRUCT)lp;
-		COLORREF bgColor;
+		COLORREF bgColor = BaseDiscoveringColor;
 		HDC hdc = pdis->hDC;
 		RECT rect = pdis->rcItem;
 		HBRUSH hBrush;
@@ -108,6 +114,12 @@ LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LP
 			bgColor = RuralContestsColor; break;
 		case OnButtonLadybugClick:
 			bgColor = LadybugColor; break;
+		case OnButtonShellClick:
+			bgColor = ShellColor; break;
+		case OnButtonFabricResources:
+			bgColor = FabricResourcesColor; break;
+		case OnButtonWarCaveClick:
+			bgColor = WarCaveColor; break;
 		}
 		hBrush = CreateSolidBrush(bgColor);
 		FillRect(hdc, &rect, hBrush);
