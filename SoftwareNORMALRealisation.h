@@ -25,25 +25,37 @@ void ExitDiscoveringSoftware(void) {
 	PostQuitMessage(0);
 }
 void DiscoveringWndWidgets(HWND hWnd) {
-	HWND CurColorLabel = CreateWindowA("static", "Current color: ", WS_VISIBLE | WS_CHILD | ES_CENTER, 750, 20, 100, 50, hWnd, NULL, NULL, NULL);
-	SetActiveTextColor(RGB(0,0,0), CurColorLabel);
+	HWND TempLabel = CreateWindowA("static", "Current color: ", WS_VISIBLE | WS_CHILD | ES_CENTER, 750, 20, 100, 50, hWnd, NULL, NULL, NULL);
+	SetActiveTextColor(RGB(0,0,0), TempLabel);
 	ButtonDiscoveryCurrentColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 850, 17, 25, 25, hWnd, (HMENU)OnButtonCurrentColor, NULL, NULL);
 
-	HWND BaseColorLabel = CreateWindowA("static", " - Base color", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 70, 100, 50, hWnd, NULL, NULL, NULL);
-	SetActiveTextColor(RGB(0, 0, 0), BaseColorLabel);
+	TempLabel = CreateWindowA("static", " - Base color", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 70, 100, 50, hWnd, NULL, NULL, NULL);
+	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	ButtonDiscoveryBaseColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 67, 25, 25, hWnd, (HMENU)OnButtonBaseColorClick, NULL, NULL);
 
-	HWND ShootersColorLabel = CreateWindowA("static", " - Shooters", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 100, 100, 50, hWnd, NULL, NULL, NULL);
-	SetActiveTextColor(RGB(0, 0, 0), ShootersColorLabel);
+	TempLabel = CreateWindowA("static", " - Shooters", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 100, 100, 50, hWnd, NULL, NULL, NULL);
+	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	ButtonDiscoveryShootersColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 97, 25, 25, hWnd, (HMENU)OnButtonShootersClick, NULL, NULL);
 
-	HWND GuardiansColorLabel = CreateWindowA("static", " - Guardians", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 130, 100, 50, hWnd, NULL, NULL, NULL);
-	SetActiveTextColor(RGB(0, 0, 0), GuardiansColorLabel);
+	TempLabel = CreateWindowA("static", " - Guardians", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 130, 100, 50, hWnd, NULL, NULL, NULL);
+	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	ButtonDiscoveryGuardiansColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 127, 25, 25, hWnd, (HMENU)OnButtonGuardiansClick, NULL, NULL);
 
-	HWND CurriersColorLabel = CreateWindowA("static", " - Carriers", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 160, 100, 50, hWnd, NULL, NULL, NULL);
-	SetActiveTextColor(RGB(0, 0, 0), CurriersColorLabel);
+	TempLabel = CreateWindowA("static", " - Carriers", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 160, 100, 50, hWnd, NULL, NULL, NULL);
+	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	ButtonDiscoveryCarriersColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 157, 25, 25, hWnd, (HMENU)OnButtonCarriersClick, NULL, NULL);
+	//
+	TempLabel = CreateWindowA("static", " - Water(Eate)", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 190, 100, 50, hWnd, NULL, NULL, NULL);
+	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
+	ButtonDiscoveryEateColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 187, 25, 25, hWnd, (HMENU)OnButtonEateClick, NULL, NULL);
+
+	TempLabel = CreateWindowA("static", " - Meteorit Construction", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 220, 100, 50, hWnd, NULL, NULL, NULL);
+	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
+	ButtonDiscoveryMeteoritColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 217, 25, 25, hWnd, (HMENU)OnButtonMeteoritClick, NULL, NULL);
+
+	TempLabel = CreateWindowA("static", " - Crystale Cave", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 250, 100, 50, hWnd, NULL, NULL, NULL);
+	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
+	ButtonDiscoveryCrystalHoleColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 247, 25, 25, hWnd, (HMENU)OnButtonCrystalHoleClick, NULL, NULL);
 }
 void MainWndAddMenus(HWND hWnd) {
 }
@@ -121,6 +133,9 @@ void SetNeededColor(int x, int y) {
 	case ShootersColor: if (!CheckIfGather3Hexagon(targetI, targetJ, ShooterHexagons)) return; break;
 	case GuardianColor: if (!CheckIfGather3Hexagon(targetI, targetJ, GuardianHexagons)) return; break;
 	case CarriersColor: if (!CheckIfGather3Hexagon(targetI, targetJ, CarrierHexagons)) return; break;
+	case EateColor: if (!CheckIfGather3Hexagon(targetI, targetJ, EateHexagons)) return; break;
+	case MeteoritColor: if (!CheckIfGather3Hexagon(targetI, targetJ, MeteoritHexagons)) return; break;
+	case CrystalHoleColor: if (!CheckIfGather3Hexagon(targetI, targetJ, CrystalHoleHexagons)) return; break;
 	}
 	
 	if (targetI != -1 && targetJ != -1) {
@@ -131,12 +146,18 @@ void SetNeededColor(int x, int y) {
 		case ShootersColor: ShooterHexagons++; break;
 		case GuardianColor: GuardianHexagons++; break;
 		case CarriersColor: CarrierHexagons++; break;
+		case EateColor: EateHexagons++; break;
+		case MeteoritColor: MeteoritHexagons++; break;
+		case CrystalHoleColor: CrystalHoleHexagons++; break;
 		}
 
 		switch (tempColor) {
 		case ShootersColor: ShooterHexagons--; break;
 		case GuardianColor: GuardianHexagons--; break;
 		case CarriersColor: CarrierHexagons--; break;
+		case EateColor: EateHexagons--; break;
+		case MeteoritColor: MeteoritHexagons--; break;
+		case CrystalHoleColor: CrystalHoleHexagons--; break;
 		}
 	}
 	InvalidateRect(g_hDiscoveringWnd, NULL, TRUE);
