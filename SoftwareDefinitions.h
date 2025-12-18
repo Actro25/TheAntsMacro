@@ -31,10 +31,13 @@
 #define OnButtonShellClick		17
 #define OnButtonFabricResources		18
 #define OnButtonWarCaveClick		19
+#define OnButtonHatchingAnimal		20
 
 int SecondsWordProgram = 0;
 int MinutesWordProgram = 0;
 int HoursWordProgram = 0;
+
+int QuantityOfHatchingAnimalsBuilding = 0;
 
 std::atomic<bool> GuardianHexagons{ false };
 std::atomic<bool> ShooterHexagons{ false };
@@ -85,6 +88,7 @@ HWND ButtonDiscoveryLadybugColor;
 HWND ButtonDiscoveryShellColor;
 HWND ButtonDiscoveryFabricResourcesColor;
 HWND ButtonDiscoveryWarCaveColor;
+HWND ButtonDiscoveryHatchingAnimalColor;
 
 HANDLE readNewWindow;
 HANDLE readKey;
@@ -109,6 +113,7 @@ const COLORREF LadybugColor = RGB(204, 0, 0);
 const COLORREF ShellColor = RGB(255, 255, 204);
 const COLORREF FabricResourcesColor = RGB(153, 255, 153);
 const COLORREF WarCaveColor = RGB(153, 0, 0);
+const COLORREF HatchingAnimalColor = RGB(255,128,0);
 
 LRESULT CALLBACK SoftwareMainProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp);
 LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp);

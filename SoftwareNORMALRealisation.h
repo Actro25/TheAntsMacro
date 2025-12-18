@@ -92,6 +92,10 @@ void DiscoveringWndWidgets(HWND hWnd) {
 	TempLabel = CreateWindowA("static", " - War Cave", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 520, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	ButtonDiscoveryWarCaveColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 517, 25, 25, hWnd, (HMENU)OnButtonWarCaveClick, NULL, NULL);
+
+	TempLabel = CreateWindowA("static", " - Hatching Animal", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 550, 150, 50, hWnd, NULL, NULL, NULL);
+	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
+	ButtonDiscoveryHatchingAnimalColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 547, 25, 25, hWnd, (HMENU)OnButtonHatchingAnimal, NULL, NULL);
 }
 void MainWndAddMenus(HWND hWnd) {
 }
@@ -196,6 +200,7 @@ void SetNeededColor(int x, int y) {
 		case ShellColor: ShellHexagons = true; break;
 		case FabricResourcesColor: FabricResourcesHexagons = true; break;
 		case WarCaveColor: WarCaveHexagons = true; break;
+		case HatchingAnimalColor: QuantityOfHatchingAnimalsBuilding++; break;
 		}
 	}
 	InvalidateRect(g_hDiscoveringWnd, NULL, TRUE);
@@ -217,6 +222,7 @@ void ChangeBoolPropertyInHexagon(COLORREF HexagonColor) {
 	case ShellColor: ShellHexagons = !ShellHexagons; break;
 	case FabricResourcesColor: FabricResourcesHexagons = !FabricResourcesHexagons; break;
 	case WarCaveColor: WarCaveHexagons = !WarCaveHexagons; break;
+	case HatchingAnimalColor: QuantityOfHatchingAnimalsBuilding--;
 	}
 }
 bool CheckIfGather3Hexagon(int IndexI, int IndexJ) {
@@ -277,6 +283,7 @@ bool CheckIfGather3Hexagon(int IndexI, int IndexJ) {
 		}
 	}
 	if (IndexJ == 0) return false;
+
 	switch (CurrentDiscoveringColor) {
 	case ShootersColor: if(ShooterHexagons) return false; break;
 	case GuardianColor: if(GuardianHexagons) return false; break;
@@ -293,6 +300,7 @@ bool CheckIfGather3Hexagon(int IndexI, int IndexJ) {
 	case ShellColor: if (ShellHexagons) return false; break;
 	case FabricResourcesColor: if (FabricResourcesHexagons) return false; break;
 	case WarCaveColor: if (WarCaveHexagons) return false; break;
+	case HatchingAnimalColor: if (QuantityOfHatchingAnimalsBuilding >= 4) return false; break;
 	}
 
 	if (IndexI % 2 == 0) {
