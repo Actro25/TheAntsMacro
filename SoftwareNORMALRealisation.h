@@ -95,7 +95,15 @@ void DiscoveringWndWidgets(HWND hWnd) {
 
 	TempLabel = CreateWindowA("static", " - Hatching Animal", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 550, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
-	ButtonDiscoveryHatchingAnimalColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 547, 25, 25, hWnd, (HMENU)OnButtonHatchingAnimal, NULL, NULL);
+	ButtonDiscoveryHatchingAnimalColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 547, 25, 25, hWnd, (HMENU)OnButtonHatchingAnimalClick, NULL, NULL);
+	//
+	TempLabel = CreateWindowA("static", " - Leafcutter ant", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 580, 150, 50, hWnd, NULL, NULL, NULL);
+	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
+	ButtonDiscoveryAntAlayerColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 577, 25, 25, hWnd, (HMENU)OnButtonAntSlayerClick, NULL, NULL);
+
+	TempLabel = CreateWindowA("static", " - Feed animal", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 610, 150, 50, hWnd, NULL, NULL, NULL);
+	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
+	ButtonDIscoveryAnimalCormColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 607, 25, 25, hWnd, (HMENU)OnButtonAnimalCormClick, NULL, NULL);
 }
 void MainWndAddMenus(HWND hWnd) {
 }
@@ -139,6 +147,61 @@ void CreateDiscoveringMap(HWND hWnd) {
 		cenX = (i % 2 != 0) ? 21 : 13;
 	}
 }
+bool Set1HexagonConstruction(int targetI, int targetJ) {
+	if (!CheckIfAvailableFor1Hexagon(targetI, targetJ))
+		return false;
+	if (targetI != -1 && targetJ != -1) {
+		COLORREF tempColor = homeMap[targetI][targetJ].color;
+		homeMap[targetI][targetJ].color = CurrentDiscoveringColor;
+
+		switch (CurrentDiscoveringColor) {
+		case AntSlayerColor: QuantityOfAntSlayerBuilding++; break;
+		case AnimalCormColor: QuantityOfAnimalCormBuilding++; break;
+		}
+
+		return true;
+	}
+	return false;
+}
+bool Set3HexagonConstruction(int targetI, int targetJ) {
+	if (!CheckIfGather3Hexagon(targetI, targetJ)) 
+		return false;
+	
+	if (targetI != -1 && targetJ != -1) {
+		if (targetI % 2 == 0) {
+			homeMap[targetI][targetJ].color = CurrentDiscoveringColor;
+			homeMap[targetI][targetJ - 1].color = CurrentDiscoveringColor;
+			homeMap[targetI - 1][targetJ].color = CurrentDiscoveringColor;
+		}
+		else {
+			homeMap[targetI][targetJ].color = CurrentDiscoveringColor;
+			homeMap[targetI][targetJ - 1].color = CurrentDiscoveringColor;
+			homeMap[targetI - 1][targetJ - 1].color = CurrentDiscoveringColor;
+		}
+
+		switch (CurrentDiscoveringColor) {
+		case ShootersColor: ShooterHexagons=true; break;
+		case GuardianColor: GuardianHexagons=true; break;
+		case CarriersColor: CarrierHexagons=true; break;
+		case EateColor: EateHexagons=true; break;
+		case MeteoritColor: MeteoritHexagons=true; break;
+		case CrystalHoleColor: CrystalHoleHexagons = true; break;
+		case VirusesColor: VirusesHexagons = true; break;
+		case EvolutionsColor: EvolutionsHexagons = true; break;
+		case OrdinaryCaveColor: OrdinaryCaveHexagons = true; break;
+		case WildAnimalBaseColor: WildAnimalHexagons = true; break;
+		case RuralContestsColor: RuralContestHexagons = true; break;
+		case LadybugColor: LadybugHexagons = true; break;
+		case ShellColor: ShellHexagons = true; break;
+		case FabricResourcesColor: FabricResourcesHexagons = true; break;
+		case WarCaveColor: WarCaveHexagons = true; break;
+		case HatchingAnimalColor: QuantityOfHatchingAnimalsBuilding++; break;
+		}
+		return true;
+	}
+	return false;
+}
+
 void SetNeededColor(int x, int y) {
 	const int MAP_SIZE = 35;
 
@@ -169,39 +232,15 @@ void SetNeededColor(int x, int y) {
 			}
 		}
 	}
-	if (!CheckIfGather3Hexagon(targetI, targetJ)) 
-		return;
-	
-	if (targetI != -1 && targetJ != -1) {
-		if (targetI % 2 == 0) {
-			homeMap[targetI][targetJ].color = CurrentDiscoveringColor;
-			homeMap[targetI][targetJ - 1].color = CurrentDiscoveringColor;
-			homeMap[targetI - 1][targetJ].color = CurrentDiscoveringColor;
-		}
-		else {
-			homeMap[targetI][targetJ].color = CurrentDiscoveringColor;
-			homeMap[targetI][targetJ - 1].color = CurrentDiscoveringColor;
-			homeMap[targetI - 1][targetJ - 1].color = CurrentDiscoveringColor;
-		}
 
-		switch (CurrentDiscoveringColor) {
-		case ShootersColor: ShooterHexagons=true; break;
-		case GuardianColor: GuardianHexagons=true;; break;
-		case CarriersColor: CarrierHexagons=true; break;
-		case EateColor: EateHexagons=true; break;
-		case MeteoritColor: MeteoritHexagons=true; break;
-		case CrystalHoleColor: CrystalHoleHexagons = true; break;
-		case VirusesColor: VirusesHexagons = true; break;
-		case EvolutionsColor: EvolutionsHexagons = true; break;
-		case OrdinaryCaveColor: OrdinaryCaveHexagons = true; break;
-		case WildAnimalBaseColor: WildAnimalHexagons = true; break;
-		case RuralContestsColor: RuralContestHexagons = true; break;
-		case LadybugColor: LadybugHexagons = true; break;
-		case ShellColor: ShellHexagons = true; break;
-		case FabricResourcesColor: FabricResourcesHexagons = true; break;
-		case WarCaveColor: WarCaveHexagons = true; break;
-		case HatchingAnimalColor: QuantityOfHatchingAnimalsBuilding++; break;
-		}
+	if ((CurrentDiscoveringColor == AntSlayerColor && homeMap[targetI][targetJ].color == BaseDiscoveringColor) || 
+		(CurrentDiscoveringColor == AnimalCormColor && homeMap[targetI][targetJ].color == BaseDiscoveringColor) ||
+		(CurrentDiscoveringColor == BaseDiscoveringColor && homeMap[targetI][targetJ].color == AntSlayerColor) ||
+		(CurrentDiscoveringColor == BaseDiscoveringColor && homeMap[targetI][targetJ].color == AnimalCormColor)){
+		if (!Set1HexagonConstruction(targetI, targetJ)) return;
+	}
+	else {
+		if (!Set3HexagonConstruction(targetI, targetJ)) return;
 	}
 	InvalidateRect(g_hDiscoveringWnd, NULL, TRUE);
 }
@@ -224,6 +263,29 @@ void ChangeBoolPropertyInHexagon(COLORREF HexagonColor) {
 	case WarCaveColor: WarCaveHexagons = !WarCaveHexagons; break;
 	case HatchingAnimalColor: QuantityOfHatchingAnimalsBuilding--;
 	}
+}
+bool CheckIfAvailableFor1Hexagon(int IndexI, int IndexJ) {
+	if (CurrentDiscoveringColor == BaseDiscoveringColor) {
+		if (homeMap[IndexI][IndexJ].color != BaseDiscoveringColor) {
+			switch (homeMap[IndexI][IndexJ].color) {
+			case AntSlayerColor: QuantityOfAntSlayerBuilding--; break;
+			case AnimalCormColor: QuantityOfAnimalCormBuilding--; break;
+			}
+			homeMap[IndexI][IndexJ].color = BaseDiscoveringColor;
+			InvalidateRect(g_hDiscoveringWnd, NULL, TRUE);
+			return false;
+		}
+	}
+	if (IndexJ == 0) return false;
+
+	switch (CurrentDiscoveringColor) {
+	case AntSlayerColor: if (QuantityOfAntSlayerBuilding >= 8) return false; break;
+	case AnimalCormColor: if (QuantityOfAnimalCormBuilding >= 6) return false; break;
+	}
+
+	if (homeMap[IndexI][IndexJ].color == BaseDiscoveringColor)
+		return true;
+	return false;
 }
 bool CheckIfGather3Hexagon(int IndexI, int IndexJ) {
 	if (CurrentDiscoveringColor == BaseDiscoveringColor) {

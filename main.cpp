@@ -57,8 +57,12 @@ LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LP
 			CurrentDiscoveringColor = FabricResourcesColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		case OnButtonWarCaveClick:
 			CurrentDiscoveringColor = WarCaveColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
-		case OnButtonHatchingAnimal:
+		case OnButtonHatchingAnimalClick:
 			CurrentDiscoveringColor = HatchingAnimalColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+		case OnButtonAntSlayerClick:
+			CurrentDiscoveringColor = AntSlayerColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+		case OnButtonAnimalCormClick:
+			CurrentDiscoveringColor = AnimalCormColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		}
 		
 		break;
@@ -122,8 +126,12 @@ LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LP
 			bgColor = FabricResourcesColor; break;
 		case OnButtonWarCaveClick:
 			bgColor = WarCaveColor; break;
-		case OnButtonHatchingAnimal:
+		case OnButtonHatchingAnimalClick:
 			bgColor = HatchingAnimalColor; break;
+		case OnButtonAntSlayerClick:
+			bgColor = AntSlayerColor; break;
+		case OnButtonAnimalCormClick:
+			bgColor = AnimalCormColor; break;
 		}
 		hBrush = CreateSolidBrush(bgColor);
 		FillRect(hdc, &rect, hBrush);

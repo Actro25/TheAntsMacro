@@ -19,24 +19,28 @@
 #define OnButtonShootersClick		5
 #define OnButtonGuardiansClick		6
 #define OnButtonCarriersClick		7
-#define OnButtonEateClick		8
-#define OnButtonMeteoritClick	9
-#define OnButtonCrystalHoleClick		10
+#define OnButtonEateClick			8
+#define OnButtonMeteoritClick		9
+#define OnButtonCrystalHoleClick	10
 #define OnButtonVirusesClick		11
 #define OnButtonEvolutionClick		12
-#define OnButtonCavesClick		13
+#define OnButtonCavesClick			13
 #define OnButtonWildAnimalClick		14
-#define OnButtonRuralContestClick		15
+#define OnButtonRuralContestClick	15
 #define OnButtonLadybugClick		16
-#define OnButtonShellClick		17
+#define OnButtonShellClick			17
 #define OnButtonFabricResources		18
 #define OnButtonWarCaveClick		19
-#define OnButtonHatchingAnimal		20
+#define OnButtonHatchingAnimalClick	20
+#define OnButtonAntSlayerClick		21
+#define OnButtonAnimalCormClick		22
 
 int SecondsWordProgram = 0;
 int MinutesWordProgram = 0;
 int HoursWordProgram = 0;
 
+int QuantityOfAntSlayerBuilding = 0;
+int QuantityOfAnimalCormBuilding = 0;
 int QuantityOfHatchingAnimalsBuilding = 0;
 
 std::atomic<bool> GuardianHexagons{ false };
@@ -89,6 +93,8 @@ HWND ButtonDiscoveryShellColor;
 HWND ButtonDiscoveryFabricResourcesColor;
 HWND ButtonDiscoveryWarCaveColor;
 HWND ButtonDiscoveryHatchingAnimalColor;
+HWND ButtonDiscoveryAntAlayerColor;
+HWND ButtonDIscoveryAnimalCormColor;
 
 HANDLE readNewWindow;
 HANDLE readKey;
@@ -114,6 +120,8 @@ const COLORREF ShellColor = RGB(255, 255, 204);
 const COLORREF FabricResourcesColor = RGB(153, 255, 153);
 const COLORREF WarCaveColor = RGB(153, 0, 0);
 const COLORREF HatchingAnimalColor = RGB(255,128,0);
+const COLORREF AntSlayerColor = RGB(0, 102, 51);
+const COLORREF AnimalCormColor = RGB(102, 102, 0);
 
 LRESULT CALLBACK SoftwareMainProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp);
 LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp);
@@ -128,7 +136,10 @@ void DiscoveringWndWidgets(HWND hWnd);
 void CreateDiscoveringMap(HWND hWnd);
 void SetNeededColor(int x, int y);
 bool CheckIfGather3Hexagon(int IndexI, int IndexJ);
+bool CheckIfAvailableFor1Hexagon(int IndexI, int IndexJ);
 void ChangeBoolPropertyInHexagon(COLORREF HexagonColor);
+bool Set1HexagonConstruction(int targetI, int targetJ);
+bool Set3HexagonConstruction(int targetI, int targetJ);
 
 DWORD WINAPI ReadKeysInput(LPVOID lpParameter);
 DWORD WINAPI ThreadDiscover(LPVOID lpParameter);
