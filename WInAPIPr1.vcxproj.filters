@@ -29,5 +29,8 @@
     <ClInclude Include="SoftwareNORMALRealisation.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="SoftwareNameSpaces.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

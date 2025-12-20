@@ -28,41 +28,41 @@ LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LP
 		case OnButtonBaseColorClick:
 			CurrentDiscoveringColor = BaseDiscoveringColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		case OnButtonShootersClick:
-			CurrentDiscoveringColor = ShootersColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+			CurrentDiscoveringColor = Shooters::ShootersColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		case OnButtonGuardiansClick:
-			CurrentDiscoveringColor = GuardianColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+			CurrentDiscoveringColor = Guardians::GuardianColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		case OnButtonCarriersClick:
-			CurrentDiscoveringColor = CarriersColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+			CurrentDiscoveringColor = Carriers::CarriersColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		case OnButtonEateClick:
-			CurrentDiscoveringColor = EateColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+			CurrentDiscoveringColor = Eaters::EateColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		case OnButtonMeteoritClick:
-			CurrentDiscoveringColor = MeteoritColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+			CurrentDiscoveringColor = Meteorites::MeteoritColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		case OnButtonCrystalHoleClick:
-			CurrentDiscoveringColor = CrystalHoleColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+			CurrentDiscoveringColor = CrystalHoles::CrystalHoleColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		case OnButtonVirusesClick:
-			CurrentDiscoveringColor = VirusesColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+			CurrentDiscoveringColor = Viruses::VirusesColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		case OnButtonEvolutionClick:
-			CurrentDiscoveringColor = EvolutionsColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+			CurrentDiscoveringColor = Evolutions::EvolutionsColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		case OnButtonCavesClick:
-			CurrentDiscoveringColor = OrdinaryCaveColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+			CurrentDiscoveringColor = OrdinaryCaves::OrdinaryCaveColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		case OnButtonWildAnimalClick:
-			CurrentDiscoveringColor = WildAnimalBaseColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+			CurrentDiscoveringColor = WildAnimals::WildAnimalBaseColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		case OnButtonRuralContestClick:
-			CurrentDiscoveringColor = RuralContestsColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+			CurrentDiscoveringColor = RuralContests::RuralContestsColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		case OnButtonLadybugClick:
-			CurrentDiscoveringColor = LadybugColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+			CurrentDiscoveringColor = Ladybugs::LadybugColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		case OnButtonShellClick:
-			CurrentDiscoveringColor = ShellColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+			CurrentDiscoveringColor = Shells::ShellColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		case OnButtonFabricResources:
-			CurrentDiscoveringColor = FabricResourcesColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+			CurrentDiscoveringColor = FabricResources::FabricResourcesColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		case OnButtonWarCaveClick:
-			CurrentDiscoveringColor = WarCaveColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+			CurrentDiscoveringColor = WarCaves::WarCaveColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		case OnButtonHatchingAnimalClick:
-			CurrentDiscoveringColor = HatchingAnimalColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+			CurrentDiscoveringColor = HatchingAnimals::HatchingAnimalColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		case OnButtonAntSlayerClick:
-			CurrentDiscoveringColor = AntSlayerColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+			CurrentDiscoveringColor = AntSlayers::AntSlayerColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		case OnButtonAnimalCormClick:
-			CurrentDiscoveringColor = AnimalCormColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+			CurrentDiscoveringColor = AnimalCorms::AnimalCormColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		}
 		
 		break;
@@ -97,41 +97,41 @@ LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LP
 		case OnButtonCurrentColor:
 			bgColor = CurrentDiscoveringColor;break;
 		case OnButtonShootersClick: 
-			bgColor = ShootersColor;break;
+			bgColor = Shooters::ShootersColor;break;
 		case OnButtonGuardiansClick: 
-			bgColor = GuardianColor;break;
+			bgColor = Guardians::GuardianColor;break;
 		case OnButtonCarriersClick: 
-			bgColor = CarriersColor;break;
+			bgColor = Carriers::CarriersColor;break;
 		case OnButtonEateClick: 
-			bgColor = EateColor;break;
+			bgColor = Eaters::EateColor;break;
 		case OnButtonMeteoritClick: 
-			bgColor = MeteoritColor;break;
+			bgColor = Meteorites::MeteoritColor;break;
 		case OnButtonCrystalHoleClick: 
-			bgColor = CrystalHoleColor;break;
+			bgColor = CrystalHoles::CrystalHoleColor;break;
 		case OnButtonVirusesClick: 
-			bgColor = VirusesColor;break;
+			bgColor = Viruses::VirusesColor;break;
 		case OnButtonEvolutionClick: 
-			bgColor = EvolutionsColor;break;
+			bgColor = Evolutions::EvolutionsColor;break;
 		case OnButtonCavesClick: 
-			bgColor = OrdinaryCaveColor;break;
+			bgColor = OrdinaryCaves::OrdinaryCaveColor;break;
 		case OnButtonWildAnimalClick:
-			bgColor = WildAnimalBaseColor; break;
+			bgColor = WildAnimals::WildAnimalBaseColor; break;
 		case OnButtonRuralContestClick:
-			bgColor = RuralContestsColor; break;
+			bgColor = RuralContests::RuralContestsColor; break;
 		case OnButtonLadybugClick:
-			bgColor = LadybugColor; break;
+			bgColor = Ladybugs::LadybugColor; break;
 		case OnButtonShellClick:
-			bgColor = ShellColor; break;
+			bgColor = Shells::ShellColor; break;
 		case OnButtonFabricResources:
-			bgColor = FabricResourcesColor; break;
+			bgColor = FabricResources::FabricResourcesColor; break;
 		case OnButtonWarCaveClick:
-			bgColor = WarCaveColor; break;
+			bgColor = WarCaves::WarCaveColor; break;
 		case OnButtonHatchingAnimalClick:
-			bgColor = HatchingAnimalColor; break;
+			bgColor = HatchingAnimals::HatchingAnimalColor; break;
 		case OnButtonAntSlayerClick:
-			bgColor = AntSlayerColor; break;
+			bgColor = AntSlayers::AntSlayerColor; break;
 		case OnButtonAnimalCormClick:
-			bgColor = AnimalCormColor; break;
+			bgColor = AnimalCorms::AnimalCormColor; break;
 		}
 		hBrush = CreateSolidBrush(bgColor);
 		FillRect(hdc, &rect, hBrush);
