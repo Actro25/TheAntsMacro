@@ -105,18 +105,21 @@ namespace WarCaves {
 }
 
 namespace HatchingAnimals {
+    inline std::list<POINT> incenter;
     inline const COLORREF HatchingAnimalColor = RGB(255, 128, 0);
     inline HWND ButtonDiscoveryHatchingAnimalColor;
     inline int QuantityOfHatchingAnimalsBuilding = 0;
 }
 
 namespace AntSlayers {
+    inline std::list<POINT> incenter;
     inline const COLORREF AntSlayerColor = RGB(0, 102, 51);
     inline HWND ButtonDiscoveryAntSlayerColor;
     inline int QuantityOfAntSlayerBuilding = 0;
 }
 
 namespace AnimalCorms {
+    inline std::list<POINT> incenter;
     inline const COLORREF AnimalCormColor = RGB(102, 102, 0);
     inline HWND ButtonDiscoveryAnimalCormColor;
     inline int QuantityOfAnimalCormBuilding = 0;

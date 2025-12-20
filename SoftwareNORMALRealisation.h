@@ -155,8 +155,14 @@ bool Set1HexagonConstruction(int targetI, int targetJ) {
 		homeMap[targetI][targetJ].color = CurrentDiscoveringColor;
 
 		switch (CurrentDiscoveringColor) {
-		case AntSlayers::AntSlayerColor: AntSlayers::QuantityOfAntSlayerBuilding++; break;
-		case AnimalCorms::AnimalCormColor: AnimalCorms::QuantityOfAnimalCormBuilding++; break;
+		case AntSlayers::AntSlayerColor: 
+			AntSlayers::QuantityOfAntSlayerBuilding++; 
+			AntSlayers::incenter.push_back({homeMap[targetI][targetJ].centerX,homeMap[targetI][targetJ].centerY});
+			break;
+		case AnimalCorms::AnimalCormColor: 
+			AnimalCorms::QuantityOfAnimalCormBuilding++; 
+			AnimalCorms::incenter.push_back({ homeMap[targetI][targetJ].centerX,homeMap[targetI][targetJ].centerY});
+			break;
 		}
 
 		return true;
@@ -164,7 +170,10 @@ bool Set1HexagonConstruction(int targetI, int targetJ) {
 	return false;
 }
 void ReckonIncenter3HExagonBuild(int targetI1, int targetJ1, int targetI2, int targetJ2, int targetI3, int targetJ3) {
-	float x1 = 0, y1 = 0, A=0,B=0,C=0;
+	int x1 = 0, y1 = 0; 
+	float A = 0, B = 0, C = 0; 
+	POINT F;
+	
 	A = std::sqrt((std::pow((float)homeMap[targetI1][targetJ1].centerX - homeMap[targetI2][targetJ2].centerX, 2) +
 			std::pow((float)homeMap[targetI1][targetJ1].centerY - homeMap[targetI2][targetJ2].centerY, 2)));
 	B = std::sqrt((std::pow((float)homeMap[targetI2][targetJ2].centerX - homeMap[targetI3][targetJ3].centerX, 2) +
@@ -173,6 +182,69 @@ void ReckonIncenter3HExagonBuild(int targetI1, int targetJ1, int targetI2, int t
 			std::pow((float)homeMap[targetI3][targetJ3].centerY - homeMap[targetI1][targetJ1].centerY, 2)));
 	x1 = (B * homeMap[targetI1][targetJ1].centerX + A * homeMap[targetI2][targetJ2].centerX + C * homeMap[targetI3][targetJ3].centerX) / (A + B + C);
 	y1 = (B * homeMap[targetI1][targetJ1].centerY + A * homeMap[targetI2][targetJ2].centerY + C * homeMap[targetI3][targetJ3].centerY) / (A + B + C);
+	F = { x1,y1 };
+	if (CurrentDiscoveringColor == HatchingAnimals::HatchingAnimalColor) {
+		HatchingAnimals::incenter.push_back(F);
+	}
+	
+	switch (CurrentDiscoveringColor) {
+	case Shooters::ShootersColor:        Shooters::incenter = F; break;
+	case Guardians::GuardianColor:      Guardians::incenter = F; break;
+	case Carriers::CarriersColor:       Carriers::incenter = F; break;
+	case Eaters::EateColor:             Eaters::incenter = F; break;
+	case Meteorites::MeteoritColor:     Meteorites::incenter = F; break;
+	case CrystalHoles::CrystalHoleColor: CrystalHoles::incenter = F; break;
+	case Viruses::VirusesColor:         Viruses::incenter = F; break;
+	case Evolutions::EvolutionsColor:    Evolutions::incenter = F; break;
+	case OrdinaryCaves::OrdinaryCaveColor: OrdinaryCaves::incenter = F; break;
+	case WildAnimals::WildAnimalBaseColor: WildAnimals::incenter = F; break;
+	case RuralContests::RuralContestsColor: RuralContests::incenter = F; break;
+	case Ladybugs::LadybugColor:         Ladybugs::incenter = F; break;
+	case Shells::ShellColor:             Shells::incenter = F; break;
+	case FabricResources::FabricResourcesColor: FabricResources::incenter = F; break;
+	case WarCaves::WarCaveColor:         WarCaves::incenter = F; break;
+	}
+}
+void DeleteReckonIncenter3HExagonBuild(int targetI1, int targetJ1, int targetI2, int targetJ2, int targetI3, int targetJ3, COLORREF col) {
+	if (col == HatchingAnimals::HatchingAnimalColor) {
+		int x1 = 0, y1 = 0;
+		float A = 0, B = 0, C = 0;
+		POINT F;
+
+		A = std::sqrt((std::pow((float)homeMap[targetI1][targetJ1].centerX - homeMap[targetI2][targetJ2].centerX, 2) +
+			std::pow((float)homeMap[targetI1][targetJ1].centerY - homeMap[targetI2][targetJ2].centerY, 2)));
+		B = std::sqrt((std::pow((float)homeMap[targetI2][targetJ2].centerX - homeMap[targetI3][targetJ3].centerX, 2) +
+			std::pow((float)homeMap[targetI2][targetJ2].centerY - homeMap[targetI3][targetJ3].centerY, 2)));
+		C = std::sqrt((std::pow((float)homeMap[targetI3][targetJ3].centerX - homeMap[targetI1][targetJ1].centerX, 2) +
+			std::pow((float)homeMap[targetI3][targetJ3].centerY - homeMap[targetI1][targetJ1].centerY, 2)));
+		x1 = (B * homeMap[targetI1][targetJ1].centerX + A * homeMap[targetI2][targetJ2].centerX + C * homeMap[targetI3][targetJ3].centerX) / (A + B + C);
+		y1 = (B * homeMap[targetI1][targetJ1].centerY + A * homeMap[targetI2][targetJ2].centerY + C * homeMap[targetI3][targetJ3].centerY) / (A + B + C);
+		F = { x1,y1 };
+		std::erase_if(HatchingAnimals::incenter, [&](const POINT& c) {
+			return c.x == F.x && c.y == F.y;
+		});
+		return;
+	}
+
+	switch (col) {
+	case Shooters::ShootersColor:        Shooters::incenter = {0,0}; break;
+	case Guardians::GuardianColor:      Guardians::incenter = { 0,0 }; break;
+	case Carriers::CarriersColor:       Carriers::incenter = { 0,0 }; break;
+	case Eaters::EateColor:             Eaters::incenter = { 0,0 }; break;
+	case Meteorites::MeteoritColor:     Meteorites::incenter = { 0,0 }; break;
+	case CrystalHoles::CrystalHoleColor: CrystalHoles::incenter = { 0,0 }; break;
+	case Viruses::VirusesColor:         Viruses::incenter = { 0,0 }; break;
+	case Evolutions::EvolutionsColor:    Evolutions::incenter = { 0,0 }; break;
+	case OrdinaryCaves::OrdinaryCaveColor: OrdinaryCaves::incenter = { 0,0 }; break;
+	case WildAnimals::WildAnimalBaseColor: WildAnimals::incenter = { 0,0 }; break;
+	case RuralContests::RuralContestsColor: RuralContests::incenter = { 0,0 }; break;
+	case Ladybugs::LadybugColor:         Ladybugs::incenter = { 0,0 }; break;
+	case Shells::ShellColor:             Shells::incenter = { 0, 0 }; break;
+	case FabricResources::FabricResourcesColor: FabricResources::incenter = { 0,0 }; break;
+	case WarCaves::WarCaveColor:         WarCaves::incenter = { 0,0 }; break;
+	}
+}
+void DeleteReckonIncenter1HExagonBuild(int targetI, int targetJ) {
 }
 bool Set3HexagonConstruction(int targetI, int targetJ) {
 	if (!CheckIfGather3Hexagon(targetI, targetJ)) 
@@ -283,9 +355,20 @@ bool CheckIfAvailableFor1Hexagon(int IndexI, int IndexJ) {
 	if (CurrentDiscoveringColor == BaseDiscoveringColor) {
 		if (homeMap[IndexI][IndexJ].color != BaseDiscoveringColor) {
 			switch (homeMap[IndexI][IndexJ].color) {
-			case AntSlayers::AntSlayerColor: AntSlayers::QuantityOfAntSlayerBuilding--; break;
-			case AnimalCorms::AnimalCormColor: AnimalCorms::QuantityOfAnimalCormBuilding--; break;
+			case AntSlayers::AntSlayerColor: 
+				AntSlayers::QuantityOfAntSlayerBuilding--; 
+				std::erase_if(AntSlayers::incenter, [&](const POINT& c) {
+					return c.x == homeMap[IndexI][IndexJ].centerX && c.y == homeMap[IndexI][IndexJ].centerY;
+				});
+				break;
+			case AnimalCorms::AnimalCormColor: 
+				AnimalCorms::QuantityOfAnimalCormBuilding--; 
+				std::erase_if(AnimalCorms::incenter, [&](const POINT& c) {
+					return c.x == homeMap[IndexI][IndexJ].centerX && c.y == homeMap[IndexI][IndexJ].centerY;
+				});
+				break;
 			}
+			DeleteReckonIncenter1HExagonBuild(IndexI,IndexJ);
 			homeMap[IndexI][IndexJ].color = BaseDiscoveringColor;
 			InvalidateRect(g_hDiscoveringWnd, NULL, TRUE);
 			return false;
@@ -308,6 +391,7 @@ bool CheckIfGather3Hexagon(int IndexI, int IndexJ) {
 			if (IndexI % 2 == 0) {
 				if (homeMap[IndexI][IndexJ].color == homeMap[IndexI][IndexJ - 1].color && homeMap[IndexI][IndexJ].color == homeMap[IndexI - 1][IndexJ].color) {
 					ChangeBoolPropertyInHexagon(homeMap[IndexI][IndexJ].color);
+					DeleteReckonIncenter3HExagonBuild(IndexI,IndexJ,IndexI,IndexJ - 1, IndexI - 1, IndexJ, homeMap[IndexI][IndexJ].color);
 					homeMap[IndexI][IndexJ].color = BaseDiscoveringColor;
 					homeMap[IndexI][IndexJ - 1].color = BaseDiscoveringColor;
 					homeMap[IndexI - 1][IndexJ].color = BaseDiscoveringColor;
@@ -316,6 +400,7 @@ bool CheckIfGather3Hexagon(int IndexI, int IndexJ) {
 				}
 				else if (homeMap[IndexI][IndexJ].color == homeMap[IndexI - 1][IndexJ + 1].color && homeMap[IndexI][IndexJ].color == homeMap[IndexI][IndexJ + 1].color) {
 					ChangeBoolPropertyInHexagon(homeMap[IndexI][IndexJ].color);
+					DeleteReckonIncenter3HExagonBuild(IndexI, IndexJ, IndexI - 1, IndexJ + 1, IndexI, IndexJ + 1, homeMap[IndexI][IndexJ].color);
 					homeMap[IndexI][IndexJ].color = BaseDiscoveringColor;
 					homeMap[IndexI - 1][IndexJ + 1].color = BaseDiscoveringColor;
 					homeMap[IndexI][IndexJ + 1].color = BaseDiscoveringColor;
@@ -324,6 +409,7 @@ bool CheckIfGather3Hexagon(int IndexI, int IndexJ) {
 				}
 				else if (homeMap[IndexI][IndexJ].color == homeMap[IndexI + 1][IndexJ + 1].color && homeMap[IndexI][IndexJ].color == homeMap[IndexI + 1][IndexJ].color) {
 					ChangeBoolPropertyInHexagon(homeMap[IndexI][IndexJ].color);
+					DeleteReckonIncenter3HExagonBuild(IndexI, IndexJ, IndexI + 1, IndexJ + 1, IndexI + 1, IndexJ, homeMap[IndexI][IndexJ].color);
 					homeMap[IndexI][IndexJ].color = BaseDiscoveringColor;
 					homeMap[IndexI + 1][IndexJ + 1].color = BaseDiscoveringColor;
 					homeMap[IndexI + 1][IndexJ].color = BaseDiscoveringColor;
@@ -334,6 +420,7 @@ bool CheckIfGather3Hexagon(int IndexI, int IndexJ) {
 			else {
 				if (homeMap[IndexI][IndexJ].color == homeMap[IndexI][IndexJ - 1].color && homeMap[IndexI][IndexJ].color == homeMap[IndexI - 1][IndexJ - 1].color) {
 					ChangeBoolPropertyInHexagon(homeMap[IndexI][IndexJ].color);
+					DeleteReckonIncenter3HExagonBuild(IndexI, IndexJ, IndexI, IndexJ - 1, IndexI - 1, IndexJ - 1, homeMap[IndexI][IndexJ].color);
 					homeMap[IndexI][IndexJ].color = BaseDiscoveringColor;
 					homeMap[IndexI][IndexJ - 1].color = BaseDiscoveringColor;
 					homeMap[IndexI - 1][IndexJ - 1].color = BaseDiscoveringColor;
@@ -342,6 +429,7 @@ bool CheckIfGather3Hexagon(int IndexI, int IndexJ) {
 				}
 				else if (homeMap[IndexI][IndexJ].color == homeMap[IndexI - 1][IndexJ].color && homeMap[IndexI][IndexJ].color == homeMap[IndexI][IndexJ + 1].color) {
 					ChangeBoolPropertyInHexagon(homeMap[IndexI][IndexJ].color);
+					DeleteReckonIncenter3HExagonBuild(IndexI, IndexJ, IndexI - 1, IndexJ, IndexI, IndexJ + 1, homeMap[IndexI][IndexJ].color);
 					homeMap[IndexI][IndexJ].color = BaseDiscoveringColor;
 					homeMap[IndexI - 1][IndexJ].color = BaseDiscoveringColor;
 					homeMap[IndexI][IndexJ + 1].color = BaseDiscoveringColor;
@@ -350,6 +438,7 @@ bool CheckIfGather3Hexagon(int IndexI, int IndexJ) {
 				}
 				else if (homeMap[IndexI][IndexJ].color == homeMap[IndexI + 1][IndexJ].color && homeMap[IndexI][IndexJ].color == homeMap[IndexI + 1][IndexJ - 1].color) {
 					ChangeBoolPropertyInHexagon(homeMap[IndexI][IndexJ].color);
+					DeleteReckonIncenter3HExagonBuild(IndexI, IndexJ, IndexI + 1, IndexJ, IndexI + 1, IndexJ - 1, homeMap[IndexI][IndexJ].color);
 					homeMap[IndexI][IndexJ].color = BaseDiscoveringColor;
 					homeMap[IndexI + 1][IndexJ].color = BaseDiscoveringColor;
 					homeMap[IndexI + 1][IndexJ - 1].color = BaseDiscoveringColor;

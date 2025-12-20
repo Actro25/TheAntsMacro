@@ -8,6 +8,7 @@
 #include <ctime>
 #include <atomic>
 #include <cmath>
+#include <list>
 #include "SoftwareNameSpaces.h"
 
 #define WM_DISCOVER_PROGRESS (WM_USER + 1)
@@ -85,7 +86,11 @@ bool CheckIfAvailableFor1Hexagon(int IndexI, int IndexJ);
 void ChangeBoolPropertyInHexagon(COLORREF HexagonColor);
 bool Set1HexagonConstruction(int targetI, int targetJ);
 bool Set3HexagonConstruction(int targetI, int targetJ);
-void ReckonIncenter3HExagonBuild(int targetI, int targetJ);
+void DeleteReckonIncenter3HExagonBuild(int targetI1, int targetJ1, int targetI2, int targetJ2, int targetI3, int targetJ3, COLORREF col);
+void ReckonIncenter3HExagonBuild(int targetI1, int targetJ1, int targetI2, int targetJ2, int targetI3, int targetJ3);
+
+void DeleteReckonIncenter1HExagonBuild(int targetI, int targetJ);
+void ReckonIncenter1HExagonBuild(int targetI, int targetJ);
 
 DWORD WINAPI ReadKeysInput(LPVOID lpParameter);
 DWORD WINAPI ThreadDiscover(LPVOID lpParameter);
