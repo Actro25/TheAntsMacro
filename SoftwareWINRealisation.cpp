@@ -22,7 +22,14 @@ DWORD WINAPI ReadKeysInput(LPVOID lpParameter) {
 DWORD WINAPI ThreadDiscover(LPVOID lpParameter) {
 	MSG SoftwareDiscoveringMessage = { 0 };
 
-	CreateWindow(L"DiscoveringWndClass", L"Your Base Map", WS_OVERLAPPEDWINDOW | WS_VISIBLE | ES_AUTOVSCROLL | WS_EX_CLIENTEDGE | WS_EX_TOPMOST, 200, 200, 1000, 760, NULL, NULL, NULL, NULL);
+	CreateWindow(
+		L"DiscoveringWndClass",
+		L"Your Base Map",
+		(WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX) | WS_VISIBLE | ES_AUTOVSCROLL,
+		200, 200, 1000, 760,
+		NULL, NULL, NULL, NULL
+	);
+
 	while (GetMessageW(&SoftwareDiscoveringMessage, NULL, NULL, NULL) && isDiscovering) {
 		TranslateMessage(&SoftwareDiscoveringMessage);
 		DispatchMessage(&SoftwareDiscoveringMessage);

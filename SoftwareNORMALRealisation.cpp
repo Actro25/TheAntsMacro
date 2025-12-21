@@ -1,4 +1,19 @@
-#pragma once
+BuildingStruct shooters = { .Color = COLOR_SHOOTERS, .type = BuildingType::Shooters };
+BuildingStruct guardians = { .Color = COLOR_GUARDIANS, .type = BuildingType::Guardians };
+BuildingStruct carriers = { .Color = COLOR_CARRIERS, .type = BuildingType::Carriers };
+BuildingStruct eaters = { .Color = COLOR_EATERS, .type = BuildingType::Eaters };
+BuildingStruct meteorites = { .Color = COLOR_METEORITES, .type = BuildingType::Meteorites };
+BuildingStruct crystalHoles = { .Color = COLOR_CRYSTALHOLES, .type = BuildingType::CrystalHoles };
+BuildingStruct viruses = { .Color = COLOR_VIRUSES, .type = BuildingType::Viruses };
+BuildingStruct evolutions = { .Color = COLOR_EVOLUTIONS, .type = BuildingType::Evolutions };
+BuildingStruct ordinaryCaves = { .Color = COLOR_ORDINARYCAVES, .type = BuildingType::OrdinaryCaves };
+BuildingStruct wildAnimals = { .Color = COLOR_WILDANIMALS, .type = BuildingType::WildAnimals };
+BuildingStruct ruralContests = { .Color = COLOR_RURALCONTESTS, .type = BuildingType::RuralContests };
+BuildingStruct ladybugs = { .Color = COLOR_LADYBUGS, .type = BuildingType::Ladybugs };
+BuildingStruct shells = { .Color = COLOR_SHELLS, .type = BuildingType::Shells };
+BuildingStruct fabricResources = { .Color = COLOR_FABRICRESOURCES, .type = BuildingType::FabricResources };
+BuildingStruct warCaves = { .Color = COLOR_WARCAVES, .type = BuildingType::WarCaves };
+
 void ExitSoftware(void) {
 	THEMEWINDOWCOLOR->unused;
 	if (readKey) {
@@ -506,7 +521,4 @@ bool CheckIfGather3Hexagon(int IndexI, int IndexJ) {
 }
 void SaveHomeMap() {
 
-}
-void CreateDiscoveringMapBuildings() {
-	
 }

@@ -128,9 +128,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SoftwareDefinitions.h" />
-    <ClInclude Include="SoftwareNameSpaces.h" />
-    <ClInclude Include="SoftwareNORMALRealisation.h" />
-    <ClInclude Include="SoftwareWINRealisation.h" />
+    <ClInclude Include="SoftwareNORMALRealisation.cpp" />
+    <ClInclude Include="SoftwareWINRealisation.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

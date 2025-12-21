@@ -9,7 +9,6 @@
 #include <atomic>
 #include <cmath>
 #include <list>
-#include "SoftwareNameSpaces.h"
 
 #define WM_DISCOVER_PROGRESS (WM_USER + 1)
 #define WM_TIME_PROGRESS (WM_USER + 2)
@@ -127,18 +126,65 @@ struct HEXAGON {
 
 HEXAGON homeMap[35][35];
 
-BuildingStruct shooters = { .Color = COLOR_SHOOTERS, .type = BuildingType::Shooters };
-BuildingStruct guardians = { .Color = COLOR_GUARDIANS, .type = BuildingType::Guardians };
-BuildingStruct carriers = { .Color = COLOR_CARRIERS, .type = BuildingType::Carriers };
-BuildingStruct eaters = { .Color = COLOR_EATERS, .type = BuildingType::Eaters };
-BuildingStruct meteorites = { .Color = COLOR_METEORITES, .type = BuildingType::Meteorites };
-BuildingStruct crystalHoles = { .Color = COLOR_CRYSTALHOLES, .type = BuildingType::CrystalHoles };
-BuildingStruct viruses = { .Color = COLOR_VIRUSES, .type = BuildingType::Viruses };
-BuildingStruct evolutions = { .Color = COLOR_EVOLUTIONS, .type = BuildingType::Evolutions };
-BuildingStruct ordinaryCaves = { .Color = COLOR_ORDINARYCAVES, .type = BuildingType::OrdinaryCaves };
-BuildingStruct wildAnimals = { .Color = COLOR_WILDANIMALS, .type = BuildingType::WildAnimals };
-BuildingStruct ruralContests = { .Color = COLOR_RURALCONTESTS, .type = BuildingType::RuralContests };
-BuildingStruct ladybugs = { .Color = COLOR_LADYBUGS, .type = BuildingType::Ladybugs };
-BuildingStruct shells = { .Color = COLOR_SHELLS, .type = BuildingType::Shells };
-BuildingStruct fabricResources = { .Color = COLOR_FABRICRESOURCES, .type = BuildingType::FabricResources };
-BuildingStruct warCaves = { .Color = COLOR_WARCAVES, .type = BuildingType::WarCaves };
+enum class BuildingType {
+    None,
+    Shooters,
+    Guardians,
+    Carriers,
+    Eaters,
+    Meteorites,
+    CrystalHoles,
+    Viruses,
+    Evolutions,
+    OrdinaryCaves,
+    WildAnimals,
+    RuralContests,
+    Ladybugs,
+    Shells,
+    FabricResources,
+    WarCaves,
+    HatchingAnimals,
+    AntSlayers,
+    AnimalCorms
+};
+
+struct BuildingStruct
+{
+    std::string name;
+    POINT incenter;
+    std::atomic<bool> isPlaced;
+    const COLORREF Color;
+    const BuildingType type;
+
+    HWND ButtonColor;
+
+    void FunctionCreate(std::string name, POINT incenter,
+        bool isPlaced, HWND ButtonColor) {
+        this->name = name;
+        this->incenter = incenter;
+        this->isPlaced = isPlaced;
+        this->ButtonColor = ButtonColor;
+    }
+};
+
+namespace HatchingAnimals {
+    inline std::list<POINT> incenter;
+    inline const COLORREF HatchingAnimalColor = RGB(255, 128, 0);
+    inline HWND ButtonDiscoveryHatchingAnimalColor;
+    inline BuildingType type = BuildingType::HatchingAnimals;
+    inline int QuantityOfHatchingAnimalsBuilding = 0;
+}
+namespace AntSlayers {
+    inline std::list<POINT> incenter;
+    inline const COLORREF AntSlayerColor = RGB(0, 102, 51);
+    inline HWND ButtonDiscoveryAntSlayerColor;
+    inline BuildingType type = BuildingType::AntSlayers;;
+    inline int QuantityOfAntSlayerBuilding = 0;
+}
+namespace AnimalCorms {
+    inline std::list<POINT> incenter;
+    inline const COLORREF AnimalCormColor = RGB(102, 102, 0);
+    inline HWND ButtonDiscoveryAnimalCormColor;
+    inline BuildingType type = BuildingType::AnimalCorms;
+    inline int QuantityOfAnimalCormBuilding = 0;
+}

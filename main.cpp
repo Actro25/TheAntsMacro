@@ -1,6 +1,6 @@
 #include "SoftwareDefinitions.h"
-#include "SoftwareWINRealisation.h"
-#include "SoftwareNORMALRealisation.h"
+#include "SoftwareWINRealisation.cpp"
+#include "SoftwareNORMALRealisation.cpp"
 
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR args, int ncmdshow) {
 	srand(static_cast<unsigned int>(time(nullptr)));
@@ -64,7 +64,9 @@ LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LP
 			CurrentDiscoveringColor = AntSlayers::AntSlayerColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		case OnButtonAnimalCormClick:
 			CurrentDiscoveringColor = AnimalCorms::AnimalCormColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
-		case OnButtonDiscoverSaveClick: break;
+		case OnButtonDiscoverSaveClick: 
+			SaveHomeMap();
+			break;
 		case OnButtonDiscoverCancelClick: 
 			ExitDiscoveringSoftware();
 			break;
@@ -183,7 +185,6 @@ LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LP
 		g_hDiscoveringWnd = hWnd;
 		CurrentDiscoveringColor = BaseDiscoveringColor;
 		DiscoveringWndWidgets(hWnd);
-		CreateDiscoveringMapBuildings();
 		CreateDiscoveringMap(hWnd);
 		InvalidateRect(g_hDiscoveringWnd, NULL, TRUE);
 		break;
