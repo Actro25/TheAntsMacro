@@ -36,6 +36,8 @@
 #define OnButtonHatchingAnimalClick	20
 #define OnButtonAntSlayerClick		21
 #define OnButtonAnimalCormClick		22
+#define OnButtonDiscoverSaveClick	23
+#define OnButtonDiscoverCancelClick	24
 
 int SecondsWordProgram = 0;
 int MinutesWordProgram = 0;
@@ -56,6 +58,8 @@ HWND ActiveControlTextStatus;
 HWND StatusTextTime;
 HWND ActiveControlTextStatusTime;
 HWND DiscoverStatusText;
+HWND DiscoverSaveButton;
+HWND DiscoverCancelButton;
 
 HWND ButtonDiscoveryCurrentColor;
 HWND ButtonDiscoveryBaseColor;

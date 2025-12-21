@@ -18,7 +18,7 @@ void ExitSoftware(void) {
 		CloseHandle(readTime);
 		readTime = NULL;
 	}
-
+	ExitDiscoveringSoftware();
 	PostQuitMessage(0);
 }
 void ExitDiscoveringSoftware(void) {
@@ -104,6 +104,9 @@ void DiscoveringWndWidgets(HWND hWnd) {
 	TempLabel = CreateWindowA("static", " - Feed animal", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 610, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	AnimalCorms::ButtonDiscoveryAnimalCormColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 607, 25, 25, hWnd, (HMENU)OnButtonAnimalCormClick, NULL, NULL);
+
+	DiscoverSaveButton = CreateWindowA("button", "Save", WS_VISIBLE | WS_CHILD, 730, 640, 220, 30, hWnd, (HMENU)OnButtonDiscoverSaveClick, NULL, NULL);
+	DiscoverCancelButton = CreateWindowA("button", "Cancel", WS_VISIBLE | WS_CHILD, 730, 680, 220, 30, hWnd, (HMENU)OnButtonDiscoverCancelClick, NULL, NULL);
 }
 void MainWndAddMenus(HWND hWnd) {
 }
@@ -287,7 +290,6 @@ bool Set3HexagonConstruction(int targetI, int targetJ) {
 	}
 	return false;
 }
-
 void SetNeededColor(int x, int y) {
 	const int MAP_SIZE = 35;
 

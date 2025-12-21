@@ -18,6 +18,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR args, int ncmdsho
 		DispatchMessage(&SoftwareMainMessage);
 	}
 	ExitSoftware();
+	ExitDiscoveringSoftware();
 	return 0;
 }
 
@@ -63,6 +64,10 @@ LRESULT CALLBACK SoftwareDiscoveringProcedure(HWND hWnd, UINT msg, WPARAM wp, LP
 			CurrentDiscoveringColor = AntSlayers::AntSlayerColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
 		case OnButtonAnimalCormClick:
 			CurrentDiscoveringColor = AnimalCorms::AnimalCormColor; InvalidateRect(GetDlgItem(hWnd, OnButtonCurrentColor), NULL, TRUE);  break;
+		case OnButtonDiscoverSaveClick: break;
+		case OnButtonDiscoverCancelClick: 
+			ExitDiscoveringSoftware();
+			break;
 		}
 		
 		break;
