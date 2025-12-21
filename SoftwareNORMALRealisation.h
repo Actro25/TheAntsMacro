@@ -35,63 +35,79 @@ void DiscoveringWndWidgets(HWND hWnd) {
 
 	TempLabel = CreateWindowA("static", " - Shooters", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 100, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
-	Shooters::ButtonDiscoveryShootersColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 97, 25, 25, hWnd, (HMENU)OnButtonShootersClick, NULL, NULL);
+	HWND TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 97, 25, 25, hWnd, (HMENU)OnButtonShootersClick, NULL, NULL);
+	shooters.FunctionCreate("Shooters", { 0,0 }, false, TempButton);
 
 	TempLabel = CreateWindowA("static", " - Guardians", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 130, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
-	Guardians::ButtonDiscoveryGuardiansColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 127, 25, 25, hWnd, (HMENU)OnButtonGuardiansClick, NULL, NULL);
+	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 127, 25, 25, hWnd, (HMENU)OnButtonGuardiansClick, NULL, NULL);
+	guardians.FunctionCreate("Guardians", { 0,0 }, false, TempButton);
 
 	TempLabel = CreateWindowA("static", " - Carriers", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 160, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
-	Carriers::ButtonDiscoveryCarriersColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 157, 25, 25, hWnd, (HMENU)OnButtonCarriersClick, NULL, NULL);
-	
+	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 157, 25, 25, hWnd, (HMENU)OnButtonCarriersClick, NULL, NULL);
+	carriers.FunctionCreate("Carriers", { 0,0 }, false, TempButton);
+
 	TempLabel = CreateWindowA("static", " - Water(Eate)", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 190, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
-	Eaters::ButtonDiscoveryEateColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 187, 25, 25, hWnd, (HMENU)OnButtonEateClick, NULL, NULL);
+	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 187, 25, 25, hWnd, (HMENU)OnButtonEateClick, NULL, NULL);
+	eaters.FunctionCreate("Water(Eate)", { 0,0 }, false, TempButton);
 
 	TempLabel = CreateWindowA("static", " - Meteorit Construction", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 220, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
-	Meteorites::ButtonDiscoveryMeteoritColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 217, 25, 25, hWnd, (HMENU)OnButtonMeteoritClick, NULL, NULL);
+	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 217, 25, 25, hWnd, (HMENU)OnButtonMeteoritClick, NULL, NULL);
+	meteorites.FunctionCreate("Meteorit Construction", { 0,0 }, false, TempButton);
 
 	TempLabel = CreateWindowA("static", " - Crystale Cave", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 250, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
-	CrystalHoles::ButtonDiscoveryCrystalHoleColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 247, 25, 25, hWnd, (HMENU)OnButtonCrystalHoleClick, NULL, NULL);
+	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 247, 25, 25, hWnd, (HMENU)OnButtonCrystalHoleClick, NULL, NULL);
+	crystalHoles.FunctionCreate("Crystale Cave", { 0,0 }, false, TempButton);
 
 	TempLabel = CreateWindowA("static", " - Viruses", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 280, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
-	Viruses::ButtonDiscoveryVirusesColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 277, 25, 25, hWnd, (HMENU)OnButtonVirusesClick, NULL, NULL);
+	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 277, 25, 25, hWnd, (HMENU)OnButtonVirusesClick, NULL, NULL);
+	viruses.FunctionCreate("Viruses", { 0,0 }, false, TempButton);
 
 	TempLabel = CreateWindowA("static", " - Evolutions", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 310, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
-	Evolutions::ButtonDiscoveryEvolutionsColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 307, 25, 25, hWnd, (HMENU)OnButtonEvolutionClick, NULL, NULL);
+	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 307, 25, 25, hWnd, (HMENU)OnButtonEvolutionClick, NULL, NULL);
+	evolutions.FunctionCreate("Evolutions", { 0,0 }, false, TempButton);
 
 	TempLabel = CreateWindowA("static", " - Ordinary Cave", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 340, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
-	OrdinaryCaves::ButtonDiscoveryOrdinaryCaveColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 337, 25, 25, hWnd, (HMENU)OnButtonCavesClick, NULL, NULL);
-	
+	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 337, 25, 25, hWnd, (HMENU)OnButtonCavesClick, NULL, NULL);
+	ordinaryCaves.FunctionCreate("Ordinary Cave", { 0,0 }, false, TempButton);
+
 	TempLabel = CreateWindowA("static", " - Wild Animals", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 370, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
-	WildAnimals::ButtonDiscoveryWildAnimalColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 367, 25, 25, hWnd, (HMENU)OnButtonWildAnimalClick, NULL, NULL);
+	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 367, 25, 25, hWnd, (HMENU)OnButtonWildAnimalClick, NULL, NULL);
+	wildAnimals.FunctionCreate("Wild Animals", { 0,0 }, false, TempButton);
 
 	TempLabel = CreateWindowA("static", " - Rural Contests", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 400, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
-	RuralContests::ButtonDiscoveryRuralContestColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 397, 25, 25, hWnd, (HMENU)OnButtonRuralContestClick, NULL, NULL);
+	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 397, 25, 25, hWnd, (HMENU)OnButtonRuralContestClick, NULL, NULL);
+	ruralContests.FunctionCreate("Rural Contests", { 0,0 }, false, TempButton);
 
 	TempLabel = CreateWindowA("static", " - Ladybug", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 430, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
-	Ladybugs::ButtonDiscoveryLadybugColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 427, 25, 25, hWnd, (HMENU)OnButtonLadybugClick, NULL, NULL);
-	
+	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 427, 25, 25, hWnd, (HMENU)OnButtonLadybugClick, NULL, NULL);
+	ladybugs.FunctionCreate("Ladybug", { 0,0 }, false, TempButton);
+
 	TempLabel = CreateWindowA("static", " - Shell Dissolve", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 460, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
-	Shells::ButtonDiscoveryShellColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 457, 25, 25, hWnd, (HMENU)OnButtonShellClick, NULL, NULL);
+	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 457, 25, 25, hWnd, (HMENU)OnButtonShellClick, NULL, NULL);
+	shells.FunctionCreate("Shell Dissolve", { 0,0 }, false, TempButton);
 
 	TempLabel = CreateWindowA("static", " - Fabric Resources", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 490, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
-	FabricResources::ButtonDiscoveryFabricResourcesColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 487, 25, 25, hWnd, (HMENU)OnButtonFabricResources, NULL, NULL);
+	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 487, 25, 25, hWnd, (HMENU)OnButtonFabricResources, NULL, NULL);
+	fabricResources.FunctionCreate("Fabric Resources", { 0,0 }, false, TempButton);
 
 	TempLabel = CreateWindowA("static", " - War Cave", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 520, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
-	WarCaves::ButtonDiscoveryWarCaveColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 517, 25, 25, hWnd, (HMENU)OnButtonWarCaveClick, NULL, NULL);
+	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 517, 25, 25, hWnd, (HMENU)OnButtonWarCaveClick, NULL, NULL);
+	warCaves.FunctionCreate("War Cave", { 0,0 }, false, TempButton);
+
 
 	TempLabel = CreateWindowA("static", " - Hatching Animal", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 550, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
@@ -191,21 +207,22 @@ void ReckonIncenter3HExagonBuild(int targetI1, int targetJ1, int targetI2, int t
 	}
 	
 	switch (CurrentDiscoveringColor) {
-	case Shooters::ShootersColor:        Shooters::incenter = F; break;
-	case Guardians::GuardianColor:      Guardians::incenter = F; break;
-	case Carriers::CarriersColor:       Carriers::incenter = F; break;
-	case Eaters::EateColor:             Eaters::incenter = F; break;
-	case Meteorites::MeteoritColor:     Meteorites::incenter = F; break;
-	case CrystalHoles::CrystalHoleColor: CrystalHoles::incenter = F; break;
-	case Viruses::VirusesColor:         Viruses::incenter = F; break;
-	case Evolutions::EvolutionsColor:    Evolutions::incenter = F; break;
-	case OrdinaryCaves::OrdinaryCaveColor: OrdinaryCaves::incenter = F; break;
-	case WildAnimals::WildAnimalBaseColor: WildAnimals::incenter = F; break;
-	case RuralContests::RuralContestsColor: RuralContests::incenter = F; break;
-	case Ladybugs::LadybugColor:         Ladybugs::incenter = F; break;
-	case Shells::ShellColor:             Shells::incenter = F; break;
-	case FabricResources::FabricResourcesColor: FabricResources::incenter = F; break;
-	case WarCaves::WarCaveColor:         WarCaves::incenter = F; break;
+	case COLOR_SHOOTERS:        shooters.incenter = F; break;
+	case COLOR_GUARDIANS:       guardians.incenter = F; break;
+	case COLOR_CARRIERS:        carriers.incenter = F; break;
+	case COLOR_EATERS:          eaters.incenter = F; break;
+	case COLOR_METEORITES:      meteorites.incenter = F; break;
+	case COLOR_CRYSTALHOLES:    crystalHoles.incenter = F; break;
+	case COLOR_VIRUSES:         viruses.incenter = F; break;
+	case COLOR_EVOLUTIONS:      evolutions.incenter = F; break;
+	case COLOR_ORDINARYCAVES:   ordinaryCaves.incenter = F; break;
+	case COLOR_WILDANIMALS:     wildAnimals.incenter = F; break;
+	case COLOR_RURALCONTESTS:   ruralContests.incenter = F; break;
+	case COLOR_LADYBUGS:        ladybugs.incenter = F; break;
+	case COLOR_SHELLS:          shells.incenter = F; break;
+	case COLOR_FABRICRESOURCES: fabricResources.incenter = F; break;
+	case COLOR_WARCAVES:        warCaves.incenter = F; break;
+	default: break;
 	}
 }
 void DeleteReckonIncenter3HExagonBuild(int targetI1, int targetJ1, int targetI2, int targetJ2, int targetI3, int targetJ3, COLORREF col) {
@@ -230,21 +247,22 @@ void DeleteReckonIncenter3HExagonBuild(int targetI1, int targetJ1, int targetI2,
 	}
 
 	switch (col) {
-	case Shooters::ShootersColor:        Shooters::incenter = {0,0}; break;
-	case Guardians::GuardianColor:      Guardians::incenter = { 0,0 }; break;
-	case Carriers::CarriersColor:       Carriers::incenter = { 0,0 }; break;
-	case Eaters::EateColor:             Eaters::incenter = { 0,0 }; break;
-	case Meteorites::MeteoritColor:     Meteorites::incenter = { 0,0 }; break;
-	case CrystalHoles::CrystalHoleColor: CrystalHoles::incenter = { 0,0 }; break;
-	case Viruses::VirusesColor:         Viruses::incenter = { 0,0 }; break;
-	case Evolutions::EvolutionsColor:    Evolutions::incenter = { 0,0 }; break;
-	case OrdinaryCaves::OrdinaryCaveColor: OrdinaryCaves::incenter = { 0,0 }; break;
-	case WildAnimals::WildAnimalBaseColor: WildAnimals::incenter = { 0,0 }; break;
-	case RuralContests::RuralContestsColor: RuralContests::incenter = { 0,0 }; break;
-	case Ladybugs::LadybugColor:         Ladybugs::incenter = { 0,0 }; break;
-	case Shells::ShellColor:             Shells::incenter = { 0, 0 }; break;
-	case FabricResources::FabricResourcesColor: FabricResources::incenter = { 0,0 }; break;
-	case WarCaves::WarCaveColor:         WarCaves::incenter = { 0,0 }; break;
+	case COLOR_SHOOTERS:        shooters.incenter = { 0,0 }; break;
+	case COLOR_GUARDIANS:       guardians.incenter = { 0,0 }; break;
+	case COLOR_CARRIERS:        carriers.incenter = { 0,0 }; break;
+	case COLOR_EATERS:          eaters.incenter = { 0,0 }; break;
+	case COLOR_METEORITES:      meteorites.incenter = { 0,0 }; break;
+	case COLOR_CRYSTALHOLES:    crystalHoles.incenter = { 0,0 }; break;
+	case COLOR_VIRUSES:         viruses.incenter = { 0,0 }; break;
+	case COLOR_EVOLUTIONS:      evolutions.incenter = { 0,0 }; break;
+	case COLOR_ORDINARYCAVES:   ordinaryCaves.incenter = { 0,0 }; break;
+	case COLOR_WILDANIMALS:     wildAnimals.incenter = { 0,0 }; break;
+	case COLOR_RURALCONTESTS:   ruralContests.incenter = { 0,0 }; break;
+	case COLOR_LADYBUGS:        ladybugs.incenter = { 0,0 }; break;
+	case COLOR_SHELLS:          shells.incenter = { 0, 0 }; break;
+	case COLOR_FABRICRESOURCES: fabricResources.incenter = { 0,0 }; break;
+	case COLOR_WARCAVES:        warCaves.incenter = { 0,0 }; break;
+	default: break;
 	}
 }
 void DeleteReckonIncenter1HExagonBuild(int targetI, int targetJ) {
@@ -268,23 +286,23 @@ bool Set3HexagonConstruction(int targetI, int targetJ) {
 		}
 
 		switch (CurrentDiscoveringColor) {
-		case Shooters::ShootersColor:        Shooters::ShooterHexagons = true; break;
-		case Guardians::GuardianColor:      Guardians::GuardianHexagons = true; break;
-		case Carriers::CarriersColor:       Carriers::CarrierHexagons = true; break;
-		case Eaters::EateColor:             Eaters::EateHexagons = true; break;
-		case Meteorites::MeteoritColor:     Meteorites::MeteoritHexagons = true; break;
-		case CrystalHoles::CrystalHoleColor: CrystalHoles::CrystalHoleHexagons = true; break;
-		case Viruses::VirusesColor:         Viruses::VirusesHexagons = true; break;
-		case Evolutions::EvolutionsColor:    Evolutions::EvolutionsHexagons = true; break;
-		case OrdinaryCaves::OrdinaryCaveColor: OrdinaryCaves::OrdinaryCaveHexagons = true; break;
-		case WildAnimals::WildAnimalBaseColor: WildAnimals::WildAnimalHexagons = true; break;
-		case RuralContests::RuralContestsColor: RuralContests::RuralContestHexagons = true; break;
-		case Ladybugs::LadybugColor:         Ladybugs::LadybugHexagons = true; break;
-		case Shells::ShellColor:             Shells::ShellHexagons = true; break;
-		case FabricResources::FabricResourcesColor: FabricResources::FabricResourcesHexagons = true; break;
-		case WarCaves::WarCaveColor:         WarCaves::WarCaveHexagons = true; break;
+		case COLOR_SHOOTERS:        shooters.isPlaced = true; break;
+		case COLOR_GUARDIANS:       guardians.isPlaced = true; break;
+		case COLOR_CARRIERS:        carriers.isPlaced = true; break;
+		case COLOR_EATERS:          eaters.isPlaced = true; break;
+		case COLOR_METEORITES:      meteorites.isPlaced = true; break;
+		case COLOR_CRYSTALHOLES:    crystalHoles.isPlaced = true; break;
+		case COLOR_VIRUSES:         viruses.isPlaced = true; break;
+		case COLOR_EVOLUTIONS:      evolutions.isPlaced = true; break;
+		case COLOR_ORDINARYCAVES:   ordinaryCaves.isPlaced = true; break;
+		case COLOR_WILDANIMALS:     wildAnimals.isPlaced = true; break;
+		case COLOR_RURALCONTESTS:   ruralContests.isPlaced = true; break;
+		case COLOR_LADYBUGS:        ladybugs.isPlaced = true; break;
+		case COLOR_SHELLS:          shells.isPlaced = true; break;
+		case COLOR_FABRICRESOURCES: fabricResources.isPlaced = true; break;
+		case COLOR_WARCAVES:        warCaves.isPlaced = true; break;
+
 		case HatchingAnimals::HatchingAnimalColor: HatchingAnimals::QuantityOfHatchingAnimalsBuilding++; break;
-		default: break;
 		}
 		return true;
 	}
@@ -334,23 +352,23 @@ void SetNeededColor(int x, int y) {
 }
 void ChangeBoolPropertyInHexagon(COLORREF HexagonColor) {
 	switch (HexagonColor) {
-	case Shooters::ShootersColor:              Shooters::ShooterHexagons = !Shooters::ShooterHexagons; break;
-	case Guardians::GuardianColor:            Guardians::GuardianHexagons = !Guardians::GuardianHexagons; break;
-	case Carriers::CarriersColor:             Carriers::CarrierHexagons = !Carriers::CarrierHexagons; break;
-	case Eaters::EateColor:                   Eaters::EateHexagons = !Eaters::EateHexagons; break;
-	case Meteorites::MeteoritColor:           Meteorites::MeteoritHexagons = !Meteorites::MeteoritHexagons; break;
-	case CrystalHoles::CrystalHoleColor:      CrystalHoles::CrystalHoleHexagons = !CrystalHoles::CrystalHoleHexagons; break;
-	case Viruses::VirusesColor:               Viruses::VirusesHexagons = !Viruses::VirusesHexagons; break;
-	case Evolutions::EvolutionsColor:         Evolutions::EvolutionsHexagons = !Evolutions::EvolutionsHexagons; break;
-	case OrdinaryCaves::OrdinaryCaveColor:    OrdinaryCaves::OrdinaryCaveHexagons = !OrdinaryCaves::OrdinaryCaveHexagons; break;
-	case WildAnimals::WildAnimalBaseColor:    WildAnimals::WildAnimalHexagons = !WildAnimals::WildAnimalHexagons; break;
-	case RuralContests::RuralContestsColor:   RuralContests::RuralContestHexagons = !RuralContests::RuralContestHexagons; break;
-	case Ladybugs::LadybugColor:              Ladybugs::LadybugHexagons = !Ladybugs::LadybugHexagons; break;
-	case Shells::ShellColor:                  Shells::ShellHexagons = !Shells::ShellHexagons; break;
-	case FabricResources::FabricResourcesColor: FabricResources::FabricResourcesHexagons = !FabricResources::FabricResourcesHexagons; break;
-	case WarCaves::WarCaveColor:              WarCaves::WarCaveHexagons = !WarCaves::WarCaveHexagons; break;
+	case COLOR_SHOOTERS:        shooters.isPlaced = !shooters.isPlaced; break;
+	case COLOR_GUARDIANS:       guardians.isPlaced = !guardians.isPlaced; break;
+	case COLOR_CARRIERS:        carriers.isPlaced = !carriers.isPlaced; break;
+	case COLOR_EATERS:          eaters.isPlaced = !eaters.isPlaced; break;
+	case COLOR_METEORITES:      meteorites.isPlaced = !meteorites.isPlaced; break;
+	case COLOR_CRYSTALHOLES:    crystalHoles.isPlaced = !crystalHoles.isPlaced; break;
+	case COLOR_VIRUSES:         viruses.isPlaced = !viruses.isPlaced; break;
+	case COLOR_EVOLUTIONS:      evolutions.isPlaced = !evolutions.isPlaced; break;
+	case COLOR_ORDINARYCAVES:   ordinaryCaves.isPlaced = !ordinaryCaves.isPlaced; break;
+	case COLOR_WILDANIMALS:     wildAnimals.isPlaced = !wildAnimals.isPlaced; break;
+	case COLOR_RURALCONTESTS:   ruralContests.isPlaced = !ruralContests.isPlaced; break;
+	case COLOR_LADYBUGS:        ladybugs.isPlaced = !ladybugs.isPlaced; break;
+	case COLOR_SHELLS:          shells.isPlaced = !shells.isPlaced; break;
+	case COLOR_FABRICRESOURCES: fabricResources.isPlaced = !fabricResources.isPlaced; break;
+	case COLOR_WARCAVES:        warCaves.isPlaced = !warCaves.isPlaced; break;
+
 	case HatchingAnimals::HatchingAnimalColor: HatchingAnimals::QuantityOfHatchingAnimalsBuilding--; break;
-	default: break;
 	}
 }
 bool CheckIfAvailableFor1Hexagon(int IndexI, int IndexJ) {
@@ -453,23 +471,22 @@ bool CheckIfGather3Hexagon(int IndexI, int IndexJ) {
 	if (IndexJ == 0) return false;
 
 	switch (CurrentDiscoveringColor) {
-	case Shooters::ShootersColor:               if (Shooters::ShooterHexagons) return false; break;
-	case Guardians::GuardianColor:             if (Guardians::GuardianHexagons) return false; break;
-	case Carriers::CarriersColor:              if (Carriers::CarrierHexagons) return false; break;
-	case Eaters::EateColor:                    if (Eaters::EateHexagons) return false; break;
-	case Meteorites::MeteoritColor:            if (Meteorites::MeteoritHexagons) return false; break;
-	case CrystalHoles::CrystalHoleColor:       if (CrystalHoles::CrystalHoleHexagons) return false; break;
-	case Viruses::VirusesColor:                if (Viruses::VirusesHexagons) return false; break;
-	case Evolutions::EvolutionsColor:          if (Evolutions::EvolutionsHexagons) return false; break;
-	case OrdinaryCaves::OrdinaryCaveColor:     if (OrdinaryCaves::OrdinaryCaveHexagons) return false; break;
-	case WildAnimals::WildAnimalBaseColor:     if (WildAnimals::WildAnimalHexagons) return false; break;
-	case RuralContests::RuralContestsColor:    if (RuralContests::RuralContestHexagons) return false; break;
-	case Ladybugs::LadybugColor:               if (Ladybugs::LadybugHexagons) return false; break;
-	case Shells::ShellColor:                   if (Shells::ShellHexagons) return false; break;
-	case FabricResources::FabricResourcesColor: if (FabricResources::FabricResourcesHexagons) return false; break;
-	case WarCaves::WarCaveColor:               if (WarCaves::WarCaveHexagons) return false; break;
+	case COLOR_SHOOTERS:        if (shooters.isPlaced) return false; break;
+	case COLOR_GUARDIANS:       if (guardians.isPlaced) return false; break;
+	case COLOR_CARRIERS:        if (carriers.isPlaced) return false; break;
+	case COLOR_EATERS:          if (eaters.isPlaced) return false; break;
+	case COLOR_METEORITES:      if (meteorites.isPlaced) return false; break;
+	case COLOR_CRYSTALHOLES:    if (crystalHoles.isPlaced) return false; break;
+	case COLOR_VIRUSES:         if (viruses.isPlaced) return false; break;
+	case COLOR_EVOLUTIONS:      if (evolutions.isPlaced) return false; break;
+	case COLOR_ORDINARYCAVES:   if (ordinaryCaves.isPlaced) return false; break;
+	case COLOR_WILDANIMALS:     if (wildAnimals.isPlaced) return false; break;
+	case COLOR_RURALCONTESTS:   if (ruralContests.isPlaced) return false; break;
+	case COLOR_LADYBUGS:        if (ladybugs.isPlaced) return false; break;
+	case COLOR_SHELLS:          if (shells.isPlaced) return false; break;
+	case COLOR_FABRICRESOURCES: if (fabricResources.isPlaced) return false; break;
+	case COLOR_WARCAVES:        if (warCaves.isPlaced) return false; break;
 	case HatchingAnimals::HatchingAnimalColor:  if (HatchingAnimals::QuantityOfHatchingAnimalsBuilding >= 4) return false; break;
-	default: break;
 	}
 
 	if (IndexI % 2 == 0) {
@@ -486,4 +503,10 @@ bool CheckIfGather3Hexagon(int IndexI, int IndexJ) {
 			return true;
 		return false;
 	}
+}
+void SaveHomeMap() {
+
+}
+void CreateDiscoveringMapBuildings() {
+	
 }
