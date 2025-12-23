@@ -9,6 +9,7 @@
 #include <atomic>
 #include <cmath>
 #include <list>
+#include <utility>
 
 #define WM_DISCOVER_PROGRESS (WM_USER + 1)
 #define WM_TIME_PROGRESS (WM_USER + 2)
@@ -108,7 +109,7 @@ bool Set1HexagonConstruction(int targetI, int targetJ);
 bool Set3HexagonConstruction(int targetI, int targetJ);
 void DeleteReckonIncenter3HExagonBuild(int targetI1, int targetJ1, int targetI2, int targetJ2, int targetI3, int targetJ3, COLORREF col);
 void ReckonIncenter3HExagonBuild(int targetI1, int targetJ1, int targetI2, int targetJ2, int targetI3, int targetJ3);
-void CreateDiscoveringMapBuildings();
+float ReckonVectorSize(POINT A, POINT B);
 
 void DeleteReckonIncenter1HExagonBuild(int targetI, int targetJ);
 void SaveHomeMap();
@@ -155,6 +156,7 @@ struct BuildingStruct
     std::atomic<bool> isPlaced;
     const COLORREF Color;
     const BuildingType type;
+    std::atomic<bool> isPassed{false};
 
     HWND ButtonColor;
 
