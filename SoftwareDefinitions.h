@@ -55,6 +55,52 @@
 #define COLOR_FABRICRESOURCES RGB(153, 255, 153)
 #define COLOR_WARCAVES RGB(153, 0, 0)
 
+enum class BuildingType {
+    None,
+    Shooters,
+    Guardians,
+    Carriers,
+    Eaters,
+    Meteorites,
+    CrystalHoles,
+    Viruses,
+    Evolutions,
+    OrdinaryCaves,
+    WildAnimals,
+    RuralContests,
+    Ladybugs,
+    Shells,
+    FabricResources,
+    WarCaves,
+    HatchingAnimals,
+    AntSlayers,
+    AnimalCorms
+};
+
+struct BuildingStruct
+{
+    std::string name;
+    POINT incenter;
+    bool isPlaced = false;
+    COLORREF Color;
+    BuildingType type;
+    HWND ButtonColor = NULL;
+
+    void FunctionCreate(std::string name, POINT incenter,
+        bool isPlaced, HWND ButtonColor) {
+        this->name = name;
+        this->incenter = incenter;
+        this->isPlaced = isPlaced;
+        this->ButtonColor = ButtonColor;
+    }
+
+};
+struct PathStep {
+    BuildingType type;
+    POINT pos;
+    bool isPassed = false;
+};
+
 
 int SecondsWordProgram = 0;
 int MinutesWordProgram = 0;
@@ -110,6 +156,7 @@ bool Set3HexagonConstruction(int targetI, int targetJ);
 void DeleteReckonIncenter3HExagonBuild(int targetI1, int targetJ1, int targetI2, int targetJ2, int targetI3, int targetJ3, COLORREF col);
 void ReckonIncenter3HExagonBuild(int targetI1, int targetJ1, int targetI2, int targetJ2, int targetI3, int targetJ3);
 float ReckonVectorSize(POINT A, POINT B);
+void RecursiveFindFasterRun(std::list<PathStep>& buildings, PathStep& curBuild);
 
 void DeleteReckonIncenter1HExagonBuild(int targetI, int targetJ);
 void SaveHomeMap();
@@ -126,48 +173,6 @@ struct HEXAGON {
 };
 
 HEXAGON homeMap[35][35];
-
-enum class BuildingType {
-    None,
-    Shooters,
-    Guardians,
-    Carriers,
-    Eaters,
-    Meteorites,
-    CrystalHoles,
-    Viruses,
-    Evolutions,
-    OrdinaryCaves,
-    WildAnimals,
-    RuralContests,
-    Ladybugs,
-    Shells,
-    FabricResources,
-    WarCaves,
-    HatchingAnimals,
-    AntSlayers,
-    AnimalCorms
-};
-
-struct BuildingStruct
-{
-    std::string name;
-    POINT incenter;
-    std::atomic<bool> isPlaced;
-    const COLORREF Color;
-    const BuildingType type;
-    std::atomic<bool> isPassed{false};
-
-    HWND ButtonColor;
-
-    void FunctionCreate(std::string name, POINT incenter,
-        bool isPlaced, HWND ButtonColor) {
-        this->name = name;
-        this->incenter = incenter;
-        this->isPlaced = isPlaced;
-        this->ButtonColor = ButtonColor;
-    }
-};
 
 namespace HatchingAnimals {
     inline std::list<POINT> incenter;
@@ -190,3 +195,10 @@ namespace AnimalCorms {
     inline BuildingType type = BuildingType::AnimalCorms;
     inline int QuantityOfAnimalCormBuilding = 0;
 }
+
+int QUANTITY_OF_ELEMENTS_PASSED_MAX = 0;
+int QUANTITY_OF_ELEMENTS_PASSED_CURRENT = 0;
+float GLOBAL_DISTANT = FLT_MAX;
+float TEMP_DISTANT = 0;
+std::list<PathStep> fastDist;
+std::list<PathStep> tempDist;

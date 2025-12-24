@@ -519,6 +519,71 @@ bool CheckIfGather3Hexagon(int IndexI, int IndexJ) {
 		return false;
 	}
 }
+float ReckonVectorSize(POINT A, POINT B) {
+	return std::sqrt((std::pow((float)A.x - B.x, 2) + std::pow((float)A.y - B.y, 2)));
+}
+void RecursiveFindFasterRun(std::list<PathStep>& buildings, PathStep& curBuild) {
+	for (PathStep& build : buildings) {
+		if (build.isPassed) {
+			continue; 
+		}
+		TEMP_DISTANT += ReckonVectorSize(build.pos,curBuild.pos);
+		build.isPassed = true;
+		tempDist.push_back(build);
+		QUANTITY_OF_ELEMENTS_PASSED_CURRENT++;
+		RecursiveFindFasterRun(buildings,build);
+		if ((QUANTITY_OF_ELEMENTS_PASSED_CURRENT >= QUANTITY_OF_ELEMENTS_PASSED_MAX)) {
+			if (GLOBAL_DISTANT > TEMP_DISTANT) {
+				GLOBAL_DISTANT = TEMP_DISTANT;
+				fastDist = tempDist;
+			}
+		}
+		TEMP_DISTANT -= ReckonVectorSize(build.pos, curBuild.pos);
+		QUANTITY_OF_ELEMENTS_PASSED_CURRENT--;
+		tempDist.pop_back();
+		build.isPassed = false;
+	}
+}
 void SaveHomeMap() {
-
+	std::list<PathStep> buildings;
+	if (shooters.incenter.x != 0 && shooters.incenter.y != 0)
+		buildings.push_back({shooters.type,shooters.incenter,false});
+	if (guardians.incenter.x != 0 && guardians.incenter.y != 0)
+		buildings.push_back({ guardians.type,guardians.incenter,false });
+	if (carriers.incenter.x != 0 && carriers.incenter.y != 0)
+		buildings.push_back({ carriers.type,carriers.incenter,false });
+	if (eaters.incenter.x != 0 && eaters.incenter.y != 0)
+		buildings.push_back({ eaters.type,eaters.incenter,false });
+	if (meteorites.incenter.x != 0 && meteorites.incenter.y != 0)
+		buildings.push_back({ meteorites.type,meteorites.incenter,false });
+	if (crystalHoles.incenter.x != 0 && crystalHoles.incenter.y != 0)
+		buildings.push_back({ crystalHoles.type,crystalHoles.incenter,false });
+	if (viruses.incenter.x != 0 && viruses.incenter.y != 0)
+		buildings.push_back({ viruses.type,viruses.incenter,false });
+	if (evolutions.incenter.x != 0 && evolutions.incenter.y != 0)
+		buildings.push_back({ evolutions.type,evolutions.incenter,false });
+	if (ordinaryCaves.incenter.x != 0 && ordinaryCaves.incenter.y != 0)
+		buildings.push_back({ ordinaryCaves.type,ordinaryCaves.incenter,false });
+	if (wildAnimals.incenter.x != 0 && wildAnimals.incenter.y != 0)
+		buildings.push_back({ wildAnimals.type,wildAnimals.incenter,false });
+	if (ruralContests.incenter.x != 0 && ruralContests.incenter.y != 0)
+		buildings.push_back({ ruralContests.type,ruralContests.incenter,false });
+	if (ladybugs.incenter.x != 0 && ladybugs.incenter.y != 0)
+		buildings.push_back({ ladybugs.type,ladybugs.incenter,false });
+	if (shells.incenter.x != 0 && shells.incenter.y != 0)
+		buildings.push_back({ shells.type,shells.incenter,false });
+	if (fabricResources.incenter.x != 0 && fabricResources.incenter.y != 0)
+		buildings.push_back({ fabricResources.type,fabricResources.incenter,false });
+	if (warCaves.incenter.x != 0 && warCaves.incenter.y != 0)
+		buildings.push_back({ warCaves.type,warCaves.incenter,false });
+	float faster_distant = 0; std::list<PathStep> faster_buildings_distant;
+	QUANTITY_OF_ELEMENTS_PASSED_MAX = buildings.size();
+	RecursiveFindFasterRun(buildings, buildings.front());
+	//for (PathStep& build : buildings) {
+	//	TEMP_DISTANT = ReckonVectorSize({373,365},build.pos);
+	//	QUANTITY_OF_ELEMENTS_PASSED_CURRENT++;
+	//	build.isPassed = true;
+	//	RecursiveFindFasterRun(buildings, build);
+	//}
+	int m = 0;
 }
