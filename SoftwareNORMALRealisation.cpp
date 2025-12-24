@@ -522,12 +522,26 @@ bool CheckIfGather3Hexagon(int IndexI, int IndexJ) {
 float ReckonVectorSize(POINT A, POINT B) {
 	return std::sqrt((std::pow((float)A.x - B.x, 2) + std::pow((float)A.y - B.y, 2)));
 }
+PathStep FindNearestBuilding(std::list<PathStep>& buildings) {
+	float tempDst = 0, curDst = FLT_MAX;
+	PathStep nearest_build;
+	for (PathStep& build : buildings) {
+		tempDst = ReckonVectorSize({373,365},build.pos);
+		if (tempDst < curDst) {
+			curDst = tempDst;
+			nearest_build = build;
+		}
+	}
+	return nearest_build;
+}
 void RecursiveFindFasterRun(std::list<PathStep>& buildings, PathStep& curBuild) {
 	for (PathStep& build : buildings) {
 		if (build.isPassed) {
 			continue; 
 		}
-		TEMP_DISTANT += ReckonVectorSize(build.pos,curBuild.pos);
+		float curDisttant = ReckonVectorSize(build.pos, curBuild.pos);
+		if (TEMP_DISTANT + curDisttant >= GLOBAL_DISTANT) continue;
+		TEMP_DISTANT += curDisttant;
 		build.isPassed = true;
 		tempDist.push_back(build);
 		QUANTITY_OF_ELEMENTS_PASSED_CURRENT++;
@@ -578,12 +592,7 @@ void SaveHomeMap() {
 		buildings.push_back({ warCaves.type,warCaves.incenter,false });
 	float faster_distant = 0; std::list<PathStep> faster_buildings_distant;
 	QUANTITY_OF_ELEMENTS_PASSED_MAX = buildings.size();
-	RecursiveFindFasterRun(buildings, buildings.front());
-	//for (PathStep& build : buildings) {
-	//	TEMP_DISTANT = ReckonVectorSize({373,365},build.pos);
-	//	QUANTITY_OF_ELEMENTS_PASSED_CURRENT++;
-	//	build.isPassed = true;
-	//	RecursiveFindFasterRun(buildings, build);
-	//}
+	PathStep NEAREST_BUILDING_TO_CENTER = FindNearestBuilding(buildings);
+	RecursiveFindFasterRun(buildings, NEAREST_BUILDING_TO_CENTER);
 	int m = 0;
 }
