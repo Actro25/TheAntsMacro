@@ -156,8 +156,9 @@ bool Set3HexagonConstruction(int targetI, int targetJ);
 void DeleteReckonIncenter3HExagonBuild(int targetI1, int targetJ1, int targetI2, int targetJ2, int targetI3, int targetJ3, COLORREF col);
 void ReckonIncenter3HExagonBuild(int targetI1, int targetJ1, int targetI2, int targetJ2, int targetI3, int targetJ3);
 float ReckonVectorSize(POINT A, POINT B);
-void RecursiveFindFasterRun(std::list<PathStep>& buildings, PathStep& curBuild);
+void RecursiveFindFasterRunAmongBuildings(std::list<PathStep>& buildings, PathStep& curBuild);
 PathStep FindNearestBuilding(std::list<PathStep>& buildings);
+void RecursiveFindFasterRunAmongBuildings2(std::list<PathStep>& buildings, PathStep curBuild);
 
 void DeleteReckonIncenter1HExagonBuild(int targetI, int targetJ);
 void SaveHomeMap();
@@ -199,7 +200,9 @@ namespace AnimalCorms {
 
 int QUANTITY_OF_ELEMENTS_PASSED_MAX = 0;
 int QUANTITY_OF_ELEMENTS_PASSED_CURRENT = 0;
-float GLOBAL_DISTANT = FLT_MAX;
+
+float GLOBAL_DISTANT = 0;
+
 float TEMP_DISTANT = 0;
 std::list<PathStep> fastDist;
 std::list<PathStep> tempDist;

@@ -534,28 +534,27 @@ PathStep FindNearestBuilding(std::list<PathStep>& buildings) {
 	}
 	return nearest_build;
 }
-void RecursiveFindFasterRun(std::list<PathStep>& buildings, PathStep& curBuild) {
-	for (PathStep& build : buildings) {
-		if (build.isPassed) {
-			continue; 
+
+void RecursiveFindFasterRunAmongBuildings(std::list<PathStep>& buildings, PathStep curBuild) {
+	if (buildings.empty()) return;
+
+	float minDistant = FLT_MAX;
+	auto bestIt = buildings.end();
+
+	for (auto it = buildings.begin(); it != buildings.end(); ++it) {
+		float d = ReckonVectorSize(it->pos, curBuild.pos);
+		if (d < minDistant) {
+			minDistant = d;
+			bestIt = it;
 		}
-		float curDisttant = ReckonVectorSize(build.pos, curBuild.pos);
-		if (TEMP_DISTANT + curDisttant >= GLOBAL_DISTANT) continue;
-		TEMP_DISTANT += curDisttant;
-		build.isPassed = true;
-		tempDist.push_back(build);
-		QUANTITY_OF_ELEMENTS_PASSED_CURRENT++;
-		RecursiveFindFasterRun(buildings,build);
-		if ((QUANTITY_OF_ELEMENTS_PASSED_CURRENT >= QUANTITY_OF_ELEMENTS_PASSED_MAX)) {
-			if (GLOBAL_DISTANT > TEMP_DISTANT) {
-				GLOBAL_DISTANT = TEMP_DISTANT;
-				fastDist = tempDist;
-			}
-		}
-		TEMP_DISTANT -= ReckonVectorSize(build.pos, curBuild.pos);
-		QUANTITY_OF_ELEMENTS_PASSED_CURRENT--;
-		tempDist.pop_back();
-		build.isPassed = false;
+	}
+
+	if (bestIt != buildings.end()) {
+		PathStep nextBuild = *bestIt;
+		fastDist.push_back(nextBuild);
+
+		buildings.erase(bestIt); 
+		RecursiveFindFasterRunAmongBuildings(buildings, nextBuild);
 	}
 }
 void SaveHomeMap() {
@@ -590,9 +589,31 @@ void SaveHomeMap() {
 		buildings.push_back({ fabricResources.type,fabricResources.incenter,false });
 	if (warCaves.incenter.x != 0 && warCaves.incenter.y != 0)
 		buildings.push_back({ warCaves.type,warCaves.incenter,false });
+	if (HatchingAnimals::incenter.size() > 0) {
+		for (POINT pos : HatchingAnimals::incenter) {
+			if (pos.x != 0 && pos.y != 0) {
+				buildings.push_back({ HatchingAnimals::type, pos, false });
+			}
+		}
+	}
+	if (AntSlayers::incenter.size() > 0) {
+		for (POINT pos : AntSlayers::incenter) {
+			if (pos.x != 0 && pos.y != 0) {
+				buildings.push_back({ AntSlayers::type, pos, false });
+			}
+		}
+	}
+	if (AnimalCorms::incenter.size() > 0) {
+		for (POINT pos : AnimalCorms::incenter) {
+			if (pos.x != 0 && pos.y != 0) {
+				buildings.push_back({ AnimalCorms::type, pos, false });
+			}
+		}
+	}
+
 	float faster_distant = 0; std::list<PathStep> faster_buildings_distant;
 	QUANTITY_OF_ELEMENTS_PASSED_MAX = buildings.size();
 	PathStep NEAREST_BUILDING_TO_CENTER = FindNearestBuilding(buildings);
-	RecursiveFindFasterRun(buildings, NEAREST_BUILDING_TO_CENTER);
+	RecursiveFindFasterRunAmongBuildings(buildings, NEAREST_BUILDING_TO_CENTER);
 	int m = 0;
 }
