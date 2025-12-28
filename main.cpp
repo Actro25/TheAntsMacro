@@ -275,6 +275,7 @@ LRESULT CALLBACK SoftwareMainProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp
 		readKey = CreateThread(NULL, 0, ReadKeysInput, NULL, 0, NULL);
 		MainWndAddMenus(hWnd);
 		MainWndWidgets(hWnd);
+		ReadJSONFile();
 		break;
 	case WM_DESTROY:
 		ExitSoftware();

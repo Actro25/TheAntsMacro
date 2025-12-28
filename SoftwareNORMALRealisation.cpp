@@ -639,9 +639,42 @@ bool WriteJSONFile() {
 	}
 
 	std::ofstream input_in_file("data.json");
-	input_in_file.clear();
-	input_in_file << data_for_storage.dump(4);
-	input_in_file.close();
+	if (input_in_file.is_open()) {
+		input_in_file.clear();
+		input_in_file << data_for_storage.dump(4);
+		input_in_file.close();
+		return true;
+	}
+	return false;
+}
+bool ReadJSONFile() { 
+	std::ifstream output_from_file("data.json");
+	if (!output_from_file.is_open())
+		return false;
+
+	nlohmann::json data_from_storage;
+	try {
+		output_from_file >> data_from_storage;
+	}
+	catch (nlohmann::json::parse_error& e) {
+		output_from_file.close();
+		return false;
+	}
+	output_from_file.close();
+
+	fastDist.clear();
+
+	if (data_from_storage["buildings_queue"].is_array()) {
+		for (auto& item : data_from_storage["buildings_queue"]) {
+			PathStep step;
+
+			step.type = item["type"].get<BuildingType>();
+			step.pos.x = item["position"]["x"].get<long>();
+			step.pos.y = item["position"]["y"].get<long>();
+			step.isPassed = true;
+
+			fastDist.push_back(step);
+		}
+	}
 	return true;
 }
-bool ReadJSONFile() { return false; }
