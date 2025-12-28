@@ -614,4 +614,34 @@ void SaveHomeMap() {
 	QUANTITY_OF_ELEMENTS_PASSED_MAX = buildings.size();
 	PathStep NEAREST_BUILDING_TO_CENTER = FindNearestBuilding(buildings);
 	RecursiveFindFasterRunAmongBuildings(buildings, NEAREST_BUILDING_TO_CENTER);
+	WriteJSONFile();
 }
+bool WriteJSONFile() {
+	if (fastDist.size() == 0)
+		return false;
+
+	nlohmann::json data_for_storage;
+	int itterator = 0;
+
+	
+	for (PathStep& build : fastDist) {
+		itterator++;
+
+		nlohmann::json item;
+
+		item["place_in_queue"] = itterator;
+		item["type"] = build.type;
+		item["position"] = {
+			{"x", build.pos.x},
+			{"y", build.pos.y}
+		};
+		data_for_storage["buildings_queue"].push_back(item);
+	}
+
+	std::ofstream input_in_file("data.json");
+	input_in_file.clear();
+	input_in_file << data_for_storage.dump(4);
+	input_in_file.close();
+	return true;
+}
+bool ReadJSONFile() { return false; }

@@ -10,6 +10,8 @@
 #include <cmath>
 #include <list>
 #include <utility>
+#include <fstream>
+#include "json.hpp"
 
 #define WM_DISCOVER_PROGRESS (WM_USER + 1)
 #define WM_TIME_PROGRESS (WM_USER + 2)
@@ -158,6 +160,8 @@ void ReckonIncenter3HExagonBuild(int targetI1, int targetJ1, int targetI2, int t
 float ReckonVectorSize(POINT A, POINT B);
 PathStep FindNearestBuilding(std::list<PathStep>& buildings);
 void RecursiveFindFasterRunAmongBuildings(std::list<PathStep>& buildings, PathStep curBuild);
+bool WriteJSONFile();
+bool ReadJSONFile();
 
 void DeleteReckonIncenter1HExagonBuild(int targetI, int targetJ);
 void SaveHomeMap();
@@ -204,4 +208,3 @@ float GLOBAL_DISTANT = 0;
 
 float TEMP_DISTANT = 0;
 std::list<PathStep> fastDist;
-std::list<PathStep> tempDist;
