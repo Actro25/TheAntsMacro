@@ -534,7 +534,6 @@ PathStep FindNearestBuilding(std::list<PathStep>& buildings) {
 	}
 	return nearest_build;
 }
-
 void RecursiveFindFasterRunAmongBuildings(std::list<PathStep>& buildings, PathStep curBuild) {
 	if (buildings.empty()) return;
 
@@ -615,5 +614,4 @@ void SaveHomeMap() {
 	QUANTITY_OF_ELEMENTS_PASSED_MAX = buildings.size();
 	PathStep NEAREST_BUILDING_TO_CENTER = FindNearestBuilding(buildings);
 	RecursiveFindFasterRunAmongBuildings(buildings, NEAREST_BUILDING_TO_CENTER);
-	int m = 0;
 }

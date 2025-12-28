@@ -156,9 +156,8 @@ bool Set3HexagonConstruction(int targetI, int targetJ);
 void DeleteReckonIncenter3HExagonBuild(int targetI1, int targetJ1, int targetI2, int targetJ2, int targetI3, int targetJ3, COLORREF col);
 void ReckonIncenter3HExagonBuild(int targetI1, int targetJ1, int targetI2, int targetJ2, int targetI3, int targetJ3);
 float ReckonVectorSize(POINT A, POINT B);
-void RecursiveFindFasterRunAmongBuildings(std::list<PathStep>& buildings, PathStep& curBuild);
 PathStep FindNearestBuilding(std::list<PathStep>& buildings);
-void RecursiveFindFasterRunAmongBuildings2(std::list<PathStep>& buildings, PathStep curBuild);
+void RecursiveFindFasterRunAmongBuildings(std::list<PathStep>& buildings, PathStep curBuild);
 
 void DeleteReckonIncenter1HExagonBuild(int targetI, int targetJ);
 void SaveHomeMap();
