@@ -173,7 +173,40 @@ void CreateDiscoveringMap(HWND hWnd) {
 				homeMap[i][j].color = RGB(255, 255, 51);
 			}
 			else {
-				homeMap[i][j].color = RGB(192, 192, 192);
+				if (fastDist.size() != 0) {
+					bool isFound = false;
+					for (PathStep& build : fastDist) {
+						if ((cenX <= build.pos.x + 15 && cenX >= build.pos.x - 15) &&
+							(cenY <= build.pos.y + 15 && cenY >= build.pos.y - 15)) {
+							switch (build.type) {
+							case BuildingType::Shooters: homeMap[i][j].color = COLOR_SHOOTERS; isFound = true; break;
+							case BuildingType::Guardians:  homeMap[i][j].color = COLOR_GUARDIANS; isFound = true; break;
+							case BuildingType::Carriers: homeMap[i][j].color = COLOR_CARRIERS; isFound = true; break;
+							case BuildingType::Eaters: homeMap[i][j].color = COLOR_EATERS; isFound = true; break;
+							case BuildingType::Meteorites: homeMap[i][j].color = COLOR_METEORITES; isFound = true; break;
+							case BuildingType::CrystalHoles: homeMap[i][j].color = COLOR_CRYSTALHOLES; isFound = true; break;
+							case BuildingType::Viruses: homeMap[i][j].color = COLOR_VIRUSES; isFound = true; break;
+							case BuildingType::Evolutions: homeMap[i][j].color = COLOR_EVOLUTIONS; isFound = true; break;
+							case BuildingType::OrdinaryCaves: homeMap[i][j].color = COLOR_ORDINARYCAVES; isFound = true; break;
+							case BuildingType::WildAnimals: homeMap[i][j].color = COLOR_WILDANIMALS; isFound = true; break;
+							case BuildingType::RuralContests: homeMap[i][j].color = COLOR_RURALCONTESTS; isFound = true; break;
+							case BuildingType::Ladybugs: homeMap[i][j].color = COLOR_LADYBUGS; isFound = true; break;
+							case BuildingType::Shells: homeMap[i][j].color = COLOR_SHELLS; isFound = true; break;
+							case BuildingType::FabricResources: homeMap[i][j].color = COLOR_FABRICRESOURCES; isFound = true; break;
+							case BuildingType::WarCaves: homeMap[i][j].color = COLOR_WARCAVES; isFound = true; break;
+							case BuildingType::HatchingAnimals: homeMap[i][j].color = COLOR_HATCHINGANIMALS; isFound = true; break;
+							case BuildingType::AntSlayers: homeMap[i][j].color = COLOR_ANTSLAYER; isFound = true; break;
+							case BuildingType::AnimalCorms: homeMap[i][j].color = COLOR_ANIMACORMS; isFound = true; break;
+							}
+						}	
+					}
+					if (!isFound) {
+						homeMap[i][j].color = RGB(192, 192, 192);
+					}
+				}
+				else {
+					homeMap[i][j].color = RGB(192, 192, 192);
+				}
 			}
 			cenX += 20;
 		}
@@ -279,8 +312,6 @@ void DeleteReckonIncenter3HExagonBuild(int targetI1, int targetJ1, int targetI2,
 	case COLOR_WARCAVES:        warCaves.incenter = { 0,0 }; break;
 	default: break;
 	}
-}
-void DeleteReckonIncenter1HExagonBuild(int targetI, int targetJ) {
 }
 bool Set3HexagonConstruction(int targetI, int targetJ) {
 	if (!CheckIfGather3Hexagon(targetI, targetJ)) 
@@ -403,7 +434,6 @@ bool CheckIfAvailableFor1Hexagon(int IndexI, int IndexJ) {
 				});
 				break;
 			}
-			DeleteReckonIncenter1HExagonBuild(IndexI,IndexJ);
 			homeMap[IndexI][IndexJ].color = BaseDiscoveringColor;
 			InvalidateRect(g_hDiscoveringWnd, NULL, TRUE);
 			return false;

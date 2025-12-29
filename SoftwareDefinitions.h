@@ -56,6 +56,9 @@
 #define COLOR_SHELLS RGB(255, 255, 204)
 #define COLOR_FABRICRESOURCES RGB(153, 255, 153)
 #define COLOR_WARCAVES RGB(153, 0, 0)
+#define COLOR_HATCHINGANIMALS RGB(255, 128, 0)
+#define COLOR_ANTSLAYER RGB(0, 102, 51)
+#define COLOR_ANIMACORMS RGB(102, 102, 0)
 
 enum class BuildingType {
     None,
@@ -162,6 +165,7 @@ PathStep FindNearestBuilding(std::list<PathStep>& buildings);
 void RecursiveFindFasterRunAmongBuildings(std::list<PathStep>& buildings, PathStep curBuild);
 bool WriteJSONFile();
 bool ReadJSONFile();
+bool WriteInGlobalParam();
 
 void DeleteReckonIncenter1HExagonBuild(int targetI, int targetJ);
 void SaveHomeMap();
@@ -181,21 +185,21 @@ HEXAGON homeMap[35][35];
 
 namespace HatchingAnimals {
     inline std::list<POINT> incenter;
-    inline const COLORREF HatchingAnimalColor = RGB(255, 128, 0);
+    inline const COLORREF HatchingAnimalColor = COLOR_HATCHINGANIMALS;
     inline HWND ButtonDiscoveryHatchingAnimalColor;
     inline BuildingType type = BuildingType::HatchingAnimals;
     inline int QuantityOfHatchingAnimalsBuilding = 0;
 }
 namespace AntSlayers {
     inline std::list<POINT> incenter;
-    inline const COLORREF AntSlayerColor = RGB(0, 102, 51);
+    inline const COLORREF AntSlayerColor = COLOR_ANTSLAYER;
     inline HWND ButtonDiscoveryAntSlayerColor;
     inline BuildingType type = BuildingType::AntSlayers;;
     inline int QuantityOfAntSlayerBuilding = 0;
 }
 namespace AnimalCorms {
     inline std::list<POINT> incenter;
-    inline const COLORREF AnimalCormColor = RGB(102, 102, 0);
+    inline const COLORREF AnimalCormColor = COLOR_ANIMACORMS;
     inline HWND ButtonDiscoveryAnimalCormColor;
     inline BuildingType type = BuildingType::AnimalCorms;
     inline int QuantityOfAnimalCormBuilding = 0;
