@@ -89,14 +89,12 @@ struct BuildingStruct
     bool isPlaced = false;
     COLORREF Color;
     BuildingType type;
-    HWND ButtonColor = NULL;
 
     void FunctionCreate(std::string name, POINT incenter,
-        bool isPlaced, HWND ButtonColor) {
+        bool isPlaced) {
         this->name = name;
         this->incenter = incenter;
         this->isPlaced = isPlaced;
-        this->ButtonColor = ButtonColor;
     }
 
 };
@@ -165,9 +163,8 @@ PathStep FindNearestBuilding(std::list<PathStep>& buildings);
 void RecursiveFindFasterRunAmongBuildings(std::list<PathStep>& buildings, PathStep curBuild);
 bool WriteJSONFile();
 bool ReadJSONFile();
-bool WriteInGlobalParam();
+bool CreateGlobalBuildParam();
 
-void DeleteReckonIncenter1HExagonBuild(int targetI, int targetJ);
 void SaveHomeMap();
 
 DWORD WINAPI ReadKeysInput(LPVOID lpParameter);
@@ -186,21 +183,18 @@ HEXAGON homeMap[35][35];
 namespace HatchingAnimals {
     inline std::list<POINT> incenter;
     inline const COLORREF HatchingAnimalColor = COLOR_HATCHINGANIMALS;
-    inline HWND ButtonDiscoveryHatchingAnimalColor;
     inline BuildingType type = BuildingType::HatchingAnimals;
     inline int QuantityOfHatchingAnimalsBuilding = 0;
 }
 namespace AntSlayers {
     inline std::list<POINT> incenter;
     inline const COLORREF AntSlayerColor = COLOR_ANTSLAYER;
-    inline HWND ButtonDiscoveryAntSlayerColor;
     inline BuildingType type = BuildingType::AntSlayers;;
     inline int QuantityOfAntSlayerBuilding = 0;
 }
 namespace AnimalCorms {
     inline std::list<POINT> incenter;
     inline const COLORREF AnimalCormColor = COLOR_ANIMACORMS;
-    inline HWND ButtonDiscoveryAnimalCormColor;
     inline BuildingType type = BuildingType::AnimalCorms;
     inline int QuantityOfAnimalCormBuilding = 0;
 }

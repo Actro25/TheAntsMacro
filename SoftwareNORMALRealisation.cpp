@@ -51,93 +51,111 @@ void DiscoveringWndWidgets(HWND hWnd) {
 	TempLabel = CreateWindowA("static", " - Shooters", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 100, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	HWND TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 97, 25, 25, hWnd, (HMENU)OnButtonShootersClick, NULL, NULL);
-	shooters.FunctionCreate("Shooters", { 0,0 }, false, TempButton);
+	
 
 	TempLabel = CreateWindowA("static", " - Guardians", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 130, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 127, 25, 25, hWnd, (HMENU)OnButtonGuardiansClick, NULL, NULL);
-	guardians.FunctionCreate("Guardians", { 0,0 }, false, TempButton);
+	
 
 	TempLabel = CreateWindowA("static", " - Carriers", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 160, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 157, 25, 25, hWnd, (HMENU)OnButtonCarriersClick, NULL, NULL);
-	carriers.FunctionCreate("Carriers", { 0,0 }, false, TempButton);
+	
 
 	TempLabel = CreateWindowA("static", " - Water(Eate)", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 190, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 187, 25, 25, hWnd, (HMENU)OnButtonEateClick, NULL, NULL);
-	eaters.FunctionCreate("Water(Eate)", { 0,0 }, false, TempButton);
+	
 
 	TempLabel = CreateWindowA("static", " - Meteorit Construction", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 220, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 217, 25, 25, hWnd, (HMENU)OnButtonMeteoritClick, NULL, NULL);
-	meteorites.FunctionCreate("Meteorit Construction", { 0,0 }, false, TempButton);
+	
 
 	TempLabel = CreateWindowA("static", " - Crystale Cave", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 250, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 247, 25, 25, hWnd, (HMENU)OnButtonCrystalHoleClick, NULL, NULL);
-	crystalHoles.FunctionCreate("Crystale Cave", { 0,0 }, false, TempButton);
+	
 
 	TempLabel = CreateWindowA("static", " - Viruses", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 280, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 277, 25, 25, hWnd, (HMENU)OnButtonVirusesClick, NULL, NULL);
-	viruses.FunctionCreate("Viruses", { 0,0 }, false, TempButton);
+	
 
 	TempLabel = CreateWindowA("static", " - Evolutions", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 310, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 307, 25, 25, hWnd, (HMENU)OnButtonEvolutionClick, NULL, NULL);
-	evolutions.FunctionCreate("Evolutions", { 0,0 }, false, TempButton);
+	
 
 	TempLabel = CreateWindowA("static", " - Ordinary Cave", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 340, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 337, 25, 25, hWnd, (HMENU)OnButtonCavesClick, NULL, NULL);
-	ordinaryCaves.FunctionCreate("Ordinary Cave", { 0,0 }, false, TempButton);
+	
 
 	TempLabel = CreateWindowA("static", " - Wild Animals", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 370, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 367, 25, 25, hWnd, (HMENU)OnButtonWildAnimalClick, NULL, NULL);
-	wildAnimals.FunctionCreate("Wild Animals", { 0,0 }, false, TempButton);
+	
 
 	TempLabel = CreateWindowA("static", " - Rural Contests", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 400, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 397, 25, 25, hWnd, (HMENU)OnButtonRuralContestClick, NULL, NULL);
-	ruralContests.FunctionCreate("Rural Contests", { 0,0 }, false, TempButton);
+	
 
 	TempLabel = CreateWindowA("static", " - Ladybug", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 430, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 427, 25, 25, hWnd, (HMENU)OnButtonLadybugClick, NULL, NULL);
-	ladybugs.FunctionCreate("Ladybug", { 0,0 }, false, TempButton);
+	
 
 	TempLabel = CreateWindowA("static", " - Shell Dissolve", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 460, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 457, 25, 25, hWnd, (HMENU)OnButtonShellClick, NULL, NULL);
-	shells.FunctionCreate("Shell Dissolve", { 0,0 }, false, TempButton);
+	
 
 	TempLabel = CreateWindowA("static", " - Fabric Resources", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 490, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 487, 25, 25, hWnd, (HMENU)OnButtonFabricResources, NULL, NULL);
-	fabricResources.FunctionCreate("Fabric Resources", { 0,0 }, false, TempButton);
+	
 
 	TempLabel = CreateWindowA("static", " - War Cave", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 520, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
 	TempButton = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 517, 25, 25, hWnd, (HMENU)OnButtonWarCaveClick, NULL, NULL);
-	warCaves.FunctionCreate("War Cave", { 0,0 }, false, TempButton);
+	
 
 
 	TempLabel = CreateWindowA("static", " - Hatching Animal", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 550, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
-	HatchingAnimals::ButtonDiscoveryHatchingAnimalColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 547, 25, 25, hWnd, (HMENU)OnButtonHatchingAnimalClick, NULL, NULL);
+	CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 547, 25, 25, hWnd, (HMENU)OnButtonHatchingAnimalClick, NULL, NULL);
 	
 	TempLabel = CreateWindowA("static", " - Leafcutter ant", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 580, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
-	AntSlayers::ButtonDiscoveryAntSlayerColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 577, 25, 25, hWnd, (HMENU)OnButtonAntSlayerClick, NULL, NULL);
+	CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 577, 25, 25, hWnd, (HMENU)OnButtonAntSlayerClick, NULL, NULL);
 
 	TempLabel = CreateWindowA("static", " - Feed animal", WS_VISIBLE | WS_CHILD | ES_CENTER, 770, 610, 150, 50, hWnd, NULL, NULL, NULL);
 	SetActiveTextColor(RGB(0, 0, 0), TempLabel);
-	AnimalCorms::ButtonDiscoveryAnimalCormColor = CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 607, 25, 25, hWnd, (HMENU)OnButtonAnimalCormClick, NULL, NULL);
+	CreateWindowA("button", "", WS_VISIBLE | WS_CHILD | BS_OWNERDRAW, 750, 607, 25, 25, hWnd, (HMENU)OnButtonAnimalCormClick, NULL, NULL);
 
 	DiscoverSaveButton = CreateWindowA("button", "Save", WS_VISIBLE | WS_CHILD, 730, 640, 220, 30, hWnd, (HMENU)OnButtonDiscoverSaveClick, NULL, NULL);
 	DiscoverCancelButton = CreateWindowA("button", "Cancel", WS_VISIBLE | WS_CHILD, 730, 680, 220, 30, hWnd, (HMENU)OnButtonDiscoverCancelClick, NULL, NULL);
+}
+bool CreateGlobalBuildParam() {
+	shooters.FunctionCreate("Shooters", { 0,0 }, false);
+	guardians.FunctionCreate("Guardians", { 0,0 }, false);
+	carriers.FunctionCreate("Carriers", { 0,0 }, false);
+	eaters.FunctionCreate("Water(Eate)", { 0,0 }, false);
+	meteorites.FunctionCreate("Meteorit Construction", { 0,0 }, false);
+	crystalHoles.FunctionCreate("Crystale Cave", { 0,0 }, false);
+	viruses.FunctionCreate("Viruses", { 0,0 }, false);
+	evolutions.FunctionCreate("Evolutions", { 0,0 }, false);
+	ordinaryCaves.FunctionCreate("Ordinary Cave", { 0,0 }, false);
+	wildAnimals.FunctionCreate("Wild Animals", { 0,0 }, false);
+	ruralContests.FunctionCreate("Rural Contests", { 0,0 }, false);
+	ladybugs.FunctionCreate("Ladybug", { 0,0 }, false);
+	shells.FunctionCreate("Shell Dissolve", { 0,0 }, false);
+	fabricResources.FunctionCreate("Fabric Resources", { 0,0 }, false);
+	warCaves.FunctionCreate("War Cave", { 0,0 }, false);
+	return true;
 }
 void MainWndAddMenus(HWND hWnd) {
 }
@@ -588,51 +606,51 @@ void RecursiveFindFasterRunAmongBuildings(std::list<PathStep>& buildings, PathSt
 }
 void SaveHomeMap() {
 	std::list<PathStep> buildings;
-	if (shooters.incenter.x != 0 && shooters.incenter.y != 0)
-		buildings.push_back({shooters.type,shooters.incenter,false});
-	if (guardians.incenter.x != 0 && guardians.incenter.y != 0)
-		buildings.push_back({ guardians.type,guardians.incenter,false });
-	if (carriers.incenter.x != 0 && carriers.incenter.y != 0)
-		buildings.push_back({ carriers.type,carriers.incenter,false });
-	if (eaters.incenter.x != 0 && eaters.incenter.y != 0)
-		buildings.push_back({ eaters.type,eaters.incenter,false });
-	if (meteorites.incenter.x != 0 && meteorites.incenter.y != 0)
-		buildings.push_back({ meteorites.type,meteorites.incenter,false });
-	if (crystalHoles.incenter.x != 0 && crystalHoles.incenter.y != 0)
-		buildings.push_back({ crystalHoles.type,crystalHoles.incenter,false });
-	if (viruses.incenter.x != 0 && viruses.incenter.y != 0)
-		buildings.push_back({ viruses.type,viruses.incenter,false });
-	if (evolutions.incenter.x != 0 && evolutions.incenter.y != 0)
-		buildings.push_back({ evolutions.type,evolutions.incenter,false });
-	if (ordinaryCaves.incenter.x != 0 && ordinaryCaves.incenter.y != 0)
-		buildings.push_back({ ordinaryCaves.type,ordinaryCaves.incenter,false });
-	if (wildAnimals.incenter.x != 0 && wildAnimals.incenter.y != 0)
-		buildings.push_back({ wildAnimals.type,wildAnimals.incenter,false });
-	if (ruralContests.incenter.x != 0 && ruralContests.incenter.y != 0)
-		buildings.push_back({ ruralContests.type,ruralContests.incenter,false });
-	if (ladybugs.incenter.x != 0 && ladybugs.incenter.y != 0)
-		buildings.push_back({ ladybugs.type,ladybugs.incenter,false });
-	if (shells.incenter.x != 0 && shells.incenter.y != 0)
-		buildings.push_back({ shells.type,shells.incenter,false });
-	if (fabricResources.incenter.x != 0 && fabricResources.incenter.y != 0)
-		buildings.push_back({ fabricResources.type,fabricResources.incenter,false });
-	if (warCaves.incenter.x != 0 && warCaves.incenter.y != 0)
-		buildings.push_back({ warCaves.type,warCaves.incenter,false });
-	if (HatchingAnimals::incenter.size() > 0) {
+	if (shooters.isPlaced)
+		buildings.push_back({ shooters.type, shooters.incenter, false });
+	if (guardians.isPlaced)
+		buildings.push_back({ guardians.type, guardians.incenter, false });
+	if (carriers.isPlaced)
+		buildings.push_back({ carriers.type, carriers.incenter, false });
+	if (eaters.isPlaced)
+		buildings.push_back({ eaters.type, eaters.incenter, false });
+	if (meteorites.isPlaced)
+		buildings.push_back({ meteorites.type, meteorites.incenter, false });
+	if (crystalHoles.isPlaced)
+		buildings.push_back({ crystalHoles.type, crystalHoles.incenter, false });
+	if (viruses.isPlaced)
+		buildings.push_back({ viruses.type, viruses.incenter, false });
+	if (evolutions.isPlaced)
+		buildings.push_back({ evolutions.type, evolutions.incenter, false });
+	if (ordinaryCaves.isPlaced)
+		buildings.push_back({ ordinaryCaves.type, ordinaryCaves.incenter, false });
+	if (wildAnimals.isPlaced)
+		buildings.push_back({ wildAnimals.type, wildAnimals.incenter, false });
+	if (ruralContests.isPlaced)
+		buildings.push_back({ ruralContests.type, ruralContests.incenter, false });
+	if (ladybugs.isPlaced)
+		buildings.push_back({ ladybugs.type, ladybugs.incenter, false });
+	if (shells.isPlaced)
+		buildings.push_back({ shells.type, shells.incenter, false });
+	if (fabricResources.isPlaced)
+		buildings.push_back({ fabricResources.type, fabricResources.incenter, false });
+	if (warCaves.isPlaced)
+		buildings.push_back({ warCaves.type, warCaves.incenter, false });
+	if (HatchingAnimals::QuantityOfHatchingAnimalsBuilding > 0) {
 		for (POINT pos : HatchingAnimals::incenter) {
 			if (pos.x != 0 && pos.y != 0) {
 				buildings.push_back({ HatchingAnimals::type, pos, false });
 			}
 		}
 	}
-	if (AntSlayers::incenter.size() > 0) {
+	if (AntSlayers::QuantityOfAntSlayerBuilding > 0) {
 		for (POINT pos : AntSlayers::incenter) {
 			if (pos.x != 0 && pos.y != 0) {
 				buildings.push_back({ AntSlayers::type, pos, false });
 			}
 		}
 	}
-	if (AnimalCorms::incenter.size() > 0) {
+	if (AnimalCorms::QuantityOfAnimalCormBuilding > 0) {
 		for (POINT pos : AnimalCorms::incenter) {
 			if (pos.x != 0 && pos.y != 0) {
 				buildings.push_back({ AnimalCorms::type, pos, false });
@@ -643,6 +661,7 @@ void SaveHomeMap() {
 	float faster_distant = 0; std::list<PathStep> faster_buildings_distant;
 	QUANTITY_OF_ELEMENTS_PASSED_MAX = buildings.size();
 	PathStep NEAREST_BUILDING_TO_CENTER = FindNearestBuilding(buildings);
+	fastDist.clear();
 	RecursiveFindFasterRunAmongBuildings(buildings, NEAREST_BUILDING_TO_CENTER);
 	WriteJSONFile();
 }
@@ -704,6 +723,82 @@ bool ReadJSONFile() {
 			step.isPassed = true;
 
 			fastDist.push_back(step);
+		}
+	}
+	for (PathStep& build : fastDist) {
+		switch (build.type) {
+		case BuildingType::Shooters:
+			shooters.isPlaced = true;
+			shooters.incenter = build.pos;
+			break;
+		case BuildingType::Guardians:
+			guardians.isPlaced = true;
+			guardians.incenter = build.pos;
+			break;
+		case BuildingType::Carriers:
+			carriers.isPlaced = true;
+			carriers.incenter = build.pos;
+			break;
+		case BuildingType::Eaters:
+			eaters.isPlaced = true;
+			eaters.incenter = build.pos;
+			break;
+		case BuildingType::Meteorites:
+			meteorites.isPlaced = true;
+			meteorites.incenter = build.pos;
+			break;
+		case BuildingType::CrystalHoles:
+			crystalHoles.isPlaced = true;
+			crystalHoles.incenter = build.pos;
+			break;
+		case BuildingType::Viruses:
+			viruses.isPlaced = true;
+			viruses.incenter = build.pos;
+			break;
+		case BuildingType::Evolutions:
+			evolutions.isPlaced = true;
+			evolutions.incenter = build.pos;
+			break;
+		case BuildingType::OrdinaryCaves:
+			ordinaryCaves.isPlaced = true;
+			ordinaryCaves.incenter = build.pos;
+			break;
+		case BuildingType::WildAnimals:
+			wildAnimals.isPlaced = true;
+			wildAnimals.incenter = build.pos;
+			break;
+		case BuildingType::RuralContests:
+			ruralContests.isPlaced = true;
+			ruralContests.incenter = build.pos;
+			break;
+		case BuildingType::Ladybugs:
+			ladybugs.isPlaced = true;
+			ladybugs.incenter = build.pos;
+			break;
+		case BuildingType::Shells:
+			shells.isPlaced = true;
+			shells.incenter = build.pos;
+			break;
+		case BuildingType::FabricResources:
+			fabricResources.isPlaced = true;
+			fabricResources.incenter = build.pos;
+			break;
+		case BuildingType::WarCaves:
+			warCaves.isPlaced = true;
+			warCaves.incenter = build.pos;
+			break;
+		case BuildingType::HatchingAnimals: 
+			HatchingAnimals::QuantityOfHatchingAnimalsBuilding++;
+			HatchingAnimals::incenter.push_back(build.pos);
+			break;
+		case BuildingType::AntSlayers: 
+			AntSlayers::QuantityOfAntSlayerBuilding++;
+			AntSlayers::incenter.push_back(build.pos);
+			break;
+		case BuildingType::AnimalCorms: 
+			AnimalCorms::QuantityOfAnimalCormBuilding++;
+			AnimalCorms::incenter.push_back(build.pos);
+			break;
 		}
 	}
 	return true;

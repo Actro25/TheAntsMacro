@@ -3,90 +3,34 @@
         {
             "place_in_queue": 1,
             "position": {
-                "x": 62,
-                "y": 37
+                "x": 402,
+                "y": 157
             },
-            "type": 9
+            "type": 3
         },
         {
             "place_in_queue": 2,
             "position": {
-                "x": 22,
-                "y": 37
+                "x": 642,
+                "y": 237
             },
-            "type": 5
+            "type": 6
         },
         {
             "place_in_queue": 3,
             "position": {
-                "x": 102,
-                "y": 37
+                "x": 553,
+                "y": 605
             },
-            "type": 16
+            "type": 18
         },
         {
             "place_in_queue": 4,
             "position": {
-                "x": 202,
-                "y": 77
-            },
-            "type": 16
-        },
-        {
-            "place_in_queue": 5,
-            "position": {
-                "x": 333,
-                "y": 45
+                "x": 81,
+                "y": 585
             },
             "type": 17
-        },
-        {
-            "place_in_queue": 6,
-            "position": {
-                "x": 561,
-                "y": 385
-            },
-            "type": 17
-        },
-        {
-            "place_in_queue": 7,
-            "position": {
-                "x": 573,
-                "y": 245
-            },
-            "type": 17
-        },
-        {
-            "place_in_queue": 8,
-            "position": {
-                "x": 473,
-                "y": 165
-            },
-            "type": 17
-        },
-        {
-            "place_in_queue": 9,
-            "position": {
-                "x": 533,
-                "y": 85
-            },
-            "type": 17
-        },
-        {
-            "place_in_queue": 10,
-            "position": {
-                "x": 282,
-                "y": 237
-            },
-            "type": 14
-        },
-        {
-            "place_in_queue": 11,
-            "position": {
-                "x": 412,
-                "y": 138
-            },
-            "type": 2
         }
     ]
 }
